@@ -1,0 +1,117 @@
+/* Mobile-specific styles */
+
+/* Safe area insets for iOS notch and home indicator */
+:root {
+  --safe-area-inset-top: env(safe-area-inset-top);
+  --safe-area-inset-bottom: env(safe-area-inset-bottom);
+  --safe-area-inset-left: env(safe-area-inset-left);
+  --safe-area-inset-right: env(safe-area-inset-right);
+}
+
+/* Apply safe area padding to body */
+body {
+  padding-top: var(--safe-area-inset-top);
+  padding-bottom: var(--safe-area-inset-bottom);
+  padding-left: var(--safe-area-inset-left);
+  padding-right: var(--safe-area-inset-right);
+}
+
+/* Prevent text selection on touch devices */
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Allow text selection in input fields and content areas */
+input,
+textarea,
+[contenteditable],
+.selectable {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/* Touch-friendly button sizes */
+button,
+a,
+.clickable {
+  min-height: 44px;
+  min-width: 44px;
+  touch-action: manipulation;
+}
+
+/* Smooth scrolling for mobile */
+* {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* Prevent pull-to-refresh on mobile */
+body {
+  overscroll-behavior-y: contain;
+}
+
+/* Optimize animations for mobile */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Hide scrollbar on mobile for cleaner look */
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Ensure full viewport height on mobile */
+#root {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+
+/* Fix for iOS Safari address bar */
+html {
+  height: -webkit-fill-available;
+}
+
+/* Prevent zoom on input focus (iOS) */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea {
+  font-size: 16px !important;
+}
+
+/* Better touch feedback */
+button:active,
+.btn-primary:active,
+.btn-secondary:active {
+  transform: scale(0.98);
+  transition: transform 0.1s ease;
+}
+
+/* Landscape mode adjustments */
+@media (orientation: landscape) and (max-height: 500px) {
+  body {
+    font-size: 14px;
+  }
+  
+  button,
+  .btn-primary,
+  .btn-secondary {
+    padding: 8px 16px;
+    min-height: 36px;
+  }
+}
