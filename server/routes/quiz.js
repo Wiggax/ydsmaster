@@ -48,59 +48,47 @@ router.post('/generate', async (req, res) => {
             });
         }
 
-        // Get all words for generating wrong options
-        const allWords = db.data.words || [];
+        // Get full word details for unknown words
+        const unknownWordIds = unknownWords.map(uw => String(uw.word_id));
+        const fullUnknownWords = db.data.words.filter(w => unknownWordIds.includes(String(w.id)));
+
+        if (fullUnknownWords.length < 10) {
+            return res.status(400).json({
+                error: 'You need at least 10 unknown words to generate a quiz',
+                currentCount: fullUnknownWords.length
+            });
+        }
 
         // Determine number of questions (10-20 based on available words)
-        const numQuestions = Math.min(20, unknownWords.length);
+        const numQuestions = Math.min(20, fullUnknownWords.length);
 
         // Shuffle and select words for quiz
-        const selectedWords = shuffleArray(unknownWords).slice(0, numQuestions);
+        const selectedWords = shuffleArray(fullUnknownWords).slice(0, numQuestions);
 
-        // Generate questions
-        const questions = selectedWords.map((word, index) => {
-            const questionType = Math.random() < 0.7 ? 'multiple_choice' : 'fill_blank';
+        // Generate questions - all questions show Turkish meaning with shuffled options from unknown words
+        const questions = selectedWords.map((correctWord, index) => {
+            // Get wrong options from other unknown words
+            const wrongOptions = fullUnknownWords
+                .filter(w => w.id !== correctWord.id)
+                .sort(() => Math.random() - 0.5)
+                .slice(0, 3);
 
-            if (questionType === 'multiple_choice') {
-                // Multiple choice: Show word, select correct meaning
-                const wrongOptions = generateWrongOptions(word, allWords);
-                const options = shuffleArray([
-                    { id: word.id, text: word.definition_tr, isCorrect: true },
-                    ...wrongOptions.map(w => ({ id: w.id, text: w.definition_tr, isCorrect: false }))
-                ]);
+            // Create shuffled options with Turkish meanings
+            const options = shuffleArray([
+                { id: correctWord.id, text: correctWord.definition_tr, isCorrect: true },
+                ...wrongOptions.map(w => ({ id: w.id, text: w.definition_tr, isCorrect: false }))
+            ]);
 
-                return {
-                    id: index + 1,
-                    type: 'multiple_choice',
-                    wordId: word.id,
-                    question: `What does "${word.term}" mean?`,
-                    word: word.term,
-                    options: options,
-                    correctAnswer: word.id,
-                    explanation: word.examples || `${word.term} means ${word.definition_tr}`
-                };
-            } else {
-                // Fill in the blank: Show sentence, select correct word
-                const sentence = word.examples || `This is an example sentence with _____.`;
-                const blankSentence = sentence.replace(new RegExp(word.term, 'gi'), '_____');
-
-                const wrongOptions = generateWrongOptions(word, allWords);
-                const options = shuffleArray([
-                    { id: word.id, text: word.term, isCorrect: true },
-                    ...wrongOptions.map(w => ({ id: w.id, text: w.term, isCorrect: false }))
-                ]);
-
-                return {
-                    id: index + 1,
-                    type: 'fill_blank',
-                    wordId: word.id,
-                    question: `Fill in the blank:`,
-                    sentence: blankSentence,
-                    options: options,
-                    correctAnswer: word.id,
-                    explanation: `The correct word is "${word.term}" which means ${word.definition_tr}`
-                };
-            }
+            return {
+                id: index + 1,
+                type: 'multiple_choice',
+                wordId: correctWord.id,
+                question: `"${correctWord.term}" kelimesinin anlamı nedir?`,
+                word: correctWord.term,
+                options: options,
+                correctAnswer: correctWord.id,
+                explanation: correctWord.examples || `${correctWord.term} kelimesi ${correctWord.definition_tr} anlamına gelir.`
+            };
         });
 
         // Create quiz object
