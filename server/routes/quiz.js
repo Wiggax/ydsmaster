@@ -1,5 +1,5 @@
 import express from 'express';
-import db from '../db.js';
+import { query } from '../database/db.js';
 
 const router = express.Router();
 
@@ -13,15 +13,6 @@ function shuffleArray(array) {
     return shuffled;
 }
 
-// Helper function to generate wrong options
-function generateWrongOptions(correctWord, allWords, count = 3) {
-    const wrongOptions = allWords
-        .filter(w => w.id !== correctWord.id && w.type === correctWord.type)
-        .sort(() => Math.random() - 0.5)
-        .slice(0, count);
-    return wrongOptions;
-}
-
 // Generate quiz from user's unknown words
 router.post('/generate', async (req, res) => {
     try {
@@ -31,26 +22,15 @@ router.post('/generate', async (req, res) => {
             return res.status(400).json({ error: 'User ID is required' });
         }
 
-        // Get user's unknown words and deduplicate by word_id
-        const rawUnknownWords = db.data.unknown_words?.filter(w => w.user_id === userId) || [];
-        const uniqueMap = new Map();
-        rawUnknownWords.forEach(item => {
-            if (!uniqueMap.has(String(item.word_id))) {
-                uniqueMap.set(String(item.word_id), item);
-            }
-        });
-        const unknownWords = Array.from(uniqueMap.values());
+        // Get user's unknown words with full word details
+        const result = await query(`
+            SELECT DISTINCT w.id, w.term, w.definition_tr, w.type, w.examples
+            FROM unknown_words uw
+            JOIN words w ON w.id = uw.word_id
+            WHERE uw.user_id = $1
+        `, [userId]);
 
-        if (unknownWords.length < 10) {
-            return res.status(400).json({
-                error: 'You need at least 10 unknown words to generate a quiz',
-                currentCount: unknownWords.length
-            });
-        }
-
-        // Get full word details for unknown words
-        const unknownWordIds = unknownWords.map(uw => String(uw.word_id));
-        const fullUnknownWords = db.data.words.filter(w => unknownWordIds.includes(String(w.id)));
+        const fullUnknownWords = result.rows;
 
         if (fullUnknownWords.length < 10) {
             return res.status(400).json({
@@ -137,27 +117,18 @@ router.post('/submit', async (req, res) => {
         };
 
         // Save quiz result to history
-        if (!db.data.quiz_history) {
-            db.data.quiz_history = [];
-        }
-
-        const quizResult = {
-            id: Date.now(),
-            userId: userId,
-            quizId: quizId,
-            score: score,
-            results: results,
-            completedAt: new Date().toISOString()
-        };
-
-        db.data.quiz_history.push(quizResult);
-        await db.write();
+        const result = await query(
+            `INSERT INTO quiz_history (user_id, quiz_id, score, results, completed_at)
+             VALUES ($1, $2, $3, $4, CURRENT_TIMESTAMP)
+             RETURNING id`,
+            [userId, quizId, JSON.stringify(score), JSON.stringify(results)]
+        );
 
         res.json({
             success: true,
             score: score,
             results: results,
-            resultId: quizResult.id
+            resultId: result.rows[0].id
         });
     } catch (error) {
         console.error('Quiz submission error:', error);
@@ -169,12 +140,16 @@ router.post('/submit', async (req, res) => {
 router.get('/history/:userId', async (req, res) => {
     try {
         const { userId } = req.params;
-        const history = db.data.quiz_history?.filter(q => q.userId === parseInt(userId)) || [];
 
-        // Sort by most recent first
-        history.sort((a, b) => new Date(b.completedAt) - new Date(a.completedAt));
+        const result = await query(
+            `SELECT id, user_id as "userId", quiz_id as "quizId", score, results, completed_at as "completedAt"
+             FROM quiz_history
+             WHERE user_id = $1
+             ORDER BY completed_at DESC`,
+            [parseInt(userId)]
+        );
 
-        res.json(history);
+        res.json(result.rows);
     } catch (error) {
         console.error('Quiz history error:', error);
         res.status(500).json({ error: 'Failed to fetch quiz history' });
@@ -185,13 +160,19 @@ router.get('/history/:userId', async (req, res) => {
 router.get('/result/:resultId', async (req, res) => {
     try {
         const { resultId } = req.params;
-        const result = db.data.quiz_history?.find(q => q.id === parseInt(resultId));
 
-        if (!result) {
+        const result = await query(
+            `SELECT id, user_id as "userId", quiz_id as "quizId", score, results, completed_at as "completedAt"
+             FROM quiz_history
+             WHERE id = $1`,
+            [parseInt(resultId)]
+        );
+
+        if (result.rows.length === 0) {
             return res.status(404).json({ error: 'Quiz result not found' });
         }
 
-        res.json(result);
+        res.json(result.rows[0]);
     } catch (error) {
         console.error('Quiz result error:', error);
         res.status(500).json({ error: 'Failed to fetch quiz result' });

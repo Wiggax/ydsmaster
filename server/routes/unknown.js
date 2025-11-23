@@ -1,5 +1,5 @@
 import express from 'express';
-import db from '../db.js';
+import { query } from '../database/db.js';
 
 const router = express.Router();
 
@@ -13,33 +13,25 @@ router.post('/', async (req, res) => {
         }
 
         const normalizedUserId = Number(userId);
-        const normalizedWordId = String(wordId);
+        const normalizedWordId = Number(wordId);
 
-        if (!Number.isFinite(normalizedUserId) || !normalizedWordId) {
+        if (!Number.isFinite(normalizedUserId) || !Number.isFinite(normalizedWordId)) {
             return res.status(400).json({ error: 'Invalid userId or wordId' });
         }
 
-        db.data.unknown_words ??= [];
-
-        // Check if already exists (using user_id field)
-        const exists = db.data.unknown_words.find(
-            uw => uw.user_id === normalizedUserId && String(uw.word_id) === normalizedWordId
-        );
-
-        if (exists) {
-            return res.status(200).json({ message: 'Word already in unknown list' });
+        // Try to insert, if already exists, return success message
+        try {
+            await query(
+                'INSERT INTO unknown_words (user_id, word_id, added_at) VALUES ($1, $2, CURRENT_TIMESTAMP)',
+                [normalizedUserId, normalizedWordId]
+            );
+            res.json({ message: 'Word added to unknown list' });
+        } catch (error) {
+            if (error.code === '23505') { // Unique violation
+                return res.status(200).json({ message: 'Word already in unknown list' });
+            }
+            throw error;
         }
-
-        // Add to unknown words (using user_id field for consistency)
-        db.data.unknown_words.push({
-            id: Date.now(),
-            user_id: normalizedUserId,
-            word_id: normalizedWordId,
-            added_at: new Date().toISOString()
-        });
-
-        await db.write();
-        res.json({ message: 'Word added to unknown list' });
     } catch (error) {
         console.error('Error adding unknown word:', error);
         res.status(500).json({ error: 'Failed to add word' });
@@ -56,18 +48,15 @@ router.get('/:userId', async (req, res) => {
             return res.status(400).json({ error: 'Invalid userId' });
         }
 
-        db.data.unknown_words ??= [];
-        db.data.words ??= [];
+        const result = await query(`
+            SELECT w.id, w.term, w.definition_tr, w.type, w.examples
+            FROM unknown_words uw
+            JOIN words w ON w.id = uw.word_id
+            WHERE uw.user_id = $1
+            ORDER BY uw.added_at DESC
+        `, [normalizedUserId]);
 
-        // Get user's unknown word IDs (using user_id field)
-        const unknownWordIds = db.data.unknown_words
-            .filter(uw => uw.user_id === normalizedUserId)
-            .map(uw => String(uw.word_id));
-
-        // Get full word details
-        const words = db.data.words.filter(w => unknownWordIds.includes(String(w.id)));
-
-        res.json(words);
+        res.json(result.rows);
     } catch (error) {
         console.error('Error fetching unknown words:', error);
         res.status(500).json({ error: 'Failed to fetch unknown words' });
@@ -79,24 +68,21 @@ router.delete('/:userId/:wordId', async (req, res) => {
     try {
         const { userId, wordId } = req.params;
         const normalizedUserId = Number(userId);
-        const normalizedWordId = String(wordId);
+        const normalizedWordId = Number(wordId);
 
-        if (!Number.isFinite(normalizedUserId) || !normalizedWordId) {
+        if (!Number.isFinite(normalizedUserId) || !Number.isFinite(normalizedWordId)) {
             return res.status(400).json({ error: 'Invalid userId or wordId' });
         }
 
-        db.data.unknown_words ??= [];
-
-        const initialLength = db.data.unknown_words.length;
-        db.data.unknown_words = db.data.unknown_words.filter(
-            uw => !(uw.user_id === normalizedUserId && String(uw.word_id) === normalizedWordId)
+        const result = await query(
+            'DELETE FROM unknown_words WHERE user_id = $1 AND word_id = $2',
+            [normalizedUserId, normalizedWordId]
         );
 
-        if (db.data.unknown_words.length === initialLength) {
+        if (result.rowCount === 0) {
             return res.status(404).json({ error: 'Word not found in unknown list' });
         }
 
-        await db.write();
         res.json({ message: 'Word removed from unknown list' });
     } catch (error) {
         console.error('Error removing unknown word:', error);

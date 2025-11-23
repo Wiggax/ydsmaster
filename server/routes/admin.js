@@ -1,6 +1,6 @@
 import express from 'express';
 import bcrypt from 'bcryptjs';
-import db from '../db.js';
+import { query } from '../database/db.js';
 import { authenticate, authorizeAdmin } from '../middleware/auth.js';
 
 const router = express.Router();
@@ -12,42 +12,38 @@ router.use(authorizeAdmin);
 // Get all users with stats
 router.get('/users', async (req, res) => {
     try {
-        db.data.users ??= [];
-        db.data.unknown_words ??= [];
-        db.data.user_progress ??= [];
+        const result = await query(`
+            SELECT 
+                u.id, u.username, u.email, u.phone, u.role, u.is_pro, 
+                u.is_deleted, u.deleted_at, u.created_at, u.last_login, u.security_question,
+                COUNT(DISTINCT uw.id) as unknown_words_count,
+                COUNT(DISTINCT up.id) as progress_count,
+                MAX(up.updated_at) as last_activity
+            FROM users u
+            LEFT JOIN unknown_words uw ON uw.user_id = u.id
+            LEFT JOIN user_progress up ON up.user_id = u.id
+            GROUP BY u.id
+            ORDER BY u.created_at DESC
+        `);
 
-        const users = db.data.users.map(user => {
-            const unknownCount = db.data.unknown_words.filter(
-                uw => uw.user_id === user.id
-            ).length;
-
-            const progressCount = db.data.user_progress.filter(
-                p => p.userId === user.id
-            ).length;
-
-            const lastProgress = db.data.user_progress
-                .filter(p => p.userId === user.id)
-                .sort((a, b) => new Date(b.updatedAt || b.createdAt) - new Date(a.updatedAt || a.createdAt))[0];
-
-            return {
-                id: user.id,
-                username: user.username,
-                email: user.email,
-                phone: user.phone,
-                role: user.role || 'user',
-                isPro: !!user.isPro,
-                isDeleted: !!user.isDeleted,
-                deletedAt: user.deletedAt || null,
-                createdAt: user.created_at,
-                lastLogin: user.last_login || null,
-                securityQuestion: user.securityQuestion || null,
-                stats: {
-                    unknownWordsCount: unknownCount,
-                    progressCount,
-                    lastActivity: lastProgress?.updatedAt || lastProgress?.createdAt || null
-                }
-            };
-        });
+        const users = result.rows.map(user => ({
+            id: user.id,
+            username: user.username,
+            email: user.email,
+            phone: user.phone,
+            role: user.role || 'user',
+            isPro: !!user.is_pro,
+            isDeleted: !!user.is_deleted,
+            deletedAt: user.deleted_at,
+            createdAt: user.created_at,
+            lastLogin: user.last_login,
+            securityQuestion: user.security_question,
+            stats: {
+                unknownWordsCount: parseInt(user.unknown_words_count) || 0,
+                progressCount: parseInt(user.progress_count) || 0,
+                lastActivity: user.last_activity
+            }
+        }));
 
         res.json(users);
     } catch (error) {
@@ -66,28 +62,29 @@ router.get('/users/:userId', async (req, res) => {
             return res.status(400).json({ error: 'Invalid userId' });
         }
 
-        db.data.users ??= [];
-        db.data.unknown_words ??= [];
-        db.data.user_progress ??= [];
+        const userResult = await query(
+            'SELECT id, username, email, phone, role, is_pro, created_at, last_login FROM users WHERE id = $1',
+            [normalizedUserId]
+        );
 
-        const user = db.data.users.find(u => u.id === normalizedUserId);
-
-        if (!user) {
+        if (userResult.rows.length === 0) {
             return res.status(404).json({ error: 'User not found' });
         }
 
-        const unknownWords = db.data.unknown_words
-            .filter(uw => uw.user_id === normalizedUserId)
-            .map(uw => {
-                const word = db.data.words.find(w => String(w.id) === String(uw.word_id));
-                return {
-                    ...uw,
-                    word: word || null
-                };
-            });
+        const user = userResult.rows[0];
 
-        const progress = db.data.user_progress.filter(
-            p => p.userId === normalizedUserId
+        // Get unknown words with details
+        const unknownWordsResult = await query(`
+            SELECT uw.id, uw.word_id, uw.added_at, w.term, w.definition_tr, w.type
+            FROM unknown_words uw
+            JOIN words w ON w.id = uw.word_id
+            WHERE uw.user_id = $1
+        `, [normalizedUserId]);
+
+        // Get progress
+        const progressResult = await query(
+            'SELECT * FROM user_progress WHERE user_id = $1',
+            [normalizedUserId]
         );
 
         res.json({
@@ -96,14 +93,14 @@ router.get('/users/:userId', async (req, res) => {
             email: user.email,
             phone: user.phone,
             role: user.role || 'user',
-            isPro: !!user.isPro,
+            isPro: !!user.is_pro,
             createdAt: user.created_at,
-            lastLogin: user.last_login || null,
+            lastLogin: user.last_login,
             stats: {
-                unknownWordsCount: unknownWords.length,
-                unknownWords,
-                progressCount: progress.length,
-                progress
+                unknownWordsCount: unknownWordsResult.rows.length,
+                unknownWords: unknownWordsResult.rows,
+                progressCount: progressResult.rows.length,
+                progress: progressResult.rows
             }
         });
     } catch (error) {
@@ -127,86 +124,29 @@ router.delete('/users/:userId', async (req, res) => {
             return res.status(400).json({ error: 'Cannot delete your own account' });
         }
 
-        // Initialize all arrays to ensure no errors during filtering
-        db.data.users ??= [];
-        db.data.unknown_words ??= [];
-        db.data.user_progress ??= [];
-        db.data.leaderboard ??= [];
-        db.data.quiz_history ??= [];
-        db.data.exam_results ??= [];
-        db.data.reading_progress ??= [];
+        const userResult = await query(
+            'SELECT username FROM users WHERE id = $1',
+            [normalizedUserId]
+        );
 
-        const userIndex = db.data.users.findIndex(u => u.id === normalizedUserId);
-
-        if (userIndex === -1) {
+        if (userResult.rows.length === 0) {
             return res.status(404).json({ error: 'User not found' });
         }
 
-        const userToDelete = db.data.users[userIndex];
+        const userToDelete = userResult.rows[0];
         console.log(`[ADMIN DELETE] Starting deletion of user: ${userToDelete.username} (ID: ${normalizedUserId})`);
 
-        // Hard delete: Remove user from users array
-        db.data.users.splice(userIndex, 1);
-        console.log(`[ADMIN DELETE] Removed user from users array. Remaining users: ${db.data.users.length}`);
-
-        // Remove from all related collections
-        // Note: unknown_words uses user_id, others use userId
-        const initialCounts = {
-            leaderboard: db.data.leaderboard.length,
-            unknown_words: db.data.unknown_words.length,
-            user_progress: db.data.user_progress.length,
-            quiz_history: db.data.quiz_history.length,
-            exam_results: db.data.exam_results.length,
-            reading_progress: db.data.reading_progress.length
-        };
-
-        db.data.leaderboard = db.data.leaderboard.filter(
-            entry => entry.userId !== normalizedUserId
+        // PostgreSQL will automatically delete related records due to CASCADE
+        const deleteResult = await query(
+            'DELETE FROM users WHERE id = $1',
+            [normalizedUserId]
         );
 
-        db.data.unknown_words = db.data.unknown_words.filter(
-            uw => uw.user_id !== normalizedUserId
-        );
-
-        db.data.user_progress = db.data.user_progress.filter(
-            p => p.userId !== normalizedUserId
-        );
-
-        db.data.quiz_history = db.data.quiz_history.filter(
-            q => q.userId !== normalizedUserId
-        );
-
-        db.data.exam_results = db.data.exam_results.filter(
-            r => r.userId !== normalizedUserId
-        );
-
-        db.data.reading_progress = db.data.reading_progress.filter(
-            p => p.userId !== normalizedUserId
-        );
-
-        console.log(`[ADMIN DELETE] Data cleanup complete:`, {
-            leaderboard: `${initialCounts.leaderboard} -> ${db.data.leaderboard.length}`,
-            unknown_words: `${initialCounts.unknown_words} -> ${db.data.unknown_words.length}`,
-            user_progress: `${initialCounts.user_progress} -> ${db.data.user_progress.length}`,
-            quiz_history: `${initialCounts.quiz_history} -> ${db.data.quiz_history.length}`,
-            exam_results: `${initialCounts.exam_results} -> ${db.data.exam_results.length}`,
-            reading_progress: `${initialCounts.reading_progress} -> ${db.data.reading_progress.length}`
-        });
-
-        await db.write();
-        console.log(`[ADMIN DELETE] Database written to disk. User ${normalizedUserId} permanently deleted.`);
+        console.log(`[ADMIN DELETE] User ${normalizedUserId} permanently deleted from database.`);
 
         res.json({
             message: 'User deleted successfully',
-            deletedUser: userToDelete.username,
-            deletedData: {
-                leaderboard: initialCounts.leaderboard - db.data.leaderboard.length,
-                unknown_words: initialCounts.unknown_words - db.data.unknown_words.length,
-                user_progress: initialCounts.user_progress - db.data.user_progress.length,
-                quiz_history: initialCounts.quiz_history - db.data.quiz_history.length,
-                exam_results: initialCounts.exam_results - db.data.exam_results.length,
-                reading_progress: initialCounts.reading_progress - db.data.reading_progress.length
-            }
+            deletedUser: userToDelete.username
         });
     } catch (error) {
         console.error('Error deleting user:', error);
@@ -223,35 +163,32 @@ router.post('/users', async (req, res) => {
             return res.status(400).json({ error: 'All fields are required' });
         }
 
-        db.data.users ??= [];
+        // Check if email or phone already exists
+        const existingUser = await query(
+            'SELECT id FROM users WHERE email = $1 OR phone = $2',
+            [email, phone]
+        );
 
-        // Check if email already exists
-        const emailExists = db.data.users.find(u => u.email === email);
-        if (emailExists) {
-            return res.status(409).json({ error: 'Email already exists' });
-        }
-
-        // Check if phone already exists
-        const phoneExists = db.data.users.find(u => u.phone === phone);
-        if (phoneExists) {
-            return res.status(409).json({ error: 'Phone number already exists' });
+        if (existingUser.rows.length > 0) {
+            return res.status(409).json({ error: 'Email or phone already exists' });
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        const newUser = {
-            id: Date.now(),
-            username,
-            email,
-            password_hash: hashedPassword,
-            phone,
-            role: 'user',
-            isPro: !!isPro,
-            created_at: new Date().toISOString()
-        };
+        const result = await query(
+            `INSERT INTO users (username, email, password_hash, phone, role, is_pro, created_at)
+             VALUES ($1, $2, $3, $4, $5, $6, CURRENT_TIMESTAMP)
+             RETURNING id, username, email, phone, is_pro`,
+            [username, email, hashedPassword, phone, 'user', !!isPro]
+        );
 
-        db.data.users.push(newUser);
-        await db.write();
+        const newUser = result.rows[0];
+
+        // Initialize leaderboard entry
+        await query(
+            'INSERT INTO leaderboard (user_id, score, rank) VALUES ($1, $2, $3)',
+            [newUser.id, 0, 0]
+        );
 
         res.status(201).json({
             message: 'User created successfully',
@@ -260,7 +197,7 @@ router.post('/users', async (req, res) => {
                 username: newUser.username,
                 email: newUser.email,
                 phone: newUser.phone,
-                isPro: newUser.isPro
+                isPro: newUser.is_pro
             }
         });
     } catch (error) {
@@ -279,23 +216,18 @@ router.patch('/users/:userId/toggle-pro', async (req, res) => {
             return res.status(400).json({ error: 'Invalid userId' });
         }
 
-        const user = db.data.users.find(u => u.id === normalizedUserId);
+        const result = await query(
+            'UPDATE users SET is_pro = NOT is_pro WHERE id = $1 RETURNING is_pro',
+            [normalizedUserId]
+        );
 
-        if (!user) {
+        if (result.rows.length === 0) {
             return res.status(404).json({ error: 'User not found' });
         }
 
-        // Ensure isPro field exists
-        if (user.isPro === undefined) {
-            user.isPro = false;
-        }
-
-        user.isPro = !user.isPro;
-        await db.write();
-
         res.json({
-            message: `User Pro status updated to ${user.isPro}`,
-            isPro: user.isPro
+            message: `User Pro status updated to ${result.rows[0].is_pro}`,
+            isPro: result.rows[0].is_pro
         });
     } catch (error) {
         console.error('[Toggle Pro] Error:', error);
@@ -323,18 +255,18 @@ router.patch('/users/:userId/role', async (req, res) => {
             return res.status(400).json({ error: 'Cannot change your own role' });
         }
 
-        const user = db.data.users.find(u => u.id === normalizedUserId);
+        const result = await query(
+            'UPDATE users SET role = $1 WHERE id = $2 RETURNING role',
+            [role, normalizedUserId]
+        );
 
-        if (!user) {
+        if (result.rows.length === 0) {
             return res.status(404).json({ error: 'User not found' });
         }
 
-        user.role = role;
-        await db.write();
-
         res.json({
             message: `User role updated to ${role}`,
-            role: user.role
+            role: result.rows[0].role
         });
     } catch (error) {
         console.error('Error updating user role:', error);
@@ -357,24 +289,21 @@ router.post('/users/:userId/reset-password', async (req, res) => {
             return res.status(400).json({ error: 'Password must be at least 6 characters' });
         }
 
-        const user = db.data.users.find(u => u.id === normalizedUserId);
-
-        if (!user) {
-            return res.status(404).json({ error: 'User not found' });
-        }
-
         const hashedPassword = await bcrypt.hash(newPassword, 10);
 
-        user.password_hash = hashedPassword;
-        user.passwordResetAt = new Date().toISOString();
-        user.passwordResetBy = req.user.id;
+        const result = await query(
+            'UPDATE users SET password_hash = $1 WHERE id = $2 RETURNING id',
+            [hashedPassword, normalizedUserId]
+        );
 
-        await db.write();
+        if (result.rows.length === 0) {
+            return res.status(404).json({ error: 'User not found' });
+        }
 
         res.json({
             success: true,
             message: 'Password reset successfully',
-            newPassword: newPassword // Return the password so admin can give it to user
+            newPassword: newPassword
         });
     } catch (error) {
         console.error('Error resetting password:', error);
@@ -385,35 +314,46 @@ router.post('/users/:userId/reset-password', async (req, res) => {
 // Get system stats
 router.get('/stats', async (req, res) => {
     try {
-        db.data.users ??= [];
-        db.data.words ??= [];
-        db.data.texts ??= [];
-        db.data.unknown_words ??= [];
-        db.data.user_progress ??= [];
+        const statsResult = await query(`
+            SELECT 
+                (SELECT COUNT(*) FROM users) as users_count,
+                (SELECT COUNT(*) FROM words) as words_count,
+                (SELECT COUNT(*) FROM texts) as texts_count,
+                (SELECT COUNT(*) FROM unknown_words) as unknown_words_count,
+                (SELECT COUNT(*) FROM user_progress) as progress_count,
+                (SELECT COUNT(*) FROM words WHERE type = 'verb') as verbs_count,
+                (SELECT COUNT(*) FROM words WHERE type = 'adjective') as adjectives_count,
+                (SELECT COUNT(*) FROM words WHERE type = 'noun') as nouns_count,
+                (SELECT COUNT(DISTINCT user_id) FROM unknown_words) as active_users_count
+        `);
 
-        const stats = {
-            users: db.data.users.length,
-            words: db.data.words.length,
-            texts: db.data.texts.length,
-            totalUnknownWords: db.data.unknown_words.length,
-            totalProgress: db.data.user_progress.length,
+        const recentActivity = await query(`
+            SELECT user_id, content_type, updated_at
+            FROM user_progress
+            ORDER BY updated_at DESC
+            LIMIT 10
+        `);
+
+        const stats = statsResult.rows[0];
+
+        res.json({
+            users: parseInt(stats.users_count),
+            words: parseInt(stats.words_count),
+            texts: parseInt(stats.texts_count),
+            totalUnknownWords: parseInt(stats.unknown_words_count),
+            totalProgress: parseInt(stats.progress_count),
             wordsByType: {
-                verb: db.data.words.filter(w => w.type === 'verb').length,
-                adjective: db.data.words.filter(w => w.type === 'adjective').length,
-                noun: db.data.words.filter(w => w.type === 'noun').length
+                verb: parseInt(stats.verbs_count),
+                adjective: parseInt(stats.adjectives_count),
+                noun: parseInt(stats.nouns_count)
             },
-            activeUsers: new Set(db.data.unknown_words.map(uw => uw.user_id)).size,
-            recentActivity: db.data.user_progress
-                .sort((a, b) => new Date(b.updatedAt || b.createdAt) - new Date(a.updatedAt || a.createdAt))
-                .slice(0, 10)
-                .map(p => ({
-                    userId: p.userId,
-                    contentType: p.contentType,
-                    updatedAt: p.updatedAt || p.createdAt
-                }))
-        };
-
-        res.json(stats);
+            activeUsers: parseInt(stats.active_users_count),
+            recentActivity: recentActivity.rows.map(r => ({
+                userId: r.user_id,
+                contentType: r.content_type,
+                updatedAt: r.updated_at
+            }))
+        });
     } catch (error) {
         console.error('Error fetching stats:', error);
         res.status(500).json({ error: 'Failed to fetch stats' });
