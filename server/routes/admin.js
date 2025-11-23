@@ -142,11 +142,24 @@ router.delete('/users/:userId', async (req, res) => {
             return res.status(404).json({ error: 'User not found' });
         }
 
+        const userToDelete = db.data.users[userIndex];
+        console.log(`[ADMIN DELETE] Starting deletion of user: ${userToDelete.username} (ID: ${normalizedUserId})`);
+
         // Hard delete: Remove user from users array
         db.data.users.splice(userIndex, 1);
+        console.log(`[ADMIN DELETE] Removed user from users array. Remaining users: ${db.data.users.length}`);
 
         // Remove from all related collections
         // Note: unknown_words uses user_id, others use userId
+        const initialCounts = {
+            leaderboard: db.data.leaderboard.length,
+            unknown_words: db.data.unknown_words.length,
+            user_progress: db.data.user_progress.length,
+            quiz_history: db.data.quiz_history.length,
+            exam_results: db.data.exam_results.length,
+            reading_progress: db.data.reading_progress.length
+        };
+
         db.data.leaderboard = db.data.leaderboard.filter(
             entry => entry.userId !== normalizedUserId
         );
@@ -171,8 +184,30 @@ router.delete('/users/:userId', async (req, res) => {
             p => p.userId !== normalizedUserId
         );
 
+        console.log(`[ADMIN DELETE] Data cleanup complete:`, {
+            leaderboard: `${initialCounts.leaderboard} -> ${db.data.leaderboard.length}`,
+            unknown_words: `${initialCounts.unknown_words} -> ${db.data.unknown_words.length}`,
+            user_progress: `${initialCounts.user_progress} -> ${db.data.user_progress.length}`,
+            quiz_history: `${initialCounts.quiz_history} -> ${db.data.quiz_history.length}`,
+            exam_results: `${initialCounts.exam_results} -> ${db.data.exam_results.length}`,
+            reading_progress: `${initialCounts.reading_progress} -> ${db.data.reading_progress.length}`
+        });
+
         await db.write();
-        res.json({ message: 'User deleted successfully' });
+        console.log(`[ADMIN DELETE] Database written to disk. User ${normalizedUserId} permanently deleted.`);
+
+        res.json({
+            message: 'User deleted successfully',
+            deletedUser: userToDelete.username,
+            deletedData: {
+                leaderboard: initialCounts.leaderboard - db.data.leaderboard.length,
+                unknown_words: initialCounts.unknown_words - db.data.unknown_words.length,
+                user_progress: initialCounts.user_progress - db.data.user_progress.length,
+                quiz_history: initialCounts.quiz_history - db.data.quiz_history.length,
+                exam_results: initialCounts.exam_results - db.data.exam_results.length,
+                reading_progress: initialCounts.reading_progress - db.data.reading_progress.length
+            }
+        });
     } catch (error) {
         console.error('Error deleting user:', error);
         res.status(500).json({ error: 'Failed to delete user' });
