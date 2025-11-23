@@ -31,23 +31,75 @@ app.use((req, res, next) => {
     next();
 });
 
-// Initialize database once at startup
+// Initialize database
 async function initializeDatabase() {
     try {
         await db.read();
-        // Ensure all required fields exist
+        db.data ||= { users: [], words: [], texts: [], unknown_words: [], user_progress: [], leaderboard: [], quiz_history: [] };
+
+        // Initialize arrays if they don't exist
+        if (!db.data.users) db.data.users = [];
+        if (!db.data.words) db.data.words = [];
+        if (!db.data.texts) db.data.texts = [];
         if (!db.data.unknown_words) db.data.unknown_words = [];
         if (!db.data.user_progress) db.data.user_progress = [];
-        if (!db.data.reading_progress) db.data.reading_progress = [];
-        if (!db.data.books) db.data.books = [];
-        if (!db.data.yds_exams) db.data.yds_exams = [];
-        if (!db.data.exam_results) db.data.exam_results = [];
         if (!db.data.leaderboard) db.data.leaderboard = [];
         if (!db.data.quiz_history) db.data.quiz_history = [];
+        if (!db.data.reading_progress) db.data.reading_progress = []; // Added from original
+        if (!db.data.books) db.data.books = []; // Added from original
+        if (!db.data.yds_exams) db.data.yds_exams = []; // Added from original
+        if (!db.data.exam_results) db.data.exam_results = []; // Added from original
+
         await db.write();
-        console.log('Database initialized successfully');
+        console.log('✓ Database initialized');
     } catch (error) {
         console.error('Database initialization error:', error);
+    }
+}
+
+// Auto-migrate unknown_words field names on startup
+async function autoMigrateUnknownWords() {
+    try {
+        db.data.unknown_words ??= [];
+
+        let migratedCount = 0;
+        let alreadyMigratedCount = 0;
+
+        // Check if migration is needed
+        const needsMigration = db.data.unknown_words.some(uw => uw.userId !== undefined);
+
+        if (!needsMigration) {
+            console.log('✓ Unknown words already migrated');
+            return;
+        }
+
+        console.log('🔄 Auto-migrating unknown_words field names...');
+
+        // Migrate each unknown word entry
+        db.data.unknown_words = db.data.unknown_words.map(uw => {
+            // Check if already migrated (has user_id field)
+            if (uw.user_id !== undefined) {
+                alreadyMigratedCount++;
+                return uw;
+            }
+
+            // Migrate old format to new format
+            const migrated = {
+                id: uw.id,
+                user_id: uw.userId,
+                word_id: uw.wordId,
+                added_at: uw.addedAt || new Date().toISOString()
+            };
+
+            migratedCount++;
+            return migrated;
+        });
+
+        await db.write();
+
+        console.log(`✅ Migration complete! Migrated: ${migratedCount}, Already migrated: ${alreadyMigratedCount}, Total: ${db.data.unknown_words.length}`);
+    } catch (error) {
+        console.error('❌ Auto-migration error:', error);
     }
 }
 
@@ -76,9 +128,15 @@ app.use((err, req, res, next) => {
 });
 
 // Initialize database and start server
-initializeDatabase().then(() => {
-    app.listen(PORT, '0.0.0.0', () => {
-        console.log(`Server running on http://0.0.0.0:${PORT}`);
+initializeDatabase()
+    .then(() => autoMigrateUnknownWords())
+    .then(() => {
+        app.listen(PORT, '0.0.0.0', () => {
+            console.log(`Server running on http://0.0.0.0:${PORT}`);
+        });
+    })
+    .catch(error => {
+        console.error('Server startup error:', error);
+        process.exit(1);
     });
-});
 
