@@ -1,63 +1,72 @@
 import express from 'express';
-import db from '../db.js';
-import { authenticate, authorizeAdmin } from '../middleware/auth.js';
+import { query } from '../database/db.js';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 const router = express.Router();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-// Migration endpoint - Admin only
-router.post('/migrate-unknown-words-fields', authenticate, authorizeAdmin, async (req, res) => {
+// Run database migration
+router.get('/setup-database', async (req, res) => {
     try {
-        console.log('🔄 Starting migration: userId/wordId → user_id/word_id');
+        console.log('🔄 Starting database schema setup...');
 
-        db.data.unknown_words ??= [];
+        // Read schema.sql file
+        const schemaPath = path.join(__dirname, '../database/schema.sql');
+        const schema = fs.readFileSync(schemaPath, 'utf8');
 
-        let migratedCount = 0;
-        let alreadyMigratedCount = 0;
+        // Execute schema
+        await query(schema);
 
-        // Migrate each unknown word entry
-        db.data.unknown_words = db.data.unknown_words.map(uw => {
-            // Check if already migrated (has user_id field)
-            if (uw.user_id !== undefined) {
-                alreadyMigratedCount++;
-                return uw;
-            }
-
-            // Migrate old format to new format
-            const migrated = {
-                id: uw.id,
-                user_id: uw.userId,
-                word_id: uw.wordId,
-                added_at: uw.addedAt || new Date().toISOString()
-            };
-
-            migratedCount++;
-            console.log(`✓ Migrated: userId ${uw.userId} → user_id ${migrated.user_id}`);
-
-            return migrated;
-        });
-
-        await db.write();
-
-        console.log(`✅ Migration complete!`);
-        console.log(`   - Migrated: ${migratedCount} records`);
-        console.log(`   - Already migrated: ${alreadyMigratedCount} records`);
-        console.log(`   - Total: ${db.data.unknown_words.length} records`);
+        console.log('✅ Database schema created successfully!');
 
         res.json({
             success: true,
-            message: 'Migration completed successfully',
-            stats: {
-                migrated: migratedCount,
-                alreadyMigrated: alreadyMigratedCount,
-                total: db.data.unknown_words.length
-            }
+            message: 'Database schema created successfully!',
+            tables: [
+                'users',
+                'words',
+                'texts',
+                'unknown_words',
+                'user_progress',
+                'leaderboard',
+                'quiz_history',
+                'exam_results',
+                'reading_progress',
+                'books'
+            ]
         });
     } catch (error) {
-        console.error('❌ Migration error:', error);
+        console.error('❌ Database setup error:', error);
         res.status(500).json({
             success: false,
-            error: 'Migration failed',
-            details: error.message
+            error: error.message,
+            hint: 'Check if DATABASE_URL is set correctly'
+        });
+    }
+});
+
+// Check database status
+router.get('/check-database', async (req, res) => {
+    try {
+        const result = await query(`
+            SELECT table_name 
+            FROM information_schema.tables 
+            WHERE table_schema = 'public'
+            ORDER BY table_name
+        `);
+
+        res.json({
+            success: true,
+            tables: result.rows.map(r => r.table_name),
+            count: result.rows.length
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: error.message
         });
     }
 });
