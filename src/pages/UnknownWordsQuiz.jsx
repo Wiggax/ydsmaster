@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { motion } from 'framer-motion';
-import { ArrowLeft, CheckCircle, XCircle, Clock } from 'lucide-react';
+import { ArrowLeft, Clock } from 'lucide-react';
 
 export default function UnknownWordsQuiz() {
     const navigate = useNavigate();
-    const location = useLocation();
     const [quiz, setQuiz] = useState(null);
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [selectedAnswers, setSelectedAnswers] = useState({});
@@ -26,7 +25,9 @@ export default function UnknownWordsQuiz() {
     useEffect(() => {
         const generateQuiz = async () => {
             try {
-                const user = JSON.parse(localStorage.getItem('user'));
+                const userStr = await Storage.getItem('user');
+                const user = userStr ? JSON.parse(userStr) : null;
+
                 if (!user || !user.id) {
                     navigate('/login');
                     return;
@@ -76,7 +77,8 @@ export default function UnknownWordsQuiz() {
         setSubmitting(true);
 
         try {
-            const user = JSON.parse(localStorage.getItem('user'));
+            const userStr = await Storage.getItem('user');
+            const user = userStr ? JSON.parse(userStr) : null;
 
             // Prepare answers
             const answers = quiz.questions.map(q => ({
@@ -179,8 +181,8 @@ export default function UnknownWordsQuiz() {
                                 key={option.id}
                                 onClick={() => handleSelectAnswer(question.id, option.id)}
                                 className={`w-full p-4 rounded-lg text-left transition-all ${selectedAnswers[question.id] === option.id
-                                        ? 'bg-purple-600 text-white border-2 border-purple-400'
-                                        : 'bg-gray-800 text-gray-300 border-2 border-gray-700 hover:border-purple-500'
+                                    ? 'bg-purple-600 text-white border-2 border-purple-400'
+                                    : 'bg-gray-800 text-gray-300 border-2 border-gray-700 hover:border-purple-500'
                                     }`}
                             >
                                 <span className="font-semibold mr-3">{String.fromCharCode(65 + index)}.</span>

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Check, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Storage } from '../utils/storage';
 
 export default function PracticeExams() {
     const navigate = useNavigate();
@@ -20,7 +21,7 @@ export default function PracticeExams() {
     const generateQuestions = async () => {
         setLoading(true);
         try {
-            const token = localStorage.getItem('token');
+            const token = await Storage.getItem('token');
             const res = await axios.get('/api/content/words/all', {
                 headers: { Authorization: `Bearer ${token}` }
             });
