@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS users (
 
 -- Words table
 CREATE TABLE IF NOT EXISTS words (
-    id SERIAL PRIMARY KEY,
+    id VARCHAR(50) PRIMARY KEY,
     term VARCHAR(255) NOT NULL,
     definition_tr TEXT NOT NULL,
     type VARCHAR(50) NOT NULL,
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS words (
 
 -- Texts table
 CREATE TABLE IF NOT EXISTS texts (
-    id SERIAL PRIMARY KEY,
+    id VARCHAR(50) PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     content TEXT NOT NULL,
     difficulty VARCHAR(50),
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS texts (
 CREATE TABLE IF NOT EXISTS unknown_words (
     id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-    word_id INTEGER NOT NULL REFERENCES words(id) ON DELETE CASCADE,
+    word_id VARCHAR(50) NOT NULL REFERENCES words(id) ON DELETE CASCADE,
     added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     UNIQUE(user_id, word_id)
 );
@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS reading_progress (
 
 -- Books table
 CREATE TABLE IF NOT EXISTS books (
-    id SERIAL PRIMARY KEY,
+    id VARCHAR(50) PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     author VARCHAR(255),
     content TEXT NOT NULL,
