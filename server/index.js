@@ -13,6 +13,7 @@ import paymentRoutes from './routes/payment.js';
 import userRoutes from './routes/user.js';
 import accountRoutes from './routes/account.js';
 import quizRoutes from './routes/quiz.js';
+import migrateRoutes from './routes/migrate.js';
 
 dotenv.config();
 
@@ -62,6 +63,7 @@ app.use('/api/books', booksRoutes);
 app.use('/api/yds-exams', ydsExamsRoutes);
 app.use('/api/payment', paymentRoutes);
 app.use('/api/quiz', quizRoutes);
+app.use('/api/migrate', migrateRoutes);
 
 app.get('/', (req, res) => {
     res.send('YDS Master Pro API is running');
