@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { Storage } from '../utils/storage';
 import { motion } from 'framer-motion';
 import { LogIn, Mail, Lock } from 'lucide-react';
 
@@ -8,26 +9,39 @@ export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
     const { login } = useAuth();
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
-        const res = await login(email, password);
-        if (res.success) {
-            // Check role from local storage or response if available in context
-            // Since login updates state, we can check the user object from context, 
-            // but state update might be async. Better to rely on the response data if possible
-            // or just check localStorage which is set in login function.
-            const user = JSON.parse(localStorage.getItem('user'));
-            if (user && user.role === 'admin') {
-                navigate('/admin');
+        setLoading(true);
+
+        console.log('Login attempt:', { email });
+
+        try {
+            const res = await login(email, password);
+            console.log('Login response:', res);
+
+            if (res.success) {
+                // Check role from storage
+                const userStr = await Storage.getItem('user');
+                const user = userStr ? JSON.parse(userStr) : null;
+                if (user && user.role === 'admin') {
+                    navigate('/admin');
+                } else {
+                    navigate('/');
+                }
             } else {
-                navigate('/');
+                setError(res.error || 'Login failed. Please check your connection.');
             }
-        } else {
-            setError(res.error);
+        } catch (err) {
+            console.error('Login error:', err);
+            const errorMessage = err.response?.data?.error || err.message || 'Network error';
+            setError(`Login Failed: ${errorMessage}. Status: ${err.response?.status}`);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -61,6 +75,7 @@ export default function Login() {
                             onChange={(e) => setEmail(e.target.value)}
                             className="input-field pl-10"
                             required
+                            disabled={loading}
                         />
                     </div>
 
@@ -73,6 +88,7 @@ export default function Login() {
                             onChange={(e) => setPassword(e.target.value)}
                             className="input-field pl-10"
                             required
+                            disabled={loading}
                         />
                     </div>
 
@@ -82,9 +98,9 @@ export default function Login() {
                         </Link>
                     </div>
 
-                    <button type="submit" className="btn-primary w-full">
+                    <button type="submit" className="btn-primary w-full" disabled={loading}>
                         <LogIn className="w-5 h-5" />
-                        Sign In
+                        {loading ? 'Signing in...' : 'Sign In'}
                     </button>
                 </form>
 

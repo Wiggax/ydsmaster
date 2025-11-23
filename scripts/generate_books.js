@@ -9,52 +9,72 @@ const bookTopics = [
     {
         title: "Climate Change and Environmental Science",
         topic: "environmental_science",
-        description: "An in-depth exploration of climate change, its causes, effects, and potential solutions from a scientific perspective."
+        description: "An in-depth exploration of climate change, its causes, effects, and potential solutions from a scientific perspective.",
+        coverColor: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+        coverIcon: "🌍"
     },
     {
         title: "Cognitive Psychology and Human Behavior",
         topic: "psychology",
-        description: "Understanding the mechanisms of human cognition, memory, perception, and behavioral patterns."
+        description: "Understanding the mechanisms of human cognition, memory, perception, and behavioral patterns.",
+        coverColor: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+        coverIcon: "🧠"
     },
     {
         title: "Global Economics and Trade Systems",
         topic: "economics",
-        description: "Analysis of international trade, economic theories, market dynamics, and global financial systems."
+        description: "Analysis of international trade, economic theories, market dynamics, and global financial systems.",
+        coverColor: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+        coverIcon: "📊"
     },
     {
         title: "Artificial Intelligence and Machine Learning",
         topic: "technology",
-        description: "Comprehensive overview of AI development, machine learning algorithms, and their societal implications."
+        description: "Comprehensive overview of AI development, machine learning algorithms, and their societal implications.",
+        coverColor: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+        coverIcon: "🤖"
     },
     {
         title: "Modern Political Theory and Governance",
         topic: "political_science",
-        description: "Examination of contemporary political systems, democratic principles, and governance structures."
+        description: "Examination of contemporary political systems, democratic principles, and governance structures.",
+        coverColor: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
+        coverIcon: "⚖️"
     },
     {
         title: "Biotechnology and Genetic Engineering",
         topic: "biotechnology",
-        description: "Exploring advances in genetic modification, CRISPR technology, and ethical considerations in biotechnology."
+        description: "Exploring advances in genetic modification, CRISPR technology, and ethical considerations in biotechnology.",
+        coverColor: "linear-gradient(135deg, #30cfd0 0%, #330867 100%)",
+        coverIcon: "🧬"
     },
     {
         title: "Sustainable Urban Development",
         topic: "urban_planning",
-        description: "Strategies for creating sustainable cities, managing urban growth, and improving quality of life."
+        description: "Strategies for creating sustainable cities, managing urban growth, and improving quality of life.",
+        coverColor: "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)",
+        coverIcon: "🏙️"
     },
     {
         title: "Neuroscience and Brain Function",
         topic: "neuroscience",
-        description: "Understanding neural networks, brain plasticity, and the biological basis of consciousness."
+        description: "Understanding neural networks, brain plasticity, and the biological basis of consciousness.",
+        coverColor: "linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)",
+        coverIcon: "⚡"
     },
     {
         title: "Renewable Energy Technologies",
         topic: "energy",
-        description: "Comprehensive analysis of solar, wind, and alternative energy sources for a sustainable future."
+        description: "Comprehensive analysis of solar, wind, and alternative energy sources for a sustainable future.",
+        coverColor: "linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)",
+        coverIcon: "☀️"
     },
     {
         title: "Cultural Anthropology and Social Structures",
         topic: "anthropology",
-        description: "Study of human cultures, social organizations, and the evolution of societal norms."
+        description: "Study of human cultures, social organizations, and the evolution of societal norms.",
+        coverColor: "linear-gradient(135deg, #ff6e7f 0%, #bfe9ff 100%)",
+        coverIcon: "🗿"
     }
 ];
 
@@ -144,6 +164,8 @@ async function generateBooks() {
             title: bookInfo.title,
             description: bookInfo.description,
             topic: bookInfo.topic,
+            coverColor: bookInfo.coverColor,
+            coverIcon: bookInfo.coverIcon,
             pages: pages,
             totalPages: 100,
             isPro: true,

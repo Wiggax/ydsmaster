@@ -14,13 +14,12 @@ router.post('/', authenticate, async (req, res) => {
             return res.status(400).json({ error: 'contentType and currentIndex are required' });
         }
 
-        await db.read();
         db.data.user_progress ??= [];
 
         // Find existing progress
         const existingIndex = db.data.user_progress.findIndex(
-            p => p.userId === userId && p.contentType === contentType && 
-                 (contentId ? p.contentId === contentId : true)
+            p => p.userId === userId && p.contentType === contentType &&
+                (contentId ? p.contentId === contentId : true)
         );
 
         const progressData = {
@@ -59,7 +58,6 @@ router.get('/', authenticate, async (req, res) => {
         const userId = req.user.id;
         const { contentType, contentId } = req.query;
 
-        await db.read();
         db.data.user_progress ??= [];
 
         let progress = db.data.user_progress.filter(p => p.userId === userId);
@@ -86,13 +84,12 @@ router.get('/:contentType', authenticate, async (req, res) => {
         const { contentType } = req.params;
         const { contentId } = req.query;
 
-        await db.read();
         db.data.user_progress ??= [];
 
         const progress = db.data.user_progress.find(
-            p => p.userId === userId && 
-                 p.contentType === contentType &&
-                 (contentId ? p.contentId === contentId : !p.contentId)
+            p => p.userId === userId &&
+                p.contentType === contentType &&
+                (contentId ? p.contentId === contentId : !p.contentId)
         );
 
         if (!progress) {
@@ -113,14 +110,13 @@ router.delete('/:contentType', authenticate, async (req, res) => {
         const { contentType } = req.params;
         const { contentId } = req.query;
 
-        await db.read();
         db.data.user_progress ??= [];
 
         const initialLength = db.data.user_progress.length;
         db.data.user_progress = db.data.user_progress.filter(
-            p => !(p.userId === userId && 
-                  p.contentType === contentType &&
-                  (contentId ? p.contentId === contentId : !p.contentId))
+            p => !(p.userId === userId &&
+                p.contentType === contentType &&
+                (contentId ? p.contentId === contentId : !p.contentId))
         );
 
         if (db.data.user_progress.length === initialLength) {

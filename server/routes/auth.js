@@ -13,7 +13,6 @@ router.post('/register', async (req, res) => {
         return res.status(400).json({ error: 'All fields are required' });
     }
 
-    await db.read();
     const { users } = db.data;
 
     if (users.find(u => u.email === email || u.phone === phone)) {
@@ -56,7 +55,6 @@ router.post('/login', async (req, res) => {
         return res.status(400).json({ error: 'Username/Email and password are required' });
     }
 
-    await db.read();
     const user = db.data.users.find(u => u.email === email || u.username === email);
 
     if (!user) {
@@ -74,9 +72,10 @@ router.post('/login', async (req, res) => {
             return res.status(401).json({ error: 'Invalid credentials' });
         }
 
-        // Update last login
+        // Update last login (in memory only for performance)
         user.last_login = new Date().toISOString();
-        await db.write();
+        // await db.write(); // Removed to prevent blocking on every login
+
 
         const token = jwt.sign(
             { id: user.id, username: user.username, role: user.role || 'user' },
@@ -107,7 +106,6 @@ router.post('/verify-security', async (req, res) => {
         return res.status(400).json({ error: 'Email and security answer are required' });
     }
 
-    await db.read();
     const user = db.data.users.find(u => u.email === email);
 
     if (!user) {
@@ -156,7 +154,6 @@ router.post('/reset-password', async (req, res) => {
             return res.status(401).json({ error: 'Invalid reset token' });
         }
 
-        await db.read();
         const user = db.data.users.find(u => u.id === decoded.id);
 
         if (!user) {
@@ -184,7 +181,6 @@ router.post('/get-security-question', async (req, res) => {
         return res.status(400).json({ error: 'Email is required' });
     }
 
-    await db.read();
     const user = db.data.users.find(u => u.email === email);
 
     if (!user) {

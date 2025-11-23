@@ -8,7 +8,6 @@ const router = express.Router();
 router.get('/stats', authenticate, async (req, res) => {
     try {
         const userId = req.user.id;
-        await db.read();
 
         const user = db.data.users.find(u => u.id === userId);
         if (!user) {
@@ -37,9 +36,13 @@ router.get('/stats', authenticate, async (req, res) => {
                 }
             } else {
                 // Streak broken, reset to 1
-                dailyStreak = 1;
-                user.dailyStreak = 1;
-                await db.write();
+                if (user.dailyStreak !== 1) {
+                    dailyStreak = 1;
+                    user.dailyStreak = 1;
+                    await db.write();
+                } else {
+                    dailyStreak = 1;
+                }
             }
         } else {
             dailyStreak = 1;
@@ -109,7 +112,6 @@ router.get('/stats', authenticate, async (req, res) => {
 // Get leaderboard
 router.get('/leaderboard', authenticate, async (req, res) => {
     try {
-        await db.read();
         const users = db.data.users;
         const userProgress = db.data.user_progress || [];
 

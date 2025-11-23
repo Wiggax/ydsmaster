@@ -19,7 +19,6 @@ router.post('/', async (req, res) => {
             return res.status(400).json({ error: 'Invalid userId or wordId' });
         }
 
-        await db.read();
         db.data.unknown_words ??= [];
 
         // Check if already exists
@@ -57,7 +56,6 @@ router.get('/:userId', async (req, res) => {
             return res.status(400).json({ error: 'Invalid userId' });
         }
 
-        await db.read();
         db.data.unknown_words ??= [];
         db.data.words ??= [];
 
@@ -87,7 +85,6 @@ router.delete('/:userId/:wordId', async (req, res) => {
             return res.status(400).json({ error: 'Invalid userId or wordId' });
         }
 
-        await db.read();
         db.data.unknown_words ??= [];
 
         const initialLength = db.data.unknown_words.length;

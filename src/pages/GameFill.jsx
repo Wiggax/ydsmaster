@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, Check, X, RefreshCw } from 'lucide-react';
 import ProModal from '../components/ProModal';
 import { useAuth } from '../context/AuthContext';
+import { Storage } from '../utils/storage';
 
 export default function GameFill() {
     const navigate = useNavigate();
@@ -26,7 +27,7 @@ export default function GameFill() {
 
     const loadProgress = async () => {
         try {
-            const token = localStorage.getItem('token');
+            const token = await Storage.getItem('token');
             const res = await axios.get('/api/user/progress', {
                 headers: { Authorization: `Bearer ${token}` }
             });
@@ -42,7 +43,7 @@ export default function GameFill() {
 
     const saveProgress = async (currentScore) => {
         try {
-            const token = localStorage.getItem('token');
+            const token = await Storage.getItem('token');
             await axios.post('/api/user/progress', {
                 contentType: 'fill_game',
                 contentId: 'fill_game',
@@ -70,7 +71,7 @@ export default function GameFill() {
         setIsCorrect(null);
 
         try {
-            const token = localStorage.getItem('token');
+            const token = await Storage.getItem('token');
             const res = await axios.get('/api/content/words/all', {
                 headers: { Authorization: `Bearer ${token}` }
             });
@@ -113,7 +114,7 @@ export default function GameFill() {
         }
     };
 
-    const handleOptionClick = (option) => {
+    const handleOptionClick = async (option) => {
         if (selected) return;
         setSelected(option);
         const correct = option.id === question.target.id;
@@ -126,7 +127,7 @@ export default function GameFill() {
         setQuestionCount(questionCount + 1);
     };
 
-    const handleNext = () => {
+    const handleNext = async () => {
         nextQuestion();
     };
 

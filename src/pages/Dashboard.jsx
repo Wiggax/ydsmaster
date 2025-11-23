@@ -4,6 +4,7 @@ import axios from 'axios';
 import { BookOpen, GraduationCap, Gamepad2, Layers, Plus, LogOut, Trophy, Activity, Flame, Crown, Trash2, AlertTriangle } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Storage } from '../utils/storage';
 
 export default function Dashboard() {
     const { logout, user } = useAuth();
@@ -24,7 +25,7 @@ export default function Dashboard() {
 
     const fetchUserStats = async () => {
         try {
-            const token = localStorage.getItem('token');
+            const token = await Storage.getItem('token');
             const res = await axios.get('/api/user/stats', {
                 headers: { Authorization: `Bearer ${token}` }
             });
@@ -39,7 +40,7 @@ export default function Dashboard() {
     const handleDeleteAccount = async () => {
         setDeleteLoading(true);
         try {
-            const token = localStorage.getItem('token');
+            const token = await Storage.getItem('token');
             await axios.delete('/api/account/delete', {
                 headers: { Authorization: `Bearer ${token}` }
             });

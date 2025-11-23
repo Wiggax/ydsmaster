@@ -4,8 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Users, BookOpen, Activity, Settings, LogOut, Trash2, RefreshCw, UserPlus, Crown, X, Search, Key, Shield } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Storage } from '../utils/storage';
 
 const AdminDashboard = () => {
+
     const { user, logout } = useAuth();
     const navigate = useNavigate();
     const [stats, setStats] = useState({
@@ -55,7 +57,7 @@ const AdminDashboard = () => {
     const fetchData = async () => {
         setLoading(true);
         try {
-            const token = localStorage.getItem('token');
+            const token = await Storage.getItem('token');
             const [statsRes, usersRes] = await Promise.all([
                 axios.get('/api/admin/stats', {
                     headers: { Authorization: `Bearer ${token}` }
@@ -85,7 +87,7 @@ const AdminDashboard = () => {
         }
 
         try {
-            const token = localStorage.getItem('token');
+            const token = await Storage.getItem('token');
             await axios.delete(`/api/admin/users/${userId}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
@@ -101,7 +103,7 @@ const AdminDashboard = () => {
     const handleCreateUser = async (e) => {
         e.preventDefault();
         try {
-            const token = localStorage.getItem('token');
+            const token = await Storage.getItem('token');
             const res = await axios.post('/api/admin/users', newUser, {
                 headers: { Authorization: `Bearer ${token}` }
             });
@@ -117,7 +119,7 @@ const AdminDashboard = () => {
 
     const handleTogglePro = async (userId) => {
         try {
-            const token = localStorage.getItem('token');
+            const token = await Storage.getItem('token');
             const res = await axios.patch(`/api/admin/users/${userId}/toggle-pro`, {}, {
                 headers: { Authorization: `Bearer ${token}` }
             });
@@ -130,7 +132,7 @@ const AdminDashboard = () => {
 
     const handleRoleChange = async (userId, newRole) => {
         try {
-            const token = localStorage.getItem('token');
+            const token = await Storage.getItem('token');
             const res = await axios.patch(`/api/admin/users/${userId}/role`, { role: newRole }, {
                 headers: { Authorization: `Bearer ${token}` }
             });
@@ -145,7 +147,7 @@ const AdminDashboard = () => {
         e.preventDefault();
         setResetting(true);
         try {
-            const token = localStorage.getItem('token');
+            const token = await Storage.getItem('token');
             const res = await axios.post(`/api/admin/users/${selectedUser.id}/reset-password`, {
                 newPassword
             }, {
@@ -164,13 +166,13 @@ const AdminDashboard = () => {
         }
     };
 
-    const openResetModal = (u) => {
+    const openResetModal = async (u) => {
         setSelectedUser(u);
         setNewPassword('');
         setShowResetModal(true);
     };
 
-    const handleLogout = () => {
+    const handleLogout = async () => {
         logout();
         navigate('/login');
     };

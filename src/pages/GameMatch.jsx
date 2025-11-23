@@ -5,6 +5,7 @@ import axios from 'axios';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, RefreshCw, Trophy, ChevronLeft, ChevronRight } from 'lucide-react';
 import ProModal from '../components/ProModal';
+import { Storage } from '../utils/storage';
 
 export default function GameMatch() {
     const navigate = useNavigate();
@@ -37,7 +38,7 @@ export default function GameMatch() {
     const loadWords = async () => {
         setLoading(true);
         try {
-            const token = localStorage.getItem('token');
+            const token = await Storage.getItem('token');
             const res = await axios.get('/api/content/words/all', {
                 headers: { Authorization: `Bearer ${token}` }
             });
@@ -51,7 +52,7 @@ export default function GameMatch() {
 
     const loadProgress = async () => {
         try {
-            const token = localStorage.getItem('token');
+            const token = await Storage.getItem('token');
             const res = await axios.get('/api/user/progress', {
                 headers: { Authorization: `Bearer ${token}` }
             });
@@ -78,7 +79,7 @@ export default function GameMatch() {
 
     const saveProgress = async (setNumber, currentScore) => {
         try {
-            const token = localStorage.getItem('token');
+            const token = await Storage.getItem('token');
             await axios.post('/api/user/progress', {
                 contentType: 'word_match',
                 contentId: `match_game_${setNumber}`,
@@ -95,7 +96,7 @@ export default function GameMatch() {
         }
     };
 
-    const startGame = (setNumber = currentSet) => {
+    const startGame = async (setNumber = currentSet) => {
         // Check Pro limit
         if (!user?.isPro && setNumber >= FREE_SET_LIMIT) {
             setShowProModal(true);
@@ -131,7 +132,7 @@ export default function GameMatch() {
         setRightCards(right);
     };
 
-    const handleCardClick = (card, side) => {
+    const handleCardClick = async (card, side) => {
         // Ignore if already matched
         if (matched.includes(card.pairId)) return;
 
@@ -150,7 +151,7 @@ export default function GameMatch() {
         }
     };
 
-    const checkMatch = (leftCard, rightCard) => {
+    const checkMatch = async (leftCard, rightCard) => {
         if (leftCard.pairId === rightCard.pairId) {
             // Correct match! Show green first
             setWrongPair({ left: leftCard.id, right: rightCard.id, correct: true });
@@ -182,7 +183,7 @@ export default function GameMatch() {
         }
     };
 
-    const handleNextSet = () => {
+    const handleNextSet = async () => {
         const maxSets = Math.ceil(allWords.length / WORDS_PER_SET);
         if (currentSet < maxSets - 1) {
             const newSet = currentSet + 1;
@@ -199,7 +200,7 @@ export default function GameMatch() {
         }
     };
 
-    const handlePreviousSet = () => {
+    const handlePreviousSet = async () => {
         if (currentSet > 0) {
             const newSet = currentSet - 1;
             setCurrentSet(newSet);
@@ -208,7 +209,7 @@ export default function GameMatch() {
         }
     };
 
-    const handleRestart = () => {
+    const handleRestart = async () => {
         startGame(currentSet);
     };
 

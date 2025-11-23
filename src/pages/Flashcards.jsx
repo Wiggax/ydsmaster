@@ -6,6 +6,7 @@ import { ArrowLeft, ArrowRight, Plus, Check, Save } from 'lucide-react';
 import Flashcard from '../components/Flashcard';
 import { useAuth } from '../context/AuthContext';
 import ProModal from '../components/ProModal';
+import { Storage } from '../utils/storage';
 
 export default function Flashcards() {
     const { type } = useParams();

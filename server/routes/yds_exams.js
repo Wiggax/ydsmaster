@@ -4,50 +4,39 @@ import { authenticate } from '../middleware/auth.js';
 
 const router = express.Router();
 
-// Get all YDS exams (metadata only)
+// Get all exams
 router.get('/', authenticate, async (req, res) => {
     try {
-        await db.read();
         db.data.yds_exams ??= [];
 
-        // Return only metadata
-        const examsMetadata = db.data.yds_exams.map(exam => ({
+        // Return metadata only
+        const exams = db.data.yds_exams.map(exam => ({
             id: exam.id,
             title: exam.title,
-            duration: exam.duration,
-            totalQuestions: exam.totalQuestions,
-            isPro: exam.id !== 1 // Exam 1 is free, others require Pro
+            description: exam.description,
+            questionCount: exam.questions ? exam.questions.length : 0,
+            duration: exam.duration || 180 // default 180 mins
         }));
 
-        res.json(examsMetadata);
+        res.json(exams);
     } catch (error) {
-        console.error('Error fetching YDS exams:', error);
+        console.error('Error fetching exams:', error);
         res.status(500).json({ error: 'Failed to fetch exams' });
     }
 });
 
-// Get specific exam with all questions
+// Get specific exam
 router.get('/:examId', authenticate, async (req, res) => {
     try {
         const { examId } = req.params;
         const normalizedExamId = Number(examId);
 
-        await db.read();
         db.data.yds_exams ??= [];
 
         const exam = db.data.yds_exams.find(e => e.id === normalizedExamId);
 
         if (!exam) {
             return res.status(404).json({ error: 'Exam not found' });
-        }
-
-        // Check if exam requires Pro (Exam 1 is free for everyone)
-        if (normalizedExamId !== 1) {
-            db.data.users ??= [];
-            const user = db.data.users.find(u => u.id === req.user.id);
-            if (!user || !user.isPro) {
-                return res.status(403).json({ error: 'Pro subscription required to access this exam' });
-            }
         }
 
         res.json(exam);
@@ -57,14 +46,13 @@ router.get('/:examId', authenticate, async (req, res) => {
     }
 });
 
-// Save exam result
-router.post('/:examId/result', authenticate, async (req, res) => {
+// Submit exam result
+router.post('/:examId/submit', authenticate, async (req, res) => {
     try {
         const { examId } = req.params;
-        const { answers, score, timeSpent } = req.body;
+        const { answers, score, correctCount, incorrectCount, emptyCount } = req.body;
         const normalizedExamId = Number(examId);
 
-        await db.read();
         db.data.exam_results ??= [];
 
         const result = {
@@ -73,28 +61,31 @@ router.post('/:examId/result', authenticate, async (req, res) => {
             examId: normalizedExamId,
             answers,
             score,
-            timeSpent,
+            correctCount,
+            incorrectCount,
+            emptyCount,
             completedAt: new Date().toISOString()
         };
 
         db.data.exam_results.push(result);
+
         await db.write();
 
-        res.json({ message: 'Result saved', result });
+        res.json({ message: 'Exam submitted successfully', result });
     } catch (error) {
-        console.error('Error saving result:', error);
-        res.status(500).json({ error: 'Failed to save result' });
+        console.error('Error submitting exam:', error);
+        res.status(500).json({ error: 'Failed to submit exam' });
     }
 });
 
 // Get user's exam results
-router.get('/results/my', authenticate, async (req, res) => {
+router.get('/results/me', authenticate, async (req, res) => {
     try {
-        await db.read();
         db.data.exam_results ??= [];
 
-        const userResults = db.data.exam_results.filter(r => r.userId === req.user.id);
-        res.json(userResults);
+        const results = db.data.exam_results.filter(r => r.userId === req.user.id);
+
+        res.json(results);
     } catch (error) {
         console.error('Error fetching results:', error);
         res.status(500).json({ error: 'Failed to fetch results' });

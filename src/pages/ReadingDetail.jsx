@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ChevronLeft, ChevronRight, BookmarkPlus, X } from 'lucide-react';
+import { Storage } from '../utils/storage';
 
 export default function ReadingDetail() {
     const { id } = useParams();
@@ -19,7 +20,7 @@ export default function ReadingDetail() {
 
     const fetchBook = async () => {
         try {
-            const token = localStorage.getItem('token');
+            const token = await Storage.getItem('token');
             const [bookRes, progressRes] = await Promise.all([
                 axios.get(`/api/books/${id}`, {
                     headers: { Authorization: `Bearer ${token}` }
@@ -45,7 +46,7 @@ export default function ReadingDetail() {
     const saveProgress = async (pageNum) => {
         setSavingProgress(true);
         try {
-            const token = localStorage.getItem('token');
+            const token = await Storage.getItem('token');
             await axios.post(`/api/books/${id}/progress`,
                 { pageNumber: pageNum },
                 { headers: { Authorization: `Bearer ${token}` } }
@@ -57,7 +58,7 @@ export default function ReadingDetail() {
         }
     };
 
-    const handlePageChange = (newPage) => {
+    const handlePageChange = async (newPage) => {
         if (newPage >= 1 && newPage <= book.totalPages) {
             setCurrentPage(newPage);
             saveProgress(newPage);
@@ -67,19 +68,18 @@ export default function ReadingDetail() {
 
     const handleWordClick = async (word) => {
         // Clean the word (remove punctuation)
-        const cleanWord = word.toLowerCase().replace(/[.,!?;:()]/g, '');
+        const cleanWord = word.toLowerCase().replace(/[.,!?;:()"']/g, '').trim();
 
         try {
-            const token = localStorage.getItem('token');
+            const token = await Storage.getItem('token');
             // Search for the word in our vocabulary
             const res = await axios.get('/api/content/words/all', {
                 headers: { Authorization: `Bearer ${token}` }
             });
 
+            // FIXED: Only use exact match to prevent "do" matching in "methodology"
             const foundWord = res.data.find(w =>
-                w.term.toLowerCase() === cleanWord ||
-                w.term.toLowerCase().includes(cleanWord) ||
-                cleanWord.includes(w.term.toLowerCase())
+                w.term.toLowerCase() === cleanWord
             );
 
             if (foundWord) {
@@ -128,10 +128,19 @@ export default function ReadingDetail() {
                 </div>
             </div>
 
-            {/* Book Title */}
-            <div className="mb-6">
-                <h1 className="text-2xl font-bold mb-2">{book.title}</h1>
-                <p className="text-gray-400 text-sm">{book.description}</p>
+            {/* Book Title with Cover */}
+            <div className="mb-6 flex items-start gap-4">
+                {/* Book Cover */}
+                <div
+                    className="w-24 h-32 rounded-lg flex items-center justify-center text-5xl shadow-xl flex-shrink-0"
+                    style={{ background: book.coverColor || 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}
+                >
+                    {book.coverIcon || '📚'}
+                </div>
+                <div className="flex-1">
+                    <h1 className="text-2xl font-bold mb-2">{book.title}</h1>
+                    <p className="text-gray-400 text-sm">{book.description}</p>
+                </div>
             </div>
 
             {/* Page Content - WITH SCROLL */}

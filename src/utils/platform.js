@@ -34,11 +34,8 @@ export const Platform = {
      */
     hasNotch: () => {
         if (typeof window === 'undefined') return false;
-
-        // Check for safe area insets
         const safeAreaTop = getComputedStyle(document.documentElement)
             .getPropertyValue('--safe-area-inset-top');
-
         return safeAreaTop && parseInt(safeAreaTop) > 20;
     },
 
@@ -49,7 +46,6 @@ export const Platform = {
         if (typeof window === 'undefined') {
             return { top: 0, bottom: 0, left: 0, right: 0 };
         }
-
         const style = getComputedStyle(document.documentElement);
         return {
             top: parseInt(style.getPropertyValue('--safe-area-inset-top')) || 0,
@@ -64,18 +60,26 @@ export const Platform = {
  * Get the appropriate API base URL based on environment
  */
 export const getApiUrl = () => {
-    // In production native app, use your deployed backend URL
-    if (Platform.isNative() && import.meta.env.PROD) {
-        return import.meta.env.VITE_API_URL || 'https://ydsmaster.onrender.com';
+    console.log('=== getApiUrl DEBUG ===');
+    console.log('Platform.isNative():', Platform.isNative());
+    console.log('import.meta.env.DEV:', import.meta.env.DEV);
+    console.log('import.meta.env.PROD:', import.meta.env.PROD);
+    console.log('import.meta.env.MODE:', import.meta.env.MODE);
+
+    // CRITICAL: Check native platform FIRST before dev mode
+    // Native (Android / iOS) – always use the Render backend (HTTPS)
+    if (Platform.isNative()) {
+        console.log('🔵 NATIVE – USING RENDER BACKEND');
+        return 'https://ydsmaster.onrender.com';
     }
 
-    // In development, use localhost or local network IP
+    // Development web (local) – keep localhost for quick testing
     if (import.meta.env.DEV) {
-        // For mobile development, you might need to use your computer's local IP
-        // Example: return 'http://192.168.1.100:3000';
+        console.log('🟢 DEV WEB – USING LOCALHOST');
         return 'http://localhost:3000';
     }
 
-    // Default to relative URLs for web
+    // Production web – relative URLs (if you ever host the SPA)
+    console.log('🟡 PRODUCTION WEB – USING RELATIVE URL');
     return '';
 };

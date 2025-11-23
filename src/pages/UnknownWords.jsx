@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Trash2, BookOpen } from 'lucide-react';
+import { Storage } from '../utils/storage';
 
 export default function UnknownWords() {
     const [words, setWords] = useState([]);

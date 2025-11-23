@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import { Crown, Check, ArrowLeft, Smartphone, Apple } from 'lucide-react';
+import { Storage } from '../utils/storage';
 
 export default function ProPurchase() {
     const navigate = useNavigate();
@@ -40,7 +41,7 @@ export default function ProPurchase() {
     const handlePurchase = async () => {
         setPurchasing(true);
         try {
-            const token = localStorage.getItem('token');
+            const token = await Storage.getItem('token');
 
             // Mock transaction ID for web version
             // In production app, this would come from App Store/Google Play

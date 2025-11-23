@@ -4,6 +4,8 @@ import { useEffect } from 'react';
 import { StatusBar, Style } from '@capacitor/status-bar';
 import { Keyboard, KeyboardStyle } from '@capacitor/keyboard';
 import { Platform } from './utils/platform';
+import axios from 'axios';
+import { getApiUrl } from './utils/platform';
 import './styles/mobile.css';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -45,6 +47,37 @@ function App() {
   // Initialize native plugins
   useEffect(() => {
     const initializeApp = async () => {
+      // Configure axios FIRST
+      const apiUrl = getApiUrl();
+      axios.defaults.baseURL = apiUrl;
+      axios.defaults.timeout = 60000; // 60 second timeout for Render cold starts
+      console.log('🔵 Axios baseURL set to:', apiUrl);
+      console.log('⏱️ Axios timeout set to: 60 seconds');
+
+      // Add request interceptor for debugging
+      axios.interceptors.request.use(request => {
+        console.log('🟢 Starting Request:', request.method?.toUpperCase(), request.url);
+        return request;
+      });
+
+      // Add response interceptor for debugging
+      axios.interceptors.response.use(
+        response => {
+          console.log('✅ Response:', response.status, response.config.url);
+          return response;
+        },
+        error => {
+          if (error.code === 'ECONNABORTED') {
+            console.error('⏱️ TIMEOUT ERROR - Backend took too long to respond!');
+          } else if (error.message === 'Network Error') {
+            console.error('🌐 NETWORK ERROR - Cannot reach backend!');
+          } else {
+            console.error('❌ Request Error:', error.message, error.config?.url);
+          }
+          return Promise.reject(error);
+        }
+      );
+
       if (Platform.isNative()) {
         try {
           // Configure StatusBar

@@ -12,7 +12,6 @@ router.use(authorizeAdmin);
 // Get all users with stats
 router.get('/users', async (req, res) => {
     try {
-        await db.read();
         db.data.users ??= [];
         db.data.unknown_words ??= [];
         db.data.user_progress ??= [];
@@ -67,7 +66,6 @@ router.get('/users/:userId', async (req, res) => {
             return res.status(400).json({ error: 'Invalid userId' });
         }
 
-        await db.read();
         db.data.users ??= [];
         db.data.unknown_words ??= [];
         db.data.user_progress ??= [];
@@ -129,7 +127,6 @@ router.delete('/users/:userId', async (req, res) => {
             return res.status(400).json({ error: 'Cannot delete your own account' });
         }
 
-        await db.read();
         db.data.users ??= [];
         db.data.unknown_words ??= [];
         db.data.user_progress ??= [];
@@ -161,7 +158,6 @@ router.post('/users', async (req, res) => {
             return res.status(400).json({ error: 'All fields are required' });
         }
 
-        await db.read();
         db.data.users ??= [];
 
         // Check if email already exists
@@ -218,7 +214,6 @@ router.patch('/users/:userId/toggle-pro', async (req, res) => {
             return res.status(400).json({ error: 'Invalid userId' });
         }
 
-        await db.read();
         const user = db.data.users.find(u => u.id === normalizedUserId);
 
         if (!user) {
@@ -263,7 +258,6 @@ router.patch('/users/:userId/role', async (req, res) => {
             return res.status(400).json({ error: 'Cannot change your own role' });
         }
 
-        await db.read();
         const user = db.data.users.find(u => u.id === normalizedUserId);
 
         if (!user) {
@@ -298,7 +292,6 @@ router.post('/users/:userId/reset-password', async (req, res) => {
             return res.status(400).json({ error: 'Password must be at least 6 characters' });
         }
 
-        await db.read();
         const user = db.data.users.find(u => u.id === normalizedUserId);
 
         if (!user) {
@@ -327,7 +320,6 @@ router.post('/users/:userId/reset-password', async (req, res) => {
 // Get system stats
 router.get('/stats', async (req, res) => {
     try {
-        await db.read();
         db.data.users ??= [];
         db.data.words ??= [];
         db.data.texts ??= [];

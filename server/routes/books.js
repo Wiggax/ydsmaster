@@ -7,7 +7,6 @@ const router = express.Router();
 // Get all books (metadata only)
 router.get('/', authenticate, async (req, res) => {
     try {
-        await db.read();
         db.data.books ??= [];
 
         // Return only metadata, not full pages
@@ -16,6 +15,8 @@ router.get('/', authenticate, async (req, res) => {
             title: book.title,
             description: book.description,
             topic: book.topic,
+            coverColor: book.coverColor,
+            coverIcon: book.coverIcon,
             totalPages: book.totalPages,
             isPro: book.isPro,
             createdAt: book.createdAt
@@ -34,7 +35,6 @@ router.get('/:bookId', authenticate, async (req, res) => {
         const { bookId } = req.params;
         const normalizedBookId = Number(bookId);
 
-        await db.read();
         db.data.books ??= [];
         db.data.users ??= [];
 
@@ -70,7 +70,6 @@ router.post('/:bookId/progress', authenticate, async (req, res) => {
             return res.status(400).json({ error: 'Invalid page number' });
         }
 
-        await db.read();
         db.data.reading_progress ??= [];
         db.data.user_progress ??= [];
 
@@ -134,7 +133,6 @@ router.get('/:bookId/progress', authenticate, async (req, res) => {
         const { bookId } = req.params;
         const normalizedBookId = Number(bookId);
 
-        await db.read();
         db.data.reading_progress ??= [];
 
         const progress = db.data.reading_progress.find(

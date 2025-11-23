@@ -22,8 +22,15 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// Initialize database with default structure
-app.use(async (req, res, next) => {
+// Request logging middleware
+app.use((req, res, next) => {
+    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+    console.log('Headers:', req.headers);
+    next();
+});
+
+// Initialize database once at startup
+async function initializeDatabase() {
     try {
         await db.read();
         // Ensure all required fields exist
@@ -33,12 +40,13 @@ app.use(async (req, res, next) => {
         if (!db.data.books) db.data.books = [];
         if (!db.data.yds_exams) db.data.yds_exams = [];
         if (!db.data.exam_results) db.data.exam_results = [];
+        if (!db.data.leaderboard) db.data.leaderboard = [];
         await db.write();
+        console.log('Database initialized successfully');
     } catch (error) {
         console.error('Database initialization error:', error);
     }
-    next();
-});
+}
 
 // Routes
 app.use('/api/auth', authRoutes);
@@ -62,6 +70,10 @@ app.use((err, req, res, next) => {
     res.status(500).json({ error: 'Internal server error' });
 });
 
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+// Initialize database and start server
+initializeDatabase().then(() => {
+    app.listen(PORT, '0.0.0.0', () => {
+        console.log(`Server running on http://0.0.0.0:${PORT}`);
+    });
 });
+

@@ -14,6 +14,7 @@ export default function Register() {
         securityAnswer: ''
     });
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
     const { register } = useAuth();
     const navigate = useNavigate();
 
@@ -34,17 +35,31 @@ export default function Register() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
+        setLoading(true);
 
         if (!formData.securityQuestion || !formData.securityAnswer) {
             setError('Lütfen güvenlik sorusu ve cevabını doldurun');
+            setLoading(false);
             return;
         }
 
-        const res = await register(formData);
-        if (res.success) {
-            navigate('/login');
-        } else {
-            setError(res.error);
+        console.log('Register attempt:', { email: formData.email, username: formData.username });
+
+        try {
+            const res = await register(formData);
+            console.log('Register response:', res);
+
+            if (res.success) {
+                navigate('/login');
+            } else {
+                setError(res.error || 'Registration failed. Please try again.');
+            }
+        } catch (err) {
+            console.error('Register error:', err);
+            const errorMessage = err.response?.data?.error || err.message || 'Network error';
+            setError(`Registration Failed: ${errorMessage}. Status: ${err.response?.status}`);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -79,6 +94,7 @@ export default function Register() {
                             onChange={handleChange}
                             className="input-field pl-10"
                             required
+                            disabled={loading}
                         />
                     </div>
 
@@ -92,6 +108,7 @@ export default function Register() {
                             onChange={handleChange}
                             className="input-field pl-10"
                             required
+                            disabled={loading}
                         />
                     </div>
 
@@ -105,6 +122,7 @@ export default function Register() {
                             onChange={handleChange}
                             className="input-field pl-10"
                             required
+                            disabled={loading}
                         />
                     </div>
 
@@ -118,6 +136,7 @@ export default function Register() {
                             onChange={handleChange}
                             className="input-field pl-10"
                             required
+                            disabled={loading}
                         />
                     </div>
 
@@ -139,6 +158,7 @@ export default function Register() {
                                 onChange={handleChange}
                                 className="input-field pl-10 appearance-none cursor-pointer"
                                 required
+                                disabled={loading}
                             >
                                 <option value="">Bir soru seçin...</option>
                                 {securityQuestions.map((q, i) => (
@@ -157,6 +177,7 @@ export default function Register() {
                                 onChange={handleChange}
                                 className="input-field pl-10"
                                 required
+                                disabled={loading}
                             />
                         </div>
                     </div>
@@ -166,6 +187,7 @@ export default function Register() {
                             type="checkbox"
                             id="terms"
                             required
+                            disabled={loading}
                             className="mt-1 w-4 h-4 rounded border-gray-600 text-primary focus:ring-primary bg-gray-700"
                         />
                         <label htmlFor="terms" className="text-sm text-gray-400">
@@ -175,9 +197,9 @@ export default function Register() {
                         </label>
                     </div>
 
-                    <button type="submit" className="btn-primary w-full mt-6">
+                    <button type="submit" className="btn-primary w-full mt-6" disabled={loading}>
                         <UserPlus className="w-5 h-5" />
-                        Sign Up
+                        {loading ? 'Creating account...' : 'Sign Up'}
                     </button>
                 </form>
 

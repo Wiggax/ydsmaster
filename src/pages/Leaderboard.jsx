@@ -4,6 +4,7 @@ import axios from 'axios';
 import { motion } from 'framer-motion';
 import { Trophy, ArrowLeft, Medal, User } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { Storage } from '../utils/storage';
 
 export default function Leaderboard() {
     const [leaders, setLeaders] = useState([]);
@@ -15,7 +16,7 @@ export default function Leaderboard() {
     useEffect(() => {
         const fetchLeaderboard = async () => {
             try {
-                const token = localStorage.getItem('token');
+                const token = await Storage.getItem('token');
                 const res = await axios.get('/api/user/leaderboard', {
                     headers: { Authorization: `Bearer ${token}` }
                 });
@@ -32,6 +33,7 @@ export default function Leaderboard() {
     }, []);
 
     const getRankIcon = (index) => {
+
         if (index === 0) return <Trophy className="w-6 h-6 text-yellow-400" />;
         if (index === 1) return <Medal className="w-6 h-6 text-gray-300" />;
         if (index === 2) return <Medal className="w-6 h-6 text-amber-600" />;

@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import { BookOpen, ArrowLeft, Crown, Lock } from 'lucide-react';
+import { Storage } from '../utils/storage';
 
 export default function Reading() {
     const { user } = useAuth();
@@ -13,7 +14,7 @@ export default function Reading() {
     useEffect(() => {
         const fetchBooks = async () => {
             try {
-                const token = localStorage.getItem('token');
+                const token = await Storage.getItem('token');
                 const res = await axios.get('/api/books', {
                     headers: { Authorization: `Bearer ${token}` }
                 });
@@ -72,8 +73,12 @@ export default function Reading() {
                                     whileHover={!isLocked ? { scale: 1.01 } : {}}
                                     className="glass-panel p-6 flex items-center gap-4 hover:bg-white/5 transition-colors relative"
                                 >
-                                    <div className="p-3 bg-indigo-500/20 rounded-lg text-indigo-400">
-                                        <BookOpen className="w-6 h-6" />
+                                    {/* Book Cover */}
+                                    <div
+                                        className="w-20 h-28 rounded-lg flex items-center justify-center text-4xl shadow-lg"
+                                        style={{ background: book.coverColor || 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}
+                                    >
+                                        {book.coverIcon || '📚'}
                                     </div>
                                     <div className="flex-1">
                                         <div className="flex items-center gap-2">

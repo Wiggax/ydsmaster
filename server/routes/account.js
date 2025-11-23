@@ -12,7 +12,7 @@ router.delete('/delete', authenticate, async (req, res) => {
         const userId = req.user.id;
 
         // Read database
-        await db.read();
+        // Read database
         const user = db.data.users.find(u => u.id === userId);
 
         if (!user) {
