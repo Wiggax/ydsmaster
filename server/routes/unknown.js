@@ -21,21 +21,21 @@ router.post('/', async (req, res) => {
 
         db.data.unknown_words ??= [];
 
-        // Check if already exists
+        // Check if already exists (using user_id field)
         const exists = db.data.unknown_words.find(
-            uw => uw.userId === normalizedUserId && String(uw.wordId) === normalizedWordId
+            uw => uw.user_id === normalizedUserId && String(uw.word_id) === normalizedWordId
         );
 
         if (exists) {
             return res.status(200).json({ message: 'Word already in unknown list' });
         }
 
-        // Add to unknown words
+        // Add to unknown words (using user_id field for consistency)
         db.data.unknown_words.push({
             id: Date.now(),
-            userId: normalizedUserId,
-            wordId: normalizedWordId,
-            addedAt: new Date().toISOString()
+            user_id: normalizedUserId,
+            word_id: normalizedWordId,
+            added_at: new Date().toISOString()
         });
 
         await db.write();
@@ -59,10 +59,10 @@ router.get('/:userId', async (req, res) => {
         db.data.unknown_words ??= [];
         db.data.words ??= [];
 
-        // Get user's unknown word IDs
+        // Get user's unknown word IDs (using user_id field)
         const unknownWordIds = db.data.unknown_words
-            .filter(uw => uw.userId === normalizedUserId)
-            .map(uw => String(uw.wordId));
+            .filter(uw => uw.user_id === normalizedUserId)
+            .map(uw => String(uw.word_id));
 
         // Get full word details
         const words = db.data.words.filter(w => unknownWordIds.includes(String(w.id)));
@@ -89,7 +89,7 @@ router.delete('/:userId/:wordId', async (req, res) => {
 
         const initialLength = db.data.unknown_words.length;
         db.data.unknown_words = db.data.unknown_words.filter(
-            uw => !(uw.userId === normalizedUserId && String(uw.wordId) === normalizedWordId)
+            uw => !(uw.user_id === normalizedUserId && String(uw.word_id) === normalizedWordId)
         );
 
         if (db.data.unknown_words.length === initialLength) {
