@@ -127,10 +127,14 @@ router.delete('/users/:userId', async (req, res) => {
             return res.status(400).json({ error: 'Cannot delete your own account' });
         }
 
+        // Initialize all arrays to ensure no errors during filtering
         db.data.users ??= [];
         db.data.unknown_words ??= [];
         db.data.user_progress ??= [];
         db.data.leaderboard ??= [];
+        db.data.quiz_history ??= [];
+        db.data.exam_results ??= [];
+        db.data.reading_progress ??= [];
 
         const userIndex = db.data.users.findIndex(u => u.id === normalizedUserId);
 
@@ -138,13 +142,33 @@ router.delete('/users/:userId', async (req, res) => {
             return res.status(404).json({ error: 'User not found' });
         }
 
-        // Soft delete: Mark as deleted instead of removing
-        db.data.users[userIndex].isDeleted = true;
-        db.data.users[userIndex].deletedAt = new Date().toISOString();
+        // Hard delete: Remove user from users array
+        db.data.users.splice(userIndex, 1);
 
-        // Remove from leaderboard
+        // Remove from all related collections
+        // Note: unknown_words uses user_id, others use userId
         db.data.leaderboard = db.data.leaderboard.filter(
             entry => entry.userId !== normalizedUserId
+        );
+
+        db.data.unknown_words = db.data.unknown_words.filter(
+            uw => uw.user_id !== normalizedUserId
+        );
+
+        db.data.user_progress = db.data.user_progress.filter(
+            p => p.userId !== normalizedUserId
+        );
+
+        db.data.quiz_history = db.data.quiz_history.filter(
+            q => q.userId !== normalizedUserId
+        );
+
+        db.data.exam_results = db.data.exam_results.filter(
+            r => r.userId !== normalizedUserId
+        );
+
+        db.data.reading_progress = db.data.reading_progress.filter(
+            p => p.userId !== normalizedUserId
         );
 
         await db.write();
