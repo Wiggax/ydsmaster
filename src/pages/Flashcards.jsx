@@ -25,6 +25,9 @@ export default function Flashcards() {
 
     // Save progress to backend
     const saveProgress = useCallback(async (index, showMessage = false) => {
+        const userStr = await Storage.getItem('user');
+        const user = userStr ? JSON.parse(userStr) : null;
+
         if (!user || !user.id) return false;
 
         setSavingProgress(true);
@@ -49,7 +52,7 @@ export default function Flashcards() {
             }
             return false;
         }
-    }, [user, type, words.length]);
+    }, [type, words.length]);
 
     // Load saved progress - must run AFTER words are loaded
     useEffect(() => {
@@ -153,6 +156,9 @@ export default function Flashcards() {
 
     const handleAddToUnknown = async () => {
         try {
+            const userStr = await Storage.getItem('user');
+            const user = userStr ? JSON.parse(userStr) : null;
+
             if (!user || !user.id) {
                 alert('Please login to add words to your list');
                 return;
