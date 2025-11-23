@@ -46,11 +46,23 @@ export default function UnknownWords() {
 
     return (
         <div className="h-full flex flex-col overflow-y-auto">
-            <div className="flex items-center gap-4 mb-8">
-                <Link to="/" className="p-2 hover:bg-white/10 rounded-full transition-colors">
-                    <ArrowLeft className="w-6 h-6" />
-                </Link>
-                <h1 className="text-2xl font-bold">Unknown Words</h1>
+            <div className="flex items-center justify-between mb-8">
+                <div className="flex items-center gap-4">
+                    <Link to="/" className="p-2 hover:bg-white/10 rounded-full transition-colors">
+                        <ArrowLeft className="w-6 h-6" />
+                    </Link>
+                    <h1 className="text-2xl font-bold">Unknown Words</h1>
+                </div>
+
+                {words.length >= 10 && (
+                    <Link
+                        to="/unknown-words/quiz"
+                        className="px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:from-purple-700 hover:to-pink-700 transition-colors font-semibold flex items-center gap-2"
+                    >
+                        <BookOpen className="w-5 h-5" />
+                        Test Oluştur
+                    </Link>
+                )}
             </div>
 
             <div className="grid gap-4 pb-6">

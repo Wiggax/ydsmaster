@@ -12,6 +12,7 @@ import ydsExamsRoutes from './routes/yds_exams.js';
 import paymentRoutes from './routes/payment.js';
 import userRoutes from './routes/user.js';
 import accountRoutes from './routes/account.js';
+import quizRoutes from './routes/quiz.js';
 
 dotenv.config();
 
@@ -41,6 +42,7 @@ async function initializeDatabase() {
         if (!db.data.yds_exams) db.data.yds_exams = [];
         if (!db.data.exam_results) db.data.exam_results = [];
         if (!db.data.leaderboard) db.data.leaderboard = [];
+        if (!db.data.quiz_history) db.data.quiz_history = [];
         await db.write();
         console.log('Database initialized successfully');
     } catch (error) {
@@ -59,6 +61,7 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/books', booksRoutes);
 app.use('/api/yds-exams', ydsExamsRoutes);
 app.use('/api/payment', paymentRoutes);
+app.use('/api/quiz', quizRoutes);
 
 app.get('/', (req, res) => {
     res.send('YDS Master Pro API is running');
