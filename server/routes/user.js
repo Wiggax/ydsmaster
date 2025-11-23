@@ -51,7 +51,7 @@ router.get('/stats', authenticate, async (req, res) => {
         }
 
         // Get user's unknown words (learned words)
-        const unknownWords = db.data.unknown_words?.filter(uw => uw.userId === userId) || [];
+        const unknownWords = db.data.unknown_words?.filter(uw => uw.user_id === userId) || [];
         const learnedCount = unknownWords.length;
 
         // Get user's progress for score calculation
@@ -118,6 +118,8 @@ router.get('/leaderboard', authenticate, async (req, res) => {
         // Calculate score for each user
         const leaderboard = users
             .filter(user => {
+                // Exclude deleted users
+                if (user.isDeleted) return false;
                 // Exclude admins
                 if (user.role === 'admin') return false;
                 // Exclude test users (username contains 'test')

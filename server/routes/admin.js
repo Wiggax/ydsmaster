@@ -18,7 +18,7 @@ router.get('/users', async (req, res) => {
 
         const users = db.data.users.map(user => {
             const unknownCount = db.data.unknown_words.filter(
-                uw => uw.userId === user.id
+                uw => uw.user_id === user.id
             ).length;
 
             const progressCount = db.data.user_progress.filter(
@@ -77,9 +77,9 @@ router.get('/users/:userId', async (req, res) => {
         }
 
         const unknownWords = db.data.unknown_words
-            .filter(uw => uw.userId === normalizedUserId)
+            .filter(uw => uw.user_id === normalizedUserId)
             .map(uw => {
-                const word = db.data.words.find(w => String(w.id) === String(uw.wordId));
+                const word = db.data.words.find(w => String(w.id) === String(uw.word_id));
                 return {
                     ...uw,
                     word: word || null
@@ -130,6 +130,7 @@ router.delete('/users/:userId', async (req, res) => {
         db.data.users ??= [];
         db.data.unknown_words ??= [];
         db.data.user_progress ??= [];
+        db.data.leaderboard ??= [];
 
         const userIndex = db.data.users.findIndex(u => u.id === normalizedUserId);
 
@@ -140,6 +141,11 @@ router.delete('/users/:userId', async (req, res) => {
         // Soft delete: Mark as deleted instead of removing
         db.data.users[userIndex].isDeleted = true;
         db.data.users[userIndex].deletedAt = new Date().toISOString();
+
+        // Remove from leaderboard
+        db.data.leaderboard = db.data.leaderboard.filter(
+            entry => entry.userId !== normalizedUserId
+        );
 
         await db.write();
         res.json({ message: 'User deleted successfully' });
@@ -337,7 +343,7 @@ router.get('/stats', async (req, res) => {
                 adjective: db.data.words.filter(w => w.type === 'adjective').length,
                 noun: db.data.words.filter(w => w.type === 'noun').length
             },
-            activeUsers: new Set(db.data.unknown_words.map(uw => uw.userId)).size,
+            activeUsers: new Set(db.data.unknown_words.map(uw => uw.user_id)).size,
             recentActivity: db.data.user_progress
                 .sort((a, b) => new Date(b.updatedAt || b.createdAt) - new Date(a.updatedAt || a.createdAt))
                 .slice(0, 10)
