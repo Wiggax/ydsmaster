@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, ArrowRight, Check, Save } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, Save, HelpCircle } from 'lucide-react';
 import Flashcard from '../components/Flashcard';
 import { useAuth } from '../context/AuthContext';
 import ProModal from '../components/ProModal';
@@ -156,6 +156,33 @@ export default function Flashcards() {
 
 
 
+    const handleAddToUnknown = async () => {
+        try {
+            const userStr = await Storage.getItem('user');
+            const user = userStr ? JSON.parse(userStr) : null;
+
+            if (!user || !user.id) {
+                alert('Please login to add words to your list');
+                return;
+            }
+
+            const currentWord = words[currentIndex];
+            await axios.post('/api/user/unknown', {
+                userId: user.id,
+                wordId: currentWord.id
+            });
+
+            alert('✓ Bilinmeyen kelimelere eklendi!');
+        } catch (error) {
+            console.error('Failed to add to unknown words:', error);
+            if (error.response?.data?.message === 'Word already in unknown list') {
+                alert('Bu kelime zaten listenizde var');
+            } else {
+                alert('Kelime eklenirken bir hata oluştu');
+            }
+        }
+    };
+
     if (loading) return <div className="flex items-center justify-center h-full">Loading...</div>;
     if (words.length === 0) return <div className="flex items-center justify-center h-full">No words found.</div>;
 
@@ -207,7 +234,13 @@ export default function Flashcards() {
             {/* Controls */}
             <div className="w-full max-w-2xl flex justify-between items-center mt-8 mb-4 gap-4">
                 <div className="flex items-center gap-3">
-
+                    <button
+                        onClick={handleAddToUnknown}
+                        className="flex items-center gap-2 text-rose-400 hover:text-rose-300 transition-colors px-4 py-2 rounded-lg hover:bg-rose-500/10"
+                    >
+                        <HelpCircle className="w-5 h-5" />
+                        <span>Bilmiyorum</span>
+                    </button>
 
                     <button
                         onClick={handleSaveProgress}

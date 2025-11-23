@@ -16,6 +16,9 @@ import Reading from './pages/Reading';
 import ReadingDetail from './pages/ReadingDetail';
 import GameMatch from './pages/GameMatch';
 import GameFill from './pages/GameFill';
+import UnknownWords from './pages/UnknownWords';
+import UnknownWordsQuiz from './pages/UnknownWordsQuiz';
+import QuizResults from './pages/QuizResults';
 import Leaderboard from './pages/Leaderboard';
 import AdminDashboard from './pages/AdminDashboard';
 import ProPurchase from './pages/ProPurchase';
@@ -127,6 +130,9 @@ function App() {
             <Route path="reading/:id" element={<ReadingDetail />} />
             <Route path="games/match" element={<GameMatch />} />
             <Route path="/games/fill" element={<GameFill />} />
+            <Route path="/unknown-words" element={<UnknownWords />} />
+            <Route path="/unknown-words/quiz" element={<UnknownWordsQuiz />} />
+            <Route path="/unknown-words/quiz/results" element={<QuizResults />} />
             <Route path="/leaderboard" element={<Leaderboard />} />
             <Route path="pro" element={<ProPurchase />} />
           </Route>
