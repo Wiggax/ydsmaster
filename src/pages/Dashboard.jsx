@@ -76,7 +76,6 @@ export default function Dashboard() {
         { title: 'En Çok Kullanılan Fiiller', path: '/flashcards/verb', icon: Layers, color: 'from-blue-500 to-cyan-500', desc: 'Master essential verbs' },
         { title: 'En Çok Kullanılan Sıfatlar', path: '/flashcards/adjective', icon: Layers, color: 'from-purple-500 to-pink-500', desc: 'Descriptive power' },
         { title: 'En Çok Kullanılan İsimler', path: '/flashcards/noun', icon: Layers, color: 'from-orange-500 to-red-500', desc: 'Building blocks' },
-        { title: 'Bilmediğim Kelimeler', path: '/unknown-words', icon: BookOpen, color: 'from-emerald-500 to-teal-500', desc: 'Your personal list' },
         { title: 'Akademik Okuma Parçaları', path: '/reading', icon: GraduationCap, color: 'from-indigo-500 to-violet-500', desc: 'Advanced texts' },
         { title: 'Kelime Eşleştirme', path: '/games/match', icon: Gamepad2, color: 'from-rose-500 to-orange-500', desc: 'Test your memory' },
         { title: 'Kelime Testi', path: '/games/fill', icon: Gamepad2, color: 'from-amber-500 to-yellow-500', desc: 'Contextual practice' },
@@ -86,7 +85,7 @@ export default function Dashboard() {
     return (
         <div className="h-full flex flex-col overflow-hidden relative">
             {/* Background Ambient Glow */}
-            <div className="absolute top-[-20%] left-[-20%] w-[80%] h-[80%] bg-primary/20 rounded-full blur-[120px] pointer-events-none" />
+            < div className="absolute top-[-20%] left-[-20%] w-[80%] h-[80%] bg-primary/20 rounded-full blur-[120px] pointer-events-none" />
             <div className="absolute bottom-[-20%] right-[-20%] w-[80%] h-[80%] bg-purple-500/20 rounded-full blur-[120px] pointer-events-none" />
 
             <header className="flex justify-between items-center mb-6 relative z-10">
@@ -155,7 +154,8 @@ export default function Dashboard() {
                         </div>
                     </Link>
                 </motion.div>
-            )}
+            )
+            }
 
             {/* Stats Section */}
             <motion.div
@@ -278,6 +278,6 @@ export default function Dashboard() {
                     </motion.div>
                 )}
             </AnimatePresence>
-        </div>
+        </div >
     );
 }
