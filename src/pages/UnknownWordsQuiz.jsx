@@ -145,7 +145,7 @@ export default function UnknownWordsQuiz() {
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: -20 }}
-                        className="glass-panel p-8 rounded-2xl border border-white/10"
+                        className="bg-gray-800/80 backdrop-blur-xl p-8 rounded-2xl border border-white/10 shadow-xl"
                     >
                         <h2 className="text-2xl font-bold text-white mb-6 text-center">
                             {currentQuestion.question}
@@ -153,7 +153,7 @@ export default function UnknownWordsQuiz() {
 
                         {currentQuestion.type === 'multiple_choice' && (
                             <div className="text-center mb-8">
-                                <span className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
+                                <span className="text-4xl font-bold text-purple-400">
                                     {currentQuestion.word}
                                 </span>
                             </div>

@@ -31,8 +31,15 @@ router.post('/generate', async (req, res) => {
             return res.status(400).json({ error: 'User ID is required' });
         }
 
-        // Get user's unknown words
-        const unknownWords = db.data.unknown_words?.filter(w => w.user_id === userId) || [];
+        // Get user's unknown words and deduplicate by word_id
+        const rawUnknownWords = db.data.unknown_words?.filter(w => w.user_id === userId) || [];
+        const uniqueMap = new Map();
+        rawUnknownWords.forEach(item => {
+            if (!uniqueMap.has(String(item.word_id))) {
+                uniqueMap.set(String(item.word_id), item);
+            }
+        });
+        const unknownWords = Array.from(uniqueMap.values());
 
         if (unknownWords.length < 10) {
             return res.status(400).json({

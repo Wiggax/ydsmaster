@@ -67,7 +67,7 @@ export default function UnknownWords() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 p-6 pb-24 relative overflow-hidden">
+        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 p-6 pb-24 relative overflow-y-auto">
             {/* Background Effects */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
                 <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-purple-500/10 rounded-full blur-[100px]" />
@@ -138,8 +138,8 @@ export default function UnknownWords() {
                                             <p className="text-purple-300 font-medium mb-2">{word.definition_tr}</p>
                                             <div className="flex gap-2">
                                                 <span className={`text-xs px-2 py-1 rounded-full bg-white/5 border border-white/10 ${word.type === 'verb' ? 'text-blue-400' :
-                                                        word.type === 'adjective' ? 'text-pink-400' :
-                                                            'text-orange-400'
+                                                    word.type === 'adjective' ? 'text-pink-400' :
+                                                        'text-orange-400'
                                                     }`}>
                                                     {word.type}
                                                 </span>
