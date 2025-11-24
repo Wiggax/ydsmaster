@@ -61,7 +61,14 @@ export default function Flashcards() {
 
             try {
                 const res = await axios.get(`/api/user/progress/flashcards-${type}`);
-                const progressData = res.data?.progress ? JSON.parse(res.data.progress) : res.data;
+                let progressData = res.data?.progress || res.data;
+                if (typeof progressData === 'string') {
+                    try {
+                        progressData = JSON.parse(progressData);
+                    } catch (e) {
+                        console.error('Error parsing progress data:', e);
+                    }
+                }
                 if (progressData && progressData.currentIndex !== undefined && progressData.currentIndex !== null) {
                     const savedIndex = Math.min(Math.max(0, progressData.currentIndex), words.length - 1);
                     setCurrentIndex(savedIndex);

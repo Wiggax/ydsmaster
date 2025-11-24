@@ -13,17 +13,21 @@ router.post('/', async (req, res) => {
         }
 
         const normalizedUserId = Number(userId);
-        const normalizedWordId = Number(wordId);
+        // wordId is a string (VARCHAR), so we don't convert it to Number
 
-        if (!Number.isFinite(normalizedUserId) || !Number.isFinite(normalizedWordId)) {
-            return res.status(400).json({ error: 'Invalid userId or wordId' });
+        if (!Number.isFinite(normalizedUserId)) {
+            return res.status(400).json({ error: 'Invalid userId' });
+        }
+
+        if (!wordId) {
+            return res.status(400).json({ error: 'Invalid wordId' });
         }
 
         // Try to insert, if already exists, return success message
         try {
             await query(
                 'INSERT INTO unknown_words (user_id, word_id, added_at) VALUES ($1, $2, CURRENT_TIMESTAMP)',
-                [normalizedUserId, normalizedWordId]
+                [normalizedUserId, wordId]
             );
             res.json({ message: 'Word added to unknown list' });
         } catch (error) {
@@ -68,15 +72,15 @@ router.delete('/:userId/:wordId', async (req, res) => {
     try {
         const { userId, wordId } = req.params;
         const normalizedUserId = Number(userId);
-        const normalizedWordId = Number(wordId);
+        // wordId is string
 
-        if (!Number.isFinite(normalizedUserId) || !Number.isFinite(normalizedWordId)) {
-            return res.status(400).json({ error: 'Invalid userId or wordId' });
+        if (!Number.isFinite(normalizedUserId)) {
+            return res.status(400).json({ error: 'Invalid userId' });
         }
 
         const result = await query(
             'DELETE FROM unknown_words WHERE user_id = $1 AND word_id = $2',
-            [normalizedUserId, normalizedWordId]
+            [normalizedUserId, wordId]
         );
 
         if (result.rowCount === 0) {

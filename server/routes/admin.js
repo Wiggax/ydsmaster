@@ -2,6 +2,12 @@ import express from 'express';
 import bcrypt from 'bcryptjs';
 import { query } from '../database/db.js';
 import { authenticate, authorizeAdmin } from '../middleware/auth.js';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const router = express.Router();
 
@@ -357,6 +363,28 @@ router.get('/stats', async (req, res) => {
     } catch (error) {
         console.error('Error fetching stats:', error);
         res.status(500).json({ error: 'Failed to fetch stats' });
+    }
+});
+
+// Seed Database (Admin only)
+router.post('/seed', async (req, res) => {
+    try {
+        const seedFilePath = path.join(__dirname, '../database/seeds.sql');
+
+        if (!fs.existsSync(seedFilePath)) {
+            return res.status(404).json({ error: 'Seeds file not found' });
+        }
+
+        const seedSql = fs.readFileSync(seedFilePath, 'utf8');
+
+        console.log('[ADMIN SEED] Starting database seeding...');
+        await query(seedSql);
+        console.log('[ADMIN SEED] Database seeded successfully');
+
+        res.json({ message: 'Database seeded successfully' });
+    } catch (error) {
+        console.error('Error seeding database:', error);
+        res.status(500).json({ error: 'Failed to seed database', details: error.message });
     }
 });
 

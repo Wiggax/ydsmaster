@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { Users, BookOpen, Activity, Settings, LogOut, Trash2, RefreshCw, UserPlus, Crown, X, Search, Key, Shield } from 'lucide-react';
+import { Users, BookOpen, Activity, Settings, LogOut, Trash2, RefreshCw, UserPlus, Crown, X, Search, Key, Shield, Database } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Storage } from '../utils/storage';
 
@@ -177,6 +177,22 @@ const AdminDashboard = () => {
         navigate('/login');
     };
 
+    const handleSeedDatabase = async () => {
+        if (!window.confirm('Are you sure you want to seed the database? This might take a while.')) return;
+
+        try {
+            const token = await Storage.getItem('token');
+            await axios.post('/api/admin/seed', {}, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            alert('Database seeded successfully!');
+            fetchData(); // Refresh stats
+        } catch (error) {
+            console.error('Failed to seed database:', error);
+            alert(error.response?.data?.error || 'Failed to seed database');
+        }
+    };
+
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white p-6">
             <div className="max-w-7xl mx-auto">
@@ -187,13 +203,22 @@ const AdminDashboard = () => {
                         </h1>
                         <p className="text-gray-400">Welcome back, {user?.username}</p>
                     </div>
-                    <button
-                        onClick={handleLogout}
-                        className="flex items-center gap-2 px-4 py-2 bg-red-500/20 hover:bg-red-500/30 text-red-400 rounded-lg transition-colors"
-                    >
-                        <LogOut size={20} />
-                        Logout
-                    </button>
+                    <div className="flex gap-2">
+                        <button
+                            onClick={handleSeedDatabase}
+                            className="flex items-center gap-2 px-4 py-2 bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-400 rounded-lg transition-colors"
+                        >
+                            <Database size={20} />
+                            Seed DB
+                        </button>
+                        <button
+                            onClick={handleLogout}
+                            className="flex items-center gap-2 px-4 py-2 bg-red-500/20 hover:bg-red-500/30 text-red-400 rounded-lg transition-colors"
+                        >
+                            <LogOut size={20} />
+                            Logout
+                        </button>
+                    </div>
                 </header>
 
                 {loading ? (

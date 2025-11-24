@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS texts (
 -- Unknown words table
 CREATE TABLE IF NOT EXISTS unknown_words (
     id SERIAL PRIMARY KEY,
-    user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    user_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
     word_id VARCHAR(50) NOT NULL REFERENCES words(id) ON DELETE CASCADE,
     added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     UNIQUE(user_id, word_id)
@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS unknown_words (
 -- User progress table
 CREATE TABLE IF NOT EXISTS user_progress (
     id SERIAL PRIMARY KEY,
-    user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    user_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
     content_type VARCHAR(50) NOT NULL,
     content_id VARCHAR(255) NOT NULL,
     progress JSONB,
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS user_progress (
 -- Leaderboard table
 CREATE TABLE IF NOT EXISTS leaderboard (
     id SERIAL PRIMARY KEY,
-    user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    user_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
     score INTEGER DEFAULT 0,
     rank INTEGER,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS leaderboard (
 -- Quiz history table
 CREATE TABLE IF NOT EXISTS quiz_history (
     id SERIAL PRIMARY KEY,
-    user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    user_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
     quiz_id BIGINT NOT NULL,
     score JSONB NOT NULL,
     results JSONB NOT NULL,
@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS quiz_history (
 -- Exam results table
 CREATE TABLE IF NOT EXISTS exam_results (
     id SERIAL PRIMARY KEY,
-    user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    user_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
     exam_id VARCHAR(255) NOT NULL,
     score INTEGER NOT NULL,
     answers JSONB NOT NULL,
@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS exam_results (
 -- Reading progress table
 CREATE TABLE IF NOT EXISTS reading_progress (
     id SERIAL PRIMARY KEY,
-    user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    user_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
     book_id VARCHAR(255) NOT NULL,
     page INTEGER DEFAULT 0,
     completed_at TIMESTAMP,
@@ -112,7 +112,8 @@ CREATE TABLE IF NOT EXISTS books (
     content TEXT NOT NULL,
     difficulty VARCHAR(50),
     is_pro BOOLEAN DEFAULT FALSE,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    total_pages INTEGER DEFAULT 0
 );
 
 -- Create indexes for better performance

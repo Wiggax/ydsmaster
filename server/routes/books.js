@@ -26,7 +26,7 @@ router.get('/', authenticate, async (req, res) => {
 router.get('/:bookId', authenticate, async (req, res) => {
     try {
         const { bookId } = req.params;
-        const normalizedBookId = Number(bookId);
+        // bookId is string (VARCHAR)
 
         // Get book details
         const bookResult = await query(`
@@ -36,7 +36,7 @@ router.get('/:bookId', authenticate, async (req, res) => {
                    created_at as "createdAt"
             FROM books
             WHERE id = $1
-        `, [normalizedBookId]);
+        `, [bookId]);
 
         const book = bookResult.rows[0];
 
@@ -90,7 +90,7 @@ router.post('/:bookId/progress', authenticate, async (req, res) => {
     try {
         const { bookId } = req.params;
         const { pageNumber } = req.body;
-        const normalizedBookId = Number(bookId);
+        // bookId is string
 
         if (!Number.isFinite(pageNumber) || pageNumber < 1) {
             return res.status(400).json({ error: 'Invalid page number' });
@@ -100,7 +100,7 @@ router.post('/:bookId/progress', authenticate, async (req, res) => {
         const progressResult = await query(`
             SELECT page_number FROM reading_progress 
             WHERE user_id = $1 AND book_id = $2
-        `, [req.user.id, normalizedBookId]);
+        `, [req.user.id, bookId]);
 
         const existingProgress = progressResult.rows[0];
         let pointsAwarded = 0;
@@ -117,7 +117,7 @@ router.post('/:bookId/progress', authenticate, async (req, res) => {
                 VALUES ($1, 'reading_points', true, $2, CURRENT_TIMESTAMP)
             `, [req.user.id, JSON.stringify({
                 score: pointsAwarded,
-                bookId: normalizedBookId,
+                bookId: bookId,
                 pageNumber: pageNumber,
                 pagesRead: newPagesCount
             })]);
@@ -133,13 +133,13 @@ router.post('/:bookId/progress', authenticate, async (req, res) => {
                     UPDATE reading_progress 
                     SET page_number = $1, updated_at = CURRENT_TIMESTAMP
                     WHERE user_id = $2 AND book_id = $3
-                `, [pageNumber, req.user.id, normalizedBookId]);
+                `, [pageNumber, req.user.id, bookId]);
             }
         } else {
             await query(`
                 INSERT INTO reading_progress (user_id, book_id, page_number)
                 VALUES ($1, $2, $3)
-            `, [req.user.id, normalizedBookId, pageNumber]);
+            `, [req.user.id, bookId, pageNumber]);
         }
 
         res.json({ message: 'Progress saved', pageNumber, pointsAwarded });
@@ -153,13 +153,13 @@ router.post('/:bookId/progress', authenticate, async (req, res) => {
 router.get('/:bookId/progress', authenticate, async (req, res) => {
     try {
         const { bookId } = req.params;
-        const normalizedBookId = Number(bookId);
+        // bookId is string
 
         const result = await query(`
             SELECT page_number as "pageNumber"
             FROM reading_progress
             WHERE user_id = $1 AND book_id = $2
-        `, [req.user.id, normalizedBookId]);
+        `, [req.user.id, bookId]);
 
         res.json(result.rows[0] || { pageNumber: 1 });
     } catch (error) {

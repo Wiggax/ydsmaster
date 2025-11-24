@@ -1,5 +1,5 @@
 -- Seeds for words and books
-TRUNCATE TABLE words, books CASCADE;
+-- TRUNCATE TABLE words, books CASCADE;
 INSERT INTO words (id, term, definition_tr, type, synonyms, examples) VALUES ('57f0a7008635d0a0fe7a6c93', 'analyze', 'analiz etmek', 'verb', 'examine', '["The researcher analyzed the data to identify significant trends."]') ON CONFLICT (id) DO NOTHING;
 INSERT INTO words (id, term, definition_tr, type, synonyms, examples) VALUES ('dc03bfc312b7aef92ae7e929', 'assess', 'değerlendirmek', 'verb', 'evaluate', '["We assessed the program''s effectiveness after six months."]') ON CONFLICT (id) DO NOTHING;
 INSERT INTO words (id, term, definition_tr, type, synonyms, examples) VALUES ('9223cac7059e1d446233e8c0', 'argue', 'tartışmak, savunmak', 'verb', 'contend', '["The article argues that social policy must be reformed."]') ON CONFLICT (id) DO NOTHING;

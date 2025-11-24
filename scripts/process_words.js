@@ -23,8 +23,8 @@ function generateId(text) {
 async function processFiles() {
     let sqlStatements = [];
 
-    // Add Truncate statement to clear existing data and prevent duplicates
-    sqlStatements.push('TRUNCATE TABLE words, books CASCADE;');
+    // Removed truncation to preserve existing words and books data.
+    // sqlStatements.push('TRUNCATE TABLE words, books CASCADE;');
 
     // Read existing db.json to preserve other data
     console.log('Reading db.json...');
