@@ -191,18 +191,49 @@ router.get('/seed-database', async (req, res) => {
     try {
         console.log('🔄 Starting database seeding...');
 
-        // Read seeds.sql file
         const seedsPath = path.join(__dirname, '../database/seeds.sql');
-        const seeds = fs.readFileSync(seedsPath, 'utf8');
+        const fileContent = fs.readFileSync(seedsPath, 'utf8');
 
-        // Execute seeds
-        await query(seeds);
+        // Split by semicolon and newline to get individual statements
+        // We assume each statement ends with ;
+        const statements = fileContent.split(';').map(s => s.trim()).filter(s => s.length > 0);
 
-        console.log('✅ Database seeded successfully!');
+        console.log(`Found ${statements.length} statements to execute.`);
+
+        // Execute in batches to avoid timeout but keep it faster than line-by-line
+        const BATCH_SIZE = 100;
+        let successCount = 0;
+        let errorCount = 0;
+
+        for (let i = 0; i < statements.length; i += BATCH_SIZE) {
+            const batch = statements.slice(i, i + BATCH_SIZE);
+            const batchQuery = batch.join(';') + ';'; // Re-join with semicolons
+
+            try {
+                await query(batchQuery);
+                successCount += batch.length;
+                if (i % 500 === 0) console.log(`Processed ${i} / ${statements.length} statements...`);
+            } catch (err) {
+                console.error(`Error executing batch at index ${i}:`, err.message);
+                // Fallback: Try executing this batch line-by-line to find the culprit
+                for (const stmt of batch) {
+                    try {
+                        await query(stmt + ';');
+                        successCount++;
+                    } catch (innerErr) {
+                        console.error('Failed statement:', stmt.substring(0, 100) + '...');
+                        console.error('Error:', innerErr.message);
+                        errorCount++;
+                    }
+                }
+            }
+        }
+
+        console.log(`✅ Database seeding completed. Success: ${successCount}, Errors: ${errorCount}`);
 
         res.json({
             success: true,
-            message: 'Database seeded successfully!'
+            message: `Database seeded! Success: ${successCount}, Errors: ${errorCount}`
         });
     } catch (error) {
         console.error('❌ Database seeding error:', error);
