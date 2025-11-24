@@ -14,7 +14,12 @@ CREATE TABLE IF NOT EXISTS users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     last_login TIMESTAMP,
     is_deleted BOOLEAN DEFAULT FALSE,
-    deleted_at TIMESTAMP
+    deleted_at TIMESTAMP,
+    subscription_start_date TIMESTAMP,
+    subscription_end_date TIMESTAMP,
+    pro_platform VARCHAR(50),
+    pro_transaction_id VARCHAR(255),
+    auto_renew BOOLEAN DEFAULT FALSE
 );
 
 -- Words table

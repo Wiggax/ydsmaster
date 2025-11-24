@@ -213,4 +213,46 @@ router.get('/seed-database', async (req, res) => {
     }
 });
 
+// Run database schema migration
+router.get('/migrate-schema', async (req, res) => {
+    try {
+        console.log('🔄 Starting database schema migration...');
+
+        // Read schema.sql file
+        const schemaPath = path.join(__dirname, '../database/schema.sql');
+        const schema = fs.readFileSync(schemaPath, 'utf8');
+
+        // Execute schema
+        await query(schema);
+
+        // Add missing columns to users table if they don't exist
+        try {
+            await query(`
+                ALTER TABLE users 
+                ADD COLUMN IF NOT EXISTS subscription_start_date TIMESTAMP,
+                ADD COLUMN IF NOT EXISTS subscription_end_date TIMESTAMP,
+                ADD COLUMN IF NOT EXISTS pro_platform VARCHAR(50),
+                ADD COLUMN IF NOT EXISTS pro_transaction_id VARCHAR(255),
+                ADD COLUMN IF NOT EXISTS auto_renew BOOLEAN DEFAULT FALSE;
+            `);
+            console.log('✅ Users table updated with subscription columns');
+        } catch (err) {
+            console.log('⚠️ Users table update skipped or failed (columns might already exist):', err.message);
+        }
+
+        console.log('✅ Database schema migrated successfully!');
+
+        res.json({
+            success: true,
+            message: 'Database schema migrated successfully!'
+        });
+    } catch (error) {
+        console.error('❌ Database schema migration error:', error);
+        res.status(500).json({
+            success: false,
+            error: error.message
+        });
+    }
+});
+
 export default router;

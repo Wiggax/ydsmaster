@@ -1,5 +1,5 @@
 import express from 'express';
-import db from '../db.js';
+import { query } from '../database/db.js';
 import { authenticate } from '../middleware/auth.js';
 
 const router = express.Router();
@@ -20,26 +20,30 @@ router.post('/purchase-pro', authenticate, async (req, res) => {
             return res.status(400).json({ error: 'Transaction ID required' });
         }
 
-        // Find user
-        const user = db.data.users.find(u => u.id === userId);
-        if (!user) {
+        // Check if user exists
+        const userResult = await query('SELECT * FROM users WHERE id = $1', [userId]);
+        if (userResult.rows.length === 0) {
             return res.status(404).json({ error: 'User not found' });
         }
 
-        // Update user to Pro
+        const user = userResult.rows[0];
+
         // Update user to Pro with 1 month subscription
         const startDate = new Date();
         const endDate = new Date(startDate);
         endDate.setMonth(endDate.getMonth() + 1);
 
-        user.isPro = true;
-        user.subscriptionStartDate = startDate.toISOString();
-        user.subscriptionEndDate = endDate.toISOString();
-        user.proPlatform = platform;
-        user.proTransactionId = transactionId;
-        user.autoRenew = true; // Default for app stores
-
-        await db.write();
+        await query(
+            `UPDATE users 
+             SET is_pro = TRUE, 
+                 subscription_start_date = $1, 
+                 subscription_end_date = $2, 
+                 pro_platform = $3, 
+                 pro_transaction_id = $4, 
+                 auto_renew = TRUE 
+             WHERE id = $5`,
+            [startDate, endDate, platform, transactionId, userId]
+        );
 
         res.json({
             success: true,
@@ -48,9 +52,9 @@ router.post('/purchase-pro', authenticate, async (req, res) => {
                 id: user.id,
                 username: user.username,
                 email: user.email,
-                isPro: user.isPro,
+                isPro: true,
                 role: user.role,
-                subscriptionEndDate: user.subscriptionEndDate
+                subscriptionEndDate: endDate.toISOString()
             }
         });
     } catch (error) {
@@ -63,28 +67,32 @@ router.post('/purchase-pro', authenticate, async (req, res) => {
 router.get('/pro-status', authenticate, async (req, res) => {
     try {
         const userId = req.user.id;
-        const user = db.data.users.find(u => u.id === userId);
+        const result = await query(
+            'SELECT is_pro, subscription_end_date, auto_renew FROM users WHERE id = $1',
+            [userId]
+        );
 
-        if (!user) {
+        if (result.rows.length === 0) {
             return res.status(404).json({ error: 'User not found' });
         }
 
+        const user = result.rows[0];
+        let isPro = user.is_pro || false;
+
         // Check if subscription is still valid
-        let isPro = user.isPro || false;
-        if (isPro && user.subscriptionEndDate) {
-            const expiry = new Date(user.subscriptionEndDate);
+        if (isPro && user.subscription_end_date) {
+            const expiry = new Date(user.subscription_end_date);
             if (expiry < new Date()) {
                 isPro = false;
                 // Optionally update DB to reflect expired status
-                // user.isPro = false;
-                // await db.write();
+                // await query('UPDATE users SET is_pro = FALSE WHERE id = $1', [userId]);
             }
         }
 
         res.json({
             isPro: isPro,
-            subscriptionEndDate: user.subscriptionEndDate || null,
-            autoRenew: user.autoRenew || false
+            subscriptionEndDate: user.subscription_end_date || null,
+            autoRenew: user.auto_renew || false
         });
     } catch (error) {
         console.error('Pro status check error:', error);
@@ -102,13 +110,15 @@ router.post('/restore-purchase', authenticate, async (req, res) => {
         // - Verify receipt with Apple/Google
         // - Restore Pro status if valid
 
-        const user = db.data.users.find(u => u.id === userId);
-        if (!user) {
+        const result = await query('SELECT is_pro FROM users WHERE id = $1', [userId]);
+        if (result.rows.length === 0) {
             return res.status(404).json({ error: 'User not found' });
         }
 
+        const user = result.rows[0];
+
         // Mock restore - check if user already has Pro
-        if (user.isPro) {
+        if (user.is_pro) {
             return res.json({
                 success: true,
                 message: 'Pro subscription restored',
