@@ -2922,3 +2922,205 @@ INSERT INTO books (id, title, author, content, difficulty, is_pro) VALUES ('7', 
 INSERT INTO books (id, title, author, content, difficulty, is_pro) VALUES ('8', 'Neuroscience and Brain Function', '', '', 'B2', TRUE) ON CONFLICT (id) DO NOTHING;
 INSERT INTO books (id, title, author, content, difficulty, is_pro) VALUES ('9', 'Renewable Energy Technologies', '', '', 'B2', TRUE) ON CONFLICT (id) DO NOTHING;
 INSERT INTO books (id, title, author, content, difficulty, is_pro) VALUES ('10', 'Cultural Anthropology and Social Structures', '', '', 'B2', TRUE) ON CONFLICT (id) DO NOTHING;
+
+-- Seeds for users
+INSERT INTO users (id, username, email, password_hash, phone, role, is_pro, created_at, last_login, is_deleted, subscription_start_date, subscription_end_date, pro_platform, pro_transaction_id, auto_renew)
+VALUES (1763624631956, 'testuser', 'test@example.com', '$2a$10$AtQO32zTStZoTHZi4wcsGe1saYXINsArtsCjHeW6ujADh2UqVX2Y2', '1234567890', 'user', FALSE, '2025-11-20T07:43:51.956Z', NULL, FALSE, NULL, NULL, NULL, NULL, FALSE)
+ON CONFLICT (id) DO UPDATE SET 
+    username = EXCLUDED.username,
+    email = EXCLUDED.email,
+    password_hash = EXCLUDED.password_hash,
+    is_pro = EXCLUDED.is_pro,
+    role = EXCLUDED.role;
+INSERT INTO users (id, username, email, password_hash, phone, role, is_pro, created_at, last_login, is_deleted, subscription_start_date, subscription_end_date, pro_platform, pro_transaction_id, auto_renew)
+VALUES (1763624771774, 'Wiggax', 'burakuzunn03@gmail.com', '$2a$10$Wx/lnU0vBCfwNUcwcGqnEeqNkRMkVB4IxnhNRrcsTeffhmnhsFwXi', '5059940783', 'admin', TRUE, '2025-11-20T07:46:11.774Z', '2025-11-23T09:33:42.553Z', FALSE, NULL, NULL, NULL, NULL, FALSE)
+ON CONFLICT (id) DO UPDATE SET 
+    username = EXCLUDED.username,
+    email = EXCLUDED.email,
+    password_hash = EXCLUDED.password_hash,
+    is_pro = EXCLUDED.is_pro,
+    role = EXCLUDED.role;
+INSERT INTO users (id, username, email, password_hash, phone, role, is_pro, created_at, last_login, is_deleted, subscription_start_date, subscription_end_date, pro_platform, pro_transaction_id, auto_renew)
+VALUES (1763636645668, 'mehmet', 'mehmet31@gmail.com', '$2a$10$onNaaTwfW2GcgjkP23vR.O/VDrFFht1/vXGu2XaKUNB5Xd9ccs4/.', '55502202180', 'user', TRUE, '2025-11-20T11:04:05.668Z', NULL, FALSE, NULL, NULL, NULL, NULL, FALSE)
+ON CONFLICT (id) DO UPDATE SET 
+    username = EXCLUDED.username,
+    email = EXCLUDED.email,
+    password_hash = EXCLUDED.password_hash,
+    is_pro = EXCLUDED.is_pro,
+    role = EXCLUDED.role;
+INSERT INTO users (id, username, email, password_hash, phone, role, is_pro, created_at, last_login, is_deleted, subscription_start_date, subscription_end_date, pro_platform, pro_transaction_id, auto_renew)
+VALUES (1763637423283, 'mehmet', 'mehmet123@gmail.com', '$2a$10$1x25cB1cWXKXkYH3Aos/QePnVEyrpEMfhEvpBMmTgZVf8RDDzYc9y', '555055555', 'user', TRUE, '2025-11-20T11:17:03.283Z', '2025-11-20T16:45:08.018Z', FALSE, NULL, NULL, NULL, NULL, FALSE)
+ON CONFLICT (id) DO UPDATE SET 
+    username = EXCLUDED.username,
+    email = EXCLUDED.email,
+    password_hash = EXCLUDED.password_hash,
+    is_pro = EXCLUDED.is_pro,
+    role = EXCLUDED.role;
+INSERT INTO users (id, username, email, password_hash, phone, role, is_pro, created_at, last_login, is_deleted, subscription_start_date, subscription_end_date, pro_platform, pro_transaction_id, auto_renew)
+VALUES (1763642981700, 'progress', 'progress@example.com', '$2a$10$vQGc04MegMC8mtgdPzV05ueFlrAT2KjmztxloQTVGoONt0sPFIcNe', '5551234567', 'user', FALSE, '2025-11-20T12:49:41.700Z', NULL, FALSE, NULL, NULL, NULL, NULL, FALSE)
+ON CONFLICT (id) DO UPDATE SET 
+    username = EXCLUDED.username,
+    email = EXCLUDED.email,
+    password_hash = EXCLUDED.password_hash,
+    is_pro = EXCLUDED.is_pro,
+    role = EXCLUDED.role;
+INSERT INTO users (id, username, email, password_hash, phone, role, is_pro, created_at, last_login, is_deleted, subscription_start_date, subscription_end_date, pro_platform, pro_transaction_id, auto_renew)
+VALUES (1763650180611, 'ahmet', 'asd@gmail.com', '$2a$10$N9LZM/aSdkjS.xB1AGFuBOC8HDAltduWQNowgjFfJajff3KTABe0e', '505055555', 'user', TRUE, '2025-11-20T14:49:40.611Z', NULL, FALSE, NULL, NULL, NULL, NULL, FALSE)
+ON CONFLICT (id) DO UPDATE SET 
+    username = EXCLUDED.username,
+    email = EXCLUDED.email,
+    password_hash = EXCLUDED.password_hash,
+    is_pro = EXCLUDED.is_pro,
+    role = EXCLUDED.role;
+INSERT INTO users (id, username, email, password_hash, phone, role, is_pro, created_at, last_login, is_deleted, subscription_start_date, subscription_end_date, pro_platform, pro_transaction_id, auto_renew)
+VALUES (1763657044893, 'cafer', 'cafer@gmail.com', '$2a$10$gqoyutNvyNFZAxq/UyW5ZeJoLtnYYbBqypV2D5CEDlx/JeQB3/tSe', 'cafer', 'user', TRUE, '2025-11-20T16:44:04.893Z', '2025-11-20T22:04:57.964Z', FALSE, NULL, NULL, NULL, NULL, FALSE)
+ON CONFLICT (id) DO UPDATE SET 
+    username = EXCLUDED.username,
+    email = EXCLUDED.email,
+    password_hash = EXCLUDED.password_hash,
+    is_pro = EXCLUDED.is_pro,
+    role = EXCLUDED.role;
+INSERT INTO users (id, username, email, password_hash, phone, role, is_pro, created_at, last_login, is_deleted, subscription_start_date, subscription_end_date, pro_platform, pro_transaction_id, auto_renew)
+VALUES (1763659729337, 'ahmet', 'ahmet@gmail.com', '$2a$10$sRfySjM0.RMC4U31Qj7BaujHsPuiooC.kMo.wHvtPiwXYOgs1U8aO', '5055055555', 'user', TRUE, '2025-11-20T17:28:49.337Z', '2025-11-20T17:29:01.791Z', FALSE, NULL, NULL, NULL, NULL, FALSE)
+ON CONFLICT (id) DO UPDATE SET 
+    username = EXCLUDED.username,
+    email = EXCLUDED.email,
+    password_hash = EXCLUDED.password_hash,
+    is_pro = EXCLUDED.is_pro,
+    role = EXCLUDED.role;
+INSERT INTO users (id, username, email, password_hash, phone, role, is_pro, created_at, last_login, is_deleted, subscription_start_date, subscription_end_date, pro_platform, pro_transaction_id, auto_renew)
+VALUES (1763672036425, 'mert', 'mert@gmail.com', '$2a$10$T6j1waV7ol2ptgo2LZFTf.Eeh8AkoMGmNe0pFDtjAzoXM0w.kt6.i', '5055055556', 'user', TRUE, '2025-11-20T20:53:56.425Z', '2025-11-20T22:09:21.287Z', FALSE, NULL, NULL, 'web', 'web_1763672198912_1763672036425', FALSE)
+ON CONFLICT (id) DO UPDATE SET 
+    username = EXCLUDED.username,
+    email = EXCLUDED.email,
+    password_hash = EXCLUDED.password_hash,
+    is_pro = EXCLUDED.is_pro,
+    role = EXCLUDED.role;
+INSERT INTO users (id, username, email, password_hash, phone, role, is_pro, created_at, last_login, is_deleted, subscription_start_date, subscription_end_date, pro_platform, pro_transaction_id, auto_renew)
+VALUES (1763672486992, 'kadir', 'kadir@gmail.com', '$2a$10$Bp12hyMlYs/kJXAj7FUStubdZDJe69OnRnA6MCpcNSV6kYqF5/Mhi', '506123214', 'user', FALSE, '2025-11-20T21:01:26.992Z', '2025-11-20T21:08:07.862Z', FALSE, NULL, NULL, NULL, NULL, FALSE)
+ON CONFLICT (id) DO UPDATE SET 
+    username = EXCLUDED.username,
+    email = EXCLUDED.email,
+    password_hash = EXCLUDED.password_hash,
+    is_pro = EXCLUDED.is_pro,
+    role = EXCLUDED.role;
+INSERT INTO users (id, username, email, password_hash, phone, role, is_pro, created_at, last_login, is_deleted, subscription_start_date, subscription_end_date, pro_platform, pro_transaction_id, auto_renew)
+VALUES (1763672706456, 'kahpe', 'kahpe@gmail.com', '$2a$10$tF0D8CokFy0tLW3J/TcoAe9m1Jbh08cCvhMhwUgp9cm3pw8uKIJk6', '1243421', 'user', FALSE, '2025-11-20T21:05:06.456Z', NULL, FALSE, NULL, NULL, NULL, NULL, FALSE)
+ON CONFLICT (id) DO UPDATE SET 
+    username = EXCLUDED.username,
+    email = EXCLUDED.email,
+    password_hash = EXCLUDED.password_hash,
+    is_pro = EXCLUDED.is_pro,
+    role = EXCLUDED.role;
+INSERT INTO users (id, username, email, password_hash, phone, role, is_pro, created_at, last_login, is_deleted, subscription_start_date, subscription_end_date, pro_platform, pro_transaction_id, auto_renew)
+VALUES (1763675780972, 'testuser_1763675780764', 'testuser_1763675780764@example.com', '$2a$10$ib2Glw/YJ.VW/R5Ftir8BuZHzIYDEsvI/JarSJolsk6ZaSz1LAmfa', '5555780765', 'user', FALSE, '2025-11-20T21:56:20.972Z', '2025-11-20T21:56:21.098Z', FALSE, NULL, NULL, NULL, NULL, FALSE)
+ON CONFLICT (id) DO UPDATE SET 
+    username = EXCLUDED.username,
+    email = EXCLUDED.email,
+    password_hash = EXCLUDED.password_hash,
+    is_pro = EXCLUDED.is_pro,
+    role = EXCLUDED.role;
+INSERT INTO users (id, username, email, password_hash, phone, role, is_pro, created_at, last_login, is_deleted, subscription_start_date, subscription_end_date, pro_platform, pro_transaction_id, auto_renew)
+VALUES (1763676012081, 'testuser_1763676011839', 'testuser_1763676011839@example.com', '$2a$10$hufVKd91.awgaTWjcXkrx.TdxCoFIGeSNL3l2kkhqMAVzYpRf/LOC', '5556011840', 'user', FALSE, '2025-11-20T22:00:12.081Z', '2025-11-20T22:00:12.211Z', FALSE, NULL, NULL, NULL, NULL, FALSE)
+ON CONFLICT (id) DO UPDATE SET 
+    username = EXCLUDED.username,
+    email = EXCLUDED.email,
+    password_hash = EXCLUDED.password_hash,
+    is_pro = EXCLUDED.is_pro,
+    role = EXCLUDED.role;
+INSERT INTO users (id, username, email, password_hash, phone, role, is_pro, created_at, last_login, is_deleted, subscription_start_date, subscription_end_date, pro_platform, pro_transaction_id, auto_renew)
+VALUES (1763676078702, 'testuser_1763676078462', 'testuser_1763676078462@example.com', '$2a$10$5S2Jml/vXoHNkSNBz8stHeFbVo25fk6hNysNYlrULUPUbACVsbrUm', '5556078464', 'user', FALSE, '2025-11-20T22:01:18.702Z', '2025-11-20T22:01:18.836Z', FALSE, NULL, NULL, NULL, NULL, FALSE)
+ON CONFLICT (id) DO UPDATE SET 
+    username = EXCLUDED.username,
+    email = EXCLUDED.email,
+    password_hash = EXCLUDED.password_hash,
+    is_pro = EXCLUDED.is_pro,
+    role = EXCLUDED.role;
+INSERT INTO users (id, username, email, password_hash, phone, role, is_pro, created_at, last_login, is_deleted, subscription_start_date, subscription_end_date, pro_platform, pro_transaction_id, auto_renew)
+VALUES (1763676281419, 'fato', 'fato@gmail.com', '$2a$10$P0dI0GIBiNrKNsuHEjM6SeFenKrh/nPj3sRZQqWRRE9JFPBRd.vqO', '5059931123', 'user', FALSE, '2025-11-20T22:04:41.419Z', NULL, FALSE, NULL, NULL, NULL, NULL, FALSE)
+ON CONFLICT (id) DO UPDATE SET 
+    username = EXCLUDED.username,
+    email = EXCLUDED.email,
+    password_hash = EXCLUDED.password_hash,
+    is_pro = EXCLUDED.is_pro,
+    role = EXCLUDED.role;
+INSERT INTO users (id, username, email, password_hash, phone, role, is_pro, created_at, last_login, is_deleted, subscription_start_date, subscription_end_date, pro_platform, pro_transaction_id, auto_renew)
+VALUES (1763676382917, 'testuser_1763676382694', 'testuser_1763676382694@example.com', '$2a$10$0dnWYIdiY/zF1/9Apqq0dur7Q2UdmNT3KhV77Y2..ar9Dg6MzS/Fa', '5556382696', 'user', FALSE, '2025-11-20T22:06:22.917Z', NULL, FALSE, NULL, NULL, NULL, NULL, FALSE)
+ON CONFLICT (id) DO UPDATE SET 
+    username = EXCLUDED.username,
+    email = EXCLUDED.email,
+    password_hash = EXCLUDED.password_hash,
+    is_pro = EXCLUDED.is_pro,
+    role = EXCLUDED.role;
+INSERT INTO users (id, username, email, password_hash, phone, role, is_pro, created_at, last_login, is_deleted, subscription_start_date, subscription_end_date, pro_platform, pro_transaction_id, auto_renew)
+VALUES (1763676383123, 'realuser_1763676382939', 'realuser_1763676382939@example.com', '$2a$10$jqArqDUhaM7OVCCY7pZOpuo14s0B7dHJ0dJwEvPm7sS6WWi6hoWsC', '5556382941', 'user', FALSE, '2025-11-20T22:06:23.123Z', '2025-11-20T22:06:23.248Z', FALSE, NULL, NULL, NULL, NULL, FALSE)
+ON CONFLICT (id) DO UPDATE SET 
+    username = EXCLUDED.username,
+    email = EXCLUDED.email,
+    password_hash = EXCLUDED.password_hash,
+    is_pro = EXCLUDED.is_pro,
+    role = EXCLUDED.role;
+INSERT INTO users (id, username, email, password_hash, phone, role, is_pro, created_at, last_login, is_deleted, subscription_start_date, subscription_end_date, pro_platform, pro_transaction_id, auto_renew)
+VALUES (1763739123938, 'şimal', 'simal@gmail.com', '$2a$10$lhUNCSONgGAdJoWz5yOrnOuabhpiWh72HbTW.fDZN1jRPpFzx6T2a', '5055066666', 'user', FALSE, '2025-11-21T15:32:03.938Z', '2025-11-21T15:32:13.939Z', FALSE, NULL, NULL, NULL, NULL, FALSE)
+ON CONFLICT (id) DO UPDATE SET 
+    username = EXCLUDED.username,
+    email = EXCLUDED.email,
+    password_hash = EXCLUDED.password_hash,
+    is_pro = EXCLUDED.is_pro,
+    role = EXCLUDED.role;
+INSERT INTO users (id, username, email, password_hash, phone, role, is_pro, created_at, last_login, is_deleted, subscription_start_date, subscription_end_date, pro_platform, pro_transaction_id, auto_renew)
+VALUES (1763742476708, 'deleteme', 'deletemedelete@me.com', '$2a$10$Pr/y7Fp2u7uRMUZerRdZ9eeLMlnvbDVsduJhT1eKm2HYXtT9VWOE.', '5555555555', 'user', FALSE, '2025-11-21T16:27:56.708Z', NULL, FALSE, NULL, NULL, NULL, NULL, FALSE)
+ON CONFLICT (id) DO UPDATE SET 
+    username = EXCLUDED.username,
+    email = EXCLUDED.email,
+    password_hash = EXCLUDED.password_hash,
+    is_pro = EXCLUDED.is_pro,
+    role = EXCLUDED.role;
+INSERT INTO users (id, username, email, password_hash, phone, role, is_pro, created_at, last_login, is_deleted, subscription_start_date, subscription_end_date, pro_platform, pro_transaction_id, auto_renew)
+VALUES (1763742952744, 'sima1', 'sima@göail.com', '$2a$10$ieniOrvvCw1JlF1FJKirTuKX8c7pfR2QrSFnsd7mncCrxGL3FotAS', '5059939871', 'user', TRUE, '2025-11-21T16:35:52.744Z', '2025-11-21T16:36:22.800Z', FALSE, NULL, NULL, NULL, NULL, FALSE)
+ON CONFLICT (id) DO UPDATE SET 
+    username = EXCLUDED.username,
+    email = EXCLUDED.email,
+    password_hash = EXCLUDED.password_hash,
+    is_pro = EXCLUDED.is_pro,
+    role = EXCLUDED.role;
+INSERT INTO users (id, username, email, password_hash, phone, role, is_pro, created_at, last_login, is_deleted, subscription_start_date, subscription_end_date, pro_platform, pro_transaction_id, auto_renew)
+VALUES (1763743093547, 'tempadmin', 'tempadmin@yds.com', '$2a$10$AWi1Uy8UfoVtB6a/.qRF6.d9pi//PIlBlwPyyBXFRV5I0ijlBXbg2', '5551112233', 'user', FALSE, '2025-11-21T16:38:13.547Z', '2025-11-21T16:38:41.671Z', FALSE, NULL, NULL, NULL, NULL, FALSE)
+ON CONFLICT (id) DO UPDATE SET 
+    username = EXCLUDED.username,
+    email = EXCLUDED.email,
+    password_hash = EXCLUDED.password_hash,
+    is_pro = EXCLUDED.is_pro,
+    role = EXCLUDED.role;
+INSERT INTO users (id, username, email, password_hash, phone, role, is_pro, created_at, last_login, is_deleted, subscription_start_date, subscription_end_date, pro_platform, pro_transaction_id, auto_renew)
+VALUES (1763743564399, 'deletetest2', 'deletetest2@test.com', '$2a$10$Zp7S1.Eg4hjufgWAb9a5AOU9xLmQgufGkImcAc19COdGRv54PkMvi', '5551234568', 'user', FALSE, '2025-11-21T16:46:04.399Z', '2025-11-21T16:47:44.615Z', FALSE, NULL, NULL, NULL, NULL, FALSE)
+ON CONFLICT (id) DO UPDATE SET 
+    username = EXCLUDED.username,
+    email = EXCLUDED.email,
+    password_hash = EXCLUDED.password_hash,
+    is_pro = EXCLUDED.is_pro,
+    role = EXCLUDED.role;
+INSERT INTO users (id, username, email, password_hash, phone, role, is_pro, created_at, last_login, is_deleted, subscription_start_date, subscription_end_date, pro_platform, pro_transaction_id, auto_renew)
+VALUES (1763744104078, 'testuser_1763744103862', 'test_1763744103862@example.com', '$2a$10$U9gtNgAKztByFmuKC4ZYDu4GsxtgjjswQGSubqxwnDL5cmtahtK/K', '5554103862', 'user', FALSE, '2025-11-21T16:55:04.078Z', '2025-11-21T16:55:04.209Z', FALSE, NULL, NULL, NULL, NULL, FALSE)
+ON CONFLICT (id) DO UPDATE SET 
+    username = EXCLUDED.username,
+    email = EXCLUDED.email,
+    password_hash = EXCLUDED.password_hash,
+    is_pro = EXCLUDED.is_pro,
+    role = EXCLUDED.role;
+INSERT INTO users (id, username, email, password_hash, phone, role, is_pro, created_at, last_login, is_deleted, subscription_start_date, subscription_end_date, pro_platform, pro_transaction_id, auto_renew)
+VALUES (1763744196527, 'testuser_1763744196320', 'test_1763744196320@example.com', '$2a$10$0OTAvEC/ZsIWffkn0tD4P.FtBNMpKhDbWRT4W4EVe898J7wvkM.Wm', '5554196320', 'user', FALSE, '2025-11-21T16:56:36.527Z', '2025-11-21T16:56:36.659Z', FALSE, NULL, NULL, NULL, NULL, FALSE)
+ON CONFLICT (id) DO UPDATE SET 
+    username = EXCLUDED.username,
+    email = EXCLUDED.email,
+    password_hash = EXCLUDED.password_hash,
+    is_pro = EXCLUDED.is_pro,
+    role = EXCLUDED.role;
+INSERT INTO users (id, username, email, password_hash, phone, role, is_pro, created_at, last_login, is_deleted, subscription_start_date, subscription_end_date, pro_platform, pro_transaction_id, auto_renew)
+VALUES (1763883331751, 'samet', 'samet@gmail.com', '$2a$10$lNrsNaLOv7JZgwYqQeeybe7nU1U8Gc8RilOwlM8k1GgZKW5z.RvCi', '123456', 'user', TRUE, '2025-11-23T07:35:31.751Z', '2025-11-23T09:34:34.399Z', FALSE, NULL, NULL, NULL, NULL, FALSE)
+ON CONFLICT (id) DO UPDATE SET 
+    username = EXCLUDED.username,
+    email = EXCLUDED.email,
+    password_hash = EXCLUDED.password_hash,
+    is_pro = EXCLUDED.is_pro,
+    role = EXCLUDED.role;

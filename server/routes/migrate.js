@@ -260,13 +260,16 @@ router.get('/migrate-schema', async (req, res) => {
         try {
             await query(`
                 ALTER TABLE users 
+                ALTER COLUMN id TYPE BIGINT;
+                
+                ALTER TABLE users
                 ADD COLUMN IF NOT EXISTS subscription_start_date TIMESTAMP,
                 ADD COLUMN IF NOT EXISTS subscription_end_date TIMESTAMP,
                 ADD COLUMN IF NOT EXISTS pro_platform VARCHAR(50),
                 ADD COLUMN IF NOT EXISTS pro_transaction_id VARCHAR(255),
                 ADD COLUMN IF NOT EXISTS auto_renew BOOLEAN DEFAULT FALSE;
             `);
-            console.log('✅ Users table updated with subscription columns');
+            console.log('✅ Users table updated (ID type and columns)');
         } catch (err) {
             console.log('⚠️ Users table update skipped or failed (columns might already exist):', err.message);
         }
