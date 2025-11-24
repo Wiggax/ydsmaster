@@ -2933,7 +2933,7 @@ ON CONFLICT (id) DO UPDATE SET
     is_pro = EXCLUDED.is_pro,
     role = EXCLUDED.role;
 INSERT INTO users (id, username, email, password_hash, phone, role, is_pro, created_at, last_login, is_deleted, subscription_start_date, subscription_end_date, pro_platform, pro_transaction_id, auto_renew)
-VALUES (1763624771774, 'Wiggax', 'burakuzunn03@gmail.com', '$2a$10$Wx/lnU0vBCfwNUcwcGqnEeqNkRMkVB4IxnhNRrcsTeffhmnhsFwXi', '5059940783', 'admin', TRUE, '2025-11-20T07:46:11.774Z', '2025-11-23T09:33:42.553Z', FALSE, NULL, NULL, NULL, NULL, FALSE)
+VALUES (1763624771774, 'Wiggax', 'burakuzunn03@gmail.com', '$2a$10$NLvvYV/yAN3eguX4nnAsBeNPv1y0o0fKd2dWCMHDfG2zCUM4C/z1K', '5059940783', 'admin', TRUE, '2025-11-20T07:46:11.774Z', '2025-11-23T09:33:42.553Z', FALSE, NULL, NULL, NULL, NULL, FALSE)
 ON CONFLICT (id) DO UPDATE SET 
     username = EXCLUDED.username,
     email = EXCLUDED.email,

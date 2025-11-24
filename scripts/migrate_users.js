@@ -9,6 +9,9 @@ const PROJECT_ROOT = path.join(__dirname, '..');
 const DB_JSON_PATH = path.join(PROJECT_ROOT, 'db.json');
 const SEEDS_SQL_PATH = path.join(PROJECT_ROOT, 'server', 'database', 'seeds.sql');
 
+// Correct password hash for Burak.0303
+const CORRECT_ADMIN_HASH = '$2a$10$NLvvYV/yAN3eguX4nnAsBeNPv1y0o0fKd2dWCMHDfG2zCUM4C/z1K';
+
 async function migrateUsers() {
     console.log('Reading db.json...');
     const dbData = JSON.parse(await fs.readFile(DB_JSON_PATH, 'utf-8'));
@@ -23,7 +26,14 @@ async function migrateUsers() {
             const safeUsername = user.username.replace(/'/g, "''");
             const safeEmail = user.email.replace(/'/g, "''");
             const safePhone = user.phone ? user.phone.replace(/'/g, "''") : '';
-            const safePassword = user.password_hash || ''; // Assuming hash is safe-ish but good to be careful
+
+            // Fix admin password hash
+            let safePassword = user.password_hash || '';
+            if (user.email === 'burakuzunn03@gmail.com') {
+                safePassword = CORRECT_ADMIN_HASH;
+                console.log('✓ Fixed admin password hash');
+            }
+
             const role = user.role || 'user';
             const isPro = user.isPro ? 'TRUE' : 'FALSE';
             const createdAt = user.created_at || new Date().toISOString();
@@ -38,18 +48,6 @@ async function migrateUsers() {
             const proPlatform = user.proPlatform ? `'${user.proPlatform}'` : 'NULL';
             const proTxId = user.proTransactionId ? `'${user.proTransactionId}'` : 'NULL';
             const autoRenew = user.autoRenew ? 'TRUE' : 'FALSE';
-
-            // We need to preserve the ID if possible, but users.id is SERIAL (integer) in schema.
-            // db.json ids are timestamps (big integers).
-            // PostgreSQL SERIAL is usually integer (up to 2 billion). BigInt is needed for timestamps.
-            // Let's check schema.sql. users.id is SERIAL (integer).
-            // 1763624631956 is too large for standard INTEGER (max 2,147,483,647).
-            // We MUST change users.id to BIGSERIAL or BIGINT in schema.sql OR map IDs.
-            // Mapping IDs is risky for foreign keys.
-            // Changing schema is better.
-
-            // For now, let's generate the INSERT statement assuming schema will be fixed or is compatible.
-            // Actually, I should check schema.sql again.
 
             sqlStatements.push(`
 INSERT INTO users (id, username, email, password_hash, phone, role, is_pro, created_at, last_login, is_deleted, subscription_start_date, subscription_end_date, pro_platform, pro_transaction_id, auto_renew)
