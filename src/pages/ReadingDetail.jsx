@@ -67,20 +67,42 @@ export default function ReadingDetail() {
     };
 
     const handleWordClick = async (word) => {
-        // Clean the word (remove punctuation)
+        // Clean the word (remove punctuation and extra spaces)
         const cleanWord = word.toLowerCase().replace(/[.,!?;:()"']/g, '').trim();
+
+        if (!cleanWord) return;
 
         try {
             const token = await Storage.getItem('token');
             // Search for the word in our vocabulary
+            // Note: In a real app with many words, we should have an endpoint to search a specific word
+            // instead of fetching all. But for < 5000 words, this is acceptable.
             const res = await axios.get('/api/content/words/all', {
                 headers: { Authorization: `Bearer ${token}` }
             });
 
-            // FIXED: Only use exact match to prevent "do" matching in "methodology"
-            const foundWord = res.data.find(w =>
-                w.term.toLowerCase() === cleanWord
-            );
+            const allWords = res.data;
+
+            // Try exact match first
+            let foundWord = allWords.find(w => w.term.toLowerCase() === cleanWord);
+
+            // If not found, try simple stemming (remove s, es, ing, ed)
+            if (!foundWord) {
+                const suffixes = ['s', 'es', 'ing', 'ed', 'd'];
+                for (const suffix of suffixes) {
+                    if (cleanWord.endsWith(suffix)) {
+                        const stem = cleanWord.slice(0, -suffix.length);
+                        foundWord = allWords.find(w => w.term.toLowerCase() === stem);
+                        if (foundWord) break;
+                    }
+                }
+            }
+
+            // Special case: 'ies' -> 'y' (e.g. studies -> study)
+            if (!foundWord && cleanWord.endsWith('ies')) {
+                const stem = cleanWord.slice(0, -3) + 'y';
+                foundWord = allWords.find(w => w.term.toLowerCase() === stem);
+            }
 
             if (foundWord) {
                 setWordPopup({
@@ -93,7 +115,7 @@ export default function ReadingDetail() {
             } else {
                 setWordPopup({
                     word: cleanWord,
-                    translation: 'Translation not found in vocabulary',
+                    translation: 'Sözlükte bulunamadı.',
                     type: 'unknown'
                 });
             }

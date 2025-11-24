@@ -18,11 +18,13 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 -- Words table
+DROP TABLE IF EXISTS words CASCADE;
 CREATE TABLE IF NOT EXISTS words (
     id VARCHAR(50) PRIMARY KEY,
     term VARCHAR(255) NOT NULL,
     definition_tr TEXT NOT NULL,
     type VARCHAR(50) NOT NULL,
+    synonyms TEXT,
     examples TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
