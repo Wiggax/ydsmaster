@@ -93,12 +93,17 @@ export async function initializeDatabase() {
             }
         }
 
-        // Check if data exists
-        const result = await query('SELECT count(*) FROM words');
-        const count = parseInt(result.rows[0].count);
+        // Check if data exists (words and books)
+        const wordsResult = await query('SELECT count(*) FROM words');
+        const booksResult = await query('SELECT count(*) FROM books');
 
-        if (count === 0) {
-            console.log('⚠️ Database appears empty. Seeding data...');
+        const wordsCount = parseInt(wordsResult.rows[0].count);
+        const booksCount = parseInt(booksResult.rows[0].count);
+
+        console.log(`📊 Database status: ${wordsCount} words, ${booksCount} books`);
+
+        if (wordsCount === 0 || booksCount === 0) {
+            console.log('⚠️ Database missing data (words or books). Seeding...');
             const seedPath = path.join(__dirname, 'seeds.sql');
             if (fs.existsSync(seedPath)) {
                 const seedSql = fs.readFileSync(seedPath, 'utf8');
@@ -108,7 +113,7 @@ export async function initializeDatabase() {
                 console.error('❌ Seeds file not found at:', seedPath);
             }
         } else {
-            console.log(`✅ Database already contains ${count} words. Skipping seed.`);
+            console.log(`✅ Database already contains data. Skipping seed.`);
         }
 
         console.log('✅ PostgreSQL database initialized successfully');
