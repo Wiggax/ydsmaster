@@ -93,6 +93,18 @@ export async function initializeDatabase() {
             }
         }
 
+        // Schema Migration: Ensure books table has total_pages column
+        try {
+            await query(`
+                ALTER TABLE books 
+                ADD COLUMN IF NOT EXISTS total_pages INTEGER DEFAULT 0
+            `);
+            console.log('✅ Checked/Added total_pages column to books table');
+        } catch (error) {
+            // Ignore error if table doesn't exist yet (will be created by schema/seeds)
+            console.log('ℹ️ Note on migration: ' + error.message);
+        }
+
         // Check if data exists (words and books)
         const wordsResult = await query('SELECT count(*) FROM words');
         const booksResult = await query('SELECT count(*) FROM books');
