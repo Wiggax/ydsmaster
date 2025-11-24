@@ -1,0 +1,1002 @@
+1. analyze - analiz etmek - examine - The researcher analyzed the data to identify significant trends.
+2. assess - değerlendirmek - evaluate - We assessed the program's effectiveness after six months.
+3. argue - tartışmak, savunmak - contend - The article argues that social policy must be reformed.
+4. compare - karşılaştırmak - contrast - This study compares urban and rural educational outcomes.
+5. conclude - sonuçlandırmak - infer - From the results, we conclude that the hypothesis is supported.
+6. construct - oluşturmak - build - The authors constructed a model to represent consumer behavior.
+7. consider - dikkate almak - regard - When designing the experiment, we considered ethical issues.
+8. contribute - katkıda bulunmak - add - Her findings contribute to the field of cognitive science.
+9. define - tanımlamak - describe - The paper defines key terms used throughout the discussion.
+10. demonstrate - göstermek - show - The experiment demonstrates how temperature affects reaction rates.
+11. describe - tanımlamak, anlatmak - portray - The report describes the population demographics in detail.
+12. develop - geliştirmek - formulate - They developed a new algorithm for image recognition.
+13. discuss - tartışmak - debate - The article discusses implications for public health policy.
+14. evaluate - değerlendirmek - appraise - The committee evaluated each proposal on merit.
+15. examine - incelemek - inspect - The researchers examined the tissue samples under a microscope.
+16. explore - araştırmak - investigate - This paper explores alternative renewable energy sources.
+17. illustrate - örneklemek, göstermek - demonstrate - Figure 2 illustrates the correlation between variables.
+18. implement - uygulamak - execute - The new protocol was implemented across all clinics.
+19. imply - ima etmek - suggest - The results imply a link between diet and mood.
+20. indicate - göstermek - show - The data indicate a significant improvement after treatment.
+21. interpret - yorumlamak - explain - The authors interpreted the findings cautiously.
+22. investigate - araştırmak - probe - The study investigates causes of language delay.
+23. involve - içermek - include - The intervention involves both teachers and parents.
+24. justify - gerekçelendirmek - defend - The researcher justified the chosen methodology.
+25. maintain - sürdürmek - preserve - The study maintains that the measure is valid over time.
+26. observe - gözlemlemek - notice - We observed a steady decline in error rates.
+27. obtain - elde etmek - acquire - Samples were obtained from volunteers in the region.
+28. occur - meydana gelmek - happen - Errors often occur when conditions are uncontrolled.
+29. predict - tahmin etmek - forecast - The model predicts future demand under different scenarios.
+30. propose - önermek - suggest - The authors propose a framework for sustainable development.
+31. provide - sağlamak - supply - The dataset provides detailed demographics for each subject.
+32. reflect - yansıtmak - mirror - The results reflect participants' true preferences.
+33. relate - ilişkilendirmek - connect - The study relates socioeconomic status to health outcomes.
+34. require - gerektirmek - demand - This analysis requires high-quality longitudinal data.
+35. respond - yanıtlamak, tepki vermek - react - Participants responded positively to the intervention.
+36. reveal - ortaya çıkarmak - disclose - The survey revealed unexpected patterns in behavior.
+37. select - seçmek - choose - We selected a representative sample of 500 students.
+38. simplify - basitleştirmek - streamline - To ease analysis, the variables were simplified.
+39. specify - belirtmek - state - The protocol specifies inclusion and exclusion criteria.
+40. structure - yapılandırmak - organize - The paper structures the argument into three sections.
+41. suggest - önermek - recommend - The findings suggest further research is necessary.
+42. summarize - özetlemek - recap - The conclusion summarizes the main contributions.
+43. support - desteklemek - back - Empirical data support the proposed hypothesis.
+44. synthesize - sentezlemek - integrate - The review synthesizes results from multiple studies.
+45. validate - doğrulamak - confirm - We validated the instrument with a pilot test.
+46. vary - değişmek, farklılık göstermek - differ - Results vary across demographic groups.
+47. access - erişmek - reach - Researchers accessed archived records for historical analysis.
+48. achieve - başarmak - attain - The team achieved a high level of accuracy.
+49. acquire - edinmek - obtain - Students acquire critical skills through practice.
+50. adapt - uyarlamak - adjust - The curriculum was adapted for non-native speakers.
+51. affect - etkilemek - influence - Exposure to noise can affect cognitive performance.
+52. allocate - tahsis etmek - assign - Funds were allocated to the most promising projects.
+53. anticipate - beklemek, öngörmek - expect - We anticipated increased demand in the summer months.
+54. apply - uygulamak - utilize - The method was applied to a large dataset.
+55. assign - atamak, belirlemek - allocate - Each participant was assigned to a treatment group.
+56. assist - yardım etmek - aid - Volunteers assisted in data collection efforts.
+57. assume - varsaymak - presume - The model assumes linearity between variables.
+58. attach - eklemek - affix - Appendices were attached to provide supplementary data.
+59. attribute - atfetmek - ascribe - The study attributes improvements to the new protocol.
+60. calculate - hesaplamak - compute - We calculated mean scores for each cohort.
+61. categorize - sınıflandırmak - classify - Responses were categorized into thematic groups.
+62. clarify - netleştirmek - explain - The author clarified ambiguous terminology.
+63. combine - birleştirmek - merge - The datasets were combined for pooled analysis.
+64. comment - yorum yapmak - remark - Reviewers commented on methodological weaknesses.
+65. communicate - iletmek - convey - Results were communicated to stakeholders in a policy brief.
+66. compile - derlemek - assemble - The team compiled statistics from national surveys.
+67. complete - tamamlamak - finish - All participants completed the assessment battery.
+68. compose - oluşturmak - form - The appendix composes the raw item list.
+69. compute - hesaplamak - calculate - We computed correlation coefficients for each variable pair.
+70. conceive - tasarlamak - envision - The hypothesis was conceived after preliminary observations.
+71. confirm - doğrulamak - verify - Subsequent tests confirmed the initial findings.
+72. connect - bağlamak - link - The paper connects theory with practical applications.
+73. consult - danışmak - refer - Researchers consulted previous literature for context.
+74. continue - sürdürmek - persist - The study continued for an additional year.
+75. contrast - karşılaştırmak, zıtlaştırmak - compare - The authors contrast two theoretical approaches.
+76. convert - dönüştürmek - transform - Raw scores were converted into standardized values.
+77. cooperate - işbirliği yapmak - collaborate - Institutions cooperated to share resources.
+78. correlate - ilişkilendirmek - associate - Income level correlates with educational attainment.
+79. create - oluşturmak - generate - The program created interactive learning modules.
+80. critique - eleştirmek - evaluate - The paper critiques existing methods for bias.
+81. deliver - sunmak, sağlamak - provide - The workshop delivered practical training to attendees.
+82. derive - türetmek - obtain - We derived the formula from basic principles.
+83. design - tasarlamak - plan - The experiment was designed to minimize confounding factors.
+84. detect - tespit etmek - identify - The sensor detected minimal changes in temperature.
+85. determine - belirlemek - establish - The study determined the optimal dosage.
+86. differentiate - ayırt etmek - distinguish - The analysis differentiates between cause and correlation.
+87. diminish - azaltmak - reduce - The intervention diminished symptoms significantly.
+88. display - göstermek - exhibit - Tables display the distribution of responses.
+89. distribute - dağıtmak - disperse - Questionnaires were distributed online and in person.
+90. distinguish - ayırt etmek - differentiate - It is important to distinguish correlation from causation.
+91. eliminate - ortadan kaldırmak - remove - Confounding variables were eliminated through controls.
+92. emphasize - vurgulamak - stress - The authors emphasize the need for replication.
+93. enhance - geliştirmek - improve - Training programs enhance employee performance.
+94. ensure - sağlamak - guarantee - Measures were taken to ensure data privacy.
+95. establish - kurmak, saptamak - set up / determine - The research established a baseline measure.
+96. estimate - tahmin etmek - approximate - We estimated the population mean with 95% confidence.
+97. expand - genişletmek - enlarge - The scope of the study was expanded to include more regions.
+98. exploit - yararlanmak - utilize - The study exploited longitudinal data for trend analysis.
+99. facilitate - kolaylaştırmak - enable - Technology can facilitate collaborative learning.
+100. formulate - formüle etmek - devise - The team formulated a new hypothesis based on findings.
+101. generate - üretmek - produce - The device generates accurate temperature readings.
+102. govern - yönetmek - regulate - Social norms govern human behavior in groups.
+103. highlight - vurgulamak - emphasize - The report highlights key weaknesses in the system.
+104. identify - tanımlamak - recognize - The algorithm identifies patterns in the dataset.
+105. imitate - taklit etmek - mimic - Infants often imitate adult speech sounds.
+106. implement - uygulamak - execute - The policy was implemented across all departments.
+107. incorporate - dahil etmek - integrate - New findings were incorporated into the final model.
+108. increase - artırmak - raise - The program increased student engagement significantly.
+109. infer - çıkarım yapmak - deduce - From the survey, we can infer general attitudes.
+110. influence - etkilemek - affect - Parental involvement influences academic success.
+111. inhibit - engellemek - hinder - The chemical inhibits bacterial growth.
+112. initiate - başlatmak - launch - The team initiated a review of previous studies.
+113. innovate - yenilik yapmak - invent - Companies must innovate to remain competitive.
+114. insert - eklemek - add - Additional variables were inserted into the regression model.
+115. inspect - incelemek - examine - Officials inspected the facility for safety issues.
+116. integrate - entegre etmek - combine - The system integrates data from multiple sources.
+117. interpret - yorumlamak - clarify - The author interprets the results in a broader context.
+118. intervene - müdahale etmek - step in - The therapist intervened when symptoms worsened.
+119. introduce - tanıtmak, sunmak - present - The study introduces a novel approach to clustering.
+120. investigate - araştırmak - examine - The committee investigated claims of misconduct.
+121. isolate - izole etmek - separate - Cells were isolated using a filtration process.
+122. limit - sınırlamak - restrict - The new policy limits public access to the archives.
+123. locate - yerini belirlemek - find - The study located the source of contamination.
+124. manipulate - manipüle etmek - control - The variable was manipulated to observe changes.
+125. measure - ölçmek - quantify - We measured participants' reaction times.
+126. minimize - en aza indirmek - reduce - Safety procedures minimize the risk of accidents.
+127. modify - değiştirmek - alter - The questionnaire was modified based on feedback.
+128. monitor - izlemek - track - Heart rate was monitored continuously.
+129. motivate - motive etmek - encourage - Rewards can motivate students to participate more.
+130. observe - gözlemlemek - watch - We observed changes in behavior over time.
+131. obtain - elde etmek - get - Samples were obtained from three regions.
+132. operate - işletmek, çalıştırmak - run - The machine operates efficiently under low pressure.
+133. optimize - en iyi hale getirmek - improve - Procedures were optimized for faster processing.
+134. organize - düzenlemek - arrange - The data were organized into meaningful categories.
+135. outline - ana hatlarıyla belirtmek - summarize - The introduction outlines the purpose of the study.
+136. overcome - üstesinden gelmek - defeat - Participants overcame difficulties through training.
+137. perceive - algılamak - detect - Children perceive speech sounds differently than adults.
+138. perform - gerçekleştirmek - carry out - The team performed multiple statistical tests.
+139. permit - izin vermek - allow - Regulations permit limited access to the site.
+140. persuade - ikna etmek - convince - The results persuaded policymakers to reconsider the plan.
+141. pioneer - öncülük etmek - initiate - The researcher pioneered new techniques in genetics.
+142. portray - betimlemek - depict - The article portrays economic conditions realistically.
+143. predict - öngörmek - foresee - Climate models predict rising temperatures.
+144. preserve - korumak - maintain - Efforts were made to preserve historical documents.
+145. prevent - önlemek - avoid - Proper hygiene prevents infection.
+146. process - işlemek - handle - Data were processed using automated scripts.
+147. promote - teşvik etmek - encourage - The program promotes healthy eating habits.
+148. propose - önermek - suggest - The authors proposed a revised classification system.
+149. prove - kanıtlamak - demonstrate - Further tests proved the theory correct.
+150. provide - sağlamak - supply - The platform provides access to millions of documents.
+151. quantify - sayısallaştırmak - measure - Researchers quantified the level of risk.
+152. question - sorgulamak - challenge - The article questions assumptions in earlier research.
+153. rank - sıralamak - classify - Countries were ranked by development indicators.
+154. react - tepki vermek - respond - Cells reacted strongly to the stimulus.
+155. recall - hatırlamak - remember - Subjects recalled fewer items under stress.
+156. reconstruct - yeniden oluşturmak - rebuild - The team reconstructed the historical timeline.
+157. record - kaydetmek - document - The device records changes every second.
+158. reduce - azaltmak - decrease - The treatment reduced symptoms significantly.
+159. refine - geliştirmek, iyileştirmek - improve - The model was refined through repeated testing.
+160. reflect - yansıtmak - mirror - These findings reflect broader social trends.
+161. reform - reform yapmak - revise - The government reformed the education policy.
+162. reinforce - pekiştirmek - strengthen - Feedback reinforces correct responses.
+163. reject - reddetmek - decline - The committee rejected the proposed method.
+164. relate - ilişkilendirmek - associate - The study relates diet to mental well-being.
+165. relieve - hafifletmek - ease - Medication relieved the patient’s discomfort.
+166. replicate - tekrar etmek - reproduce - The experiment was replicated in four labs.
+167. report - raporlamak - describe - Participants reported lower stress scores.
+168. represent - temsil etmek - symbolize - The graph represents annual sales data.
+169. reproduce - çoğaltmak - copy - Bacteria reproduce rapidly in warm environments.
+170. require - gerektirmek - necessitate - The process requires special equipment.
+171. resolve - çözmek - solve - The issue was resolved after adjustments.
+172. respond - yanıtlamak - reply - Subjects responded faster to visual cues.
+173. restore - eski haline getirmek - recover - Efforts were made to restore the damaged files.
+174. retain - tutmak, korumak - keep - The soil retains moisture during winter.
+175. reveal - ortaya çıkarmak - uncover - The investigation revealed new evidence.
+176. revise - gözden geçirmek - update - The authors revised the manuscript after review.
+177. schedule - planlamak - arrange - Interviews were scheduled for next week.
+178. secure - güvence altına almak - safeguard - The lab secures sensitive data with encryption.
+179. select - seçmek - choose - Applicants were selected based on merit.
+180. simulate - simüle etmek - model - The software simulates climate patterns.
+181. solve - çözmek - resolve - Students solved complex equations.
+182. specify - belirtmek - define - The guidelines specify clear criteria.
+183. stimulate - uyarmak - trigger - The activity stimulates critical thinking.
+184. structure - yapılandırmak - organize - The report structures arguments logically.
+185. submit - sunmak, teslim etmek - hand in - Authors submitted their papers before the deadline.
+186. substitute - yerine koymak - replace - Soy milk can substitute dairy products.
+187. succeed - başarmak - achieve - The project succeeded despite challenges.
+188. summarize - özetlemek - condense - The abstract summarizes the study clearly.
+189. support - desteklemek - uphold - Evidence supports the claim.
+190. suppress - bastırmak - inhibit - The drug suppresses inflammation.
+191. sustain - sürdürmek - maintain - The system sustains high performance.
+192. target - hedeflemek - aim - The campaign targeted young adults.
+193. test - test etmek - evaluate - The researchers tested the model with new data.
+194. trace - izini sürmek - track - Scientists traced the origin of the virus.
+195. transform - dönüştürmek - convert - Heat transforms ice into water.
+196. transmit - iletmek - send - Signals are transmitted through the network.
+197. undergo - geçirmek (süreç) - experience - Participants underwent training sessions.
+198. validate - doğrulamak - confirm - The method was validated by independent experts.
+199. vary - değişmek - fluctuate - Measurements vary depending on conditions.
+200. verify - doğrulamak - check - The lab verified the accuracy of the results.
+201. absorb - emmek, içine çekmek - take in - The material absorbs moisture quickly.
+202. accelerate - hızlandırmak - speed up - Technology accelerates the learning process.
+203. accommodate - uyum sağlamak, barındırmak - adapt - The system accommodates various data types.
+204. accompany - eşlik etmek - follow - The charts accompany the main findings.
+205. accomplish - başarmak - achieve - The team accomplished its goals on time.
+206. account - açıklamak - explain - The theory accounts for previous inconsistencies.
+207. accumulate - biriktirmek - collect - Dust accumulates on unused equipment.
+208. adapt - uyum sağlamak - adjust - Students adapt to new teaching methods quickly.
+209. adhere - bağlı kalmak - comply - All participants adhered to the guidelines.
+210. adjust - ayarlamak - modify - The temperature was adjusted to optimal levels.
+211. advocate - savunmak, desteklemek - support - Many experts advocate early intervention.
+212. allocate - ayırmak, tahsis etmek - distribute - Funds were allocated to critical projects.
+213. alter - değiştirmek - modify - The design was altered due to new requirements.
+214. amend - düzeltmek, değiştirmek - revise - The committee amended the proposal.
+215. amplify - artırmak, güçlendirmek - strengthen - The speaker amplified his argument with new data.
+216. analyze - analiz etmek - examine - We analyzed the results to find correlations.
+217. announce - duyurmak - declare - The researchers announced a major discovery.
+218. apply - başvurmak, uygulamak - implement - The new law is applied nationwide.
+219. appreciate - değerini bilmek - value - Scientists appreciate the importance of replication.
+220. approach - yaklaşmak - move toward - The study approaches the problem from a new angle.
+221. approve - onaylamak - authorize - The board approved the research plan.
+222. arise - ortaya çıkmak - emerge - New issues arose during the experiment.
+223. assemble - bir araya getirmek - gather - The parts were assembled manually.
+224. assert - ileri sürmek - claim - The author asserts that the evidence is insufficient.
+225. assign - atamak - designate - Participants were assigned randomly.
+226. associate - ilişkilendirmek - connect - Smoking is often associated with health problems.
+227. assume - varsaymak - suppose - The model assumes all variables are independent.
+228. attain - ulaşmak - achieve - The company attained record profits this year.
+229. attract - çekmek - draw - The study attracted significant attention.
+230. audit - denetlemek - inspect - The institution audited its financial records.
+231. augment - artırmak - increase - The new features augment system performance.
+232. authorize - yetki vermek - permit - The manager authorized further testing.
+233. balance - dengelemek - stabilize - Measures were taken to balance the workload.
+234. broaden - genişletmek - expand - The researchers broadened the scope of inquiry.
+235. calculate - hesaplamak - compute - We calculated the average reading score.
+236. capture - yakalamak - record - The device captures high-resolution images.
+237. categorize - kategorize etmek - classify - Responses were categorized by theme.
+238. certify - onaylamak - validate - The lab certified the equipment for use.
+239. clarify - açıklığa kavuşturmak - clear up - The report clarifies the main concepts.
+240. coincide - denk gelmek - correspond - The results coincide with previous findings.
+241. collaborate - işbirliği yapmak - cooperate - Universities collaborated on the project.
+242. collapse - çökmek - fall apart - The structure collapsed under pressure.
+243. commence - başlamak - begin - Trials commenced in early 2024.
+244. communicate - iletişim kurmak - convey - The findings were communicated to the public.
+245. commute - gidip gelmek - travel - Many employees commute long distances.
+246. compare - karşılaştırmak - measure against - The study compares two teaching methods.
+247. compile - derlemek - gather - Data were compiled from multiple surveys.
+248. complement - tamamlamak - complete - Visual aids complement the written explanation.
+249. comply - uymak - obey - Facilities must comply with safety regulations.
+250. compose - oluşturmak - form - The dataset is composed of survey responses.
+251. comprehend - anlamak - understand - Students struggled to comprehend the text.
+252. compress - sıkıştırmak - condense - Files were compressed to reduce storage needs.
+253. compute - hesaplamak - calculate - The software computes growth rates.
+254. concede - kabul etmek - admit - The author concedes limitations in the study.
+255. concentrate - yoğunlaşmak - focus - Participants concentrated better in quiet settings.
+256. conclude - sonuçlandırmak - determine - The study concludes several important points.
+257. condense - yoğunlaştırmak - compress - The summary condenses the entire argument.
+258. conduct - yürütmek - carry out - Researchers conducted interviews.
+259. confer - danışmak, görüşmek - consult - Doctors conferred about the diagnosis.
+260. confirm - doğrulamak - verify - Results confirmed earlier findings.
+261. confront - yüzleşmek - face - The team confronted several challenges.
+262. connect - bağlamak - link - The paper connects theory with application.
+263. consent - izin vermek - agree - Participants consented to data collection.
+264. conserve - korumak - preserve - Efforts were made to conserve water resources.
+265. consider - değerlendirmek - contemplate - We considered multiple alternatives.
+266. consolidate - sağlamlaştırmak - strengthen - The update consolidates existing features.
+267. construct - inşa etmek - build - The model was constructed using Python.
+268. consult - danışmak - seek advice - They consulted experts in the field.
+269. contain - içermek - hold - The tank contains hazardous chemicals.
+270. contemplate - düşünmek - consider - The researcher contemplated a new approach.
+271. continue - devam etmek - proceed - The trial continued for three months.
+272. contract - daralmak, sözleşme yapmak - shrink - The market contracted in 2022.
+273. contradict - çelişmek - oppose - The findings contradict earlier theories.
+274. contribute - katkıda bulunmak - add - This work contributes new insights.
+275. convert - dönüştürmek - change - Heat converts water to vapor.
+276. convey - aktarmak - communicate - Charts convey information clearly.
+277. convince - ikna etmek - persuade - The data convinced reviewers of its validity.
+278. coordinate - koordine etmek - organize - Activities were coordinated across teams.
+279. correlate - ilişkilendirmek - relate - The study correlates income with well-being.
+280. correspond - karşılık gelmek - match - Results correspond to expectations.
+281. counsel - danışmanlık yapmak - advise - Psychologists counsel patients regularly.
+282. create - yaratmak - generate - The update created new opportunities.
+283. criticize - eleştirmek - evaluate - Scholars criticized the theory heavily.
+284. cultivate - geliştirmek, yetiştirmek - develop - The school cultivates creative thinking.
+285. decrease - azaltmak - reduce - Pollution levels decreased last year.
+286. deduce - sonuç çıkarmak - infer - We deduced new relationships from the data.
+287. deem - addetmek - consider - The method was deemed unreliable.
+288. define - tanımlamak - explain - Key terms were defined clearly.
+289. delay - geciktirmek - postpone - Weather delayed the launch.
+290. deliver - sunmak - provide - The lecture delivered valuable insights.
+291. demand - talep etmek - require - The task demands concentration.
+292. demonstrate - kanıtlamak - illustrate - These graphs demonstrate the trend.
+293. depict - betimlemek - describe - The figure depicts seasonal variation.
+294. deploy - yaygınlaştırmak - implement - The software was deployed worldwide.
+295. depress - azaltmak, baskılamak - reduce - The crisis depressed consumer confidence.
+296. derive - türetmek - obtain - The rule was derived from experiments.
+297. describe - tanımlamak - detail - The article describes the methodology.
+298. detect - tespit etmek - discover - Sensors detected movement.
+299. determine - belirlemek - decide - The test determines oxygen levels.
+300. diminish - azaltmak - lessen - Training diminished error rates.
+301. disclose - açıklamak - reveal - The report disclosed previously unknown details.
+302. discourage - cesaretini kırmak - deter - High costs discourage participation.
+303. discover - keşfetmek - find - Scientists discovered a new species.
+304. dismiss - reddetmek - reject - The claims were dismissed due to lack of evidence.
+305. disperse - dağıtmak - scatter - The crowd dispersed after the announcement.
+306. display - göstermek - exhibit - The chart displays temperature changes.
+307. disrupt - bozmak - interrupt - The noise disrupted the experiment.
+308. distinguish - ayırt etmek - differentiate - Students must distinguish fact from opinion.
+309. distribute - dağıtmak - hand out - Questionnaires were distributed to all members.
+310. document - belgelemek - record - The incident was documented thoroughly.
+311. dominate - hakim olmak - control - A few firms dominate the market.
+312. draft - taslak hazırlamak - outline - The team drafted a preliminary report.
+313. dramatize - dramatize etmek - exaggerate - Media dramatized the event.
+314. duplicate - çoğaltmak - copy - Files were duplicated for backup.
+315. earn - kazanmak - gain - The study earned international recognition.
+316. ease - hafifletmek - alleviate - New measures eased traffic congestion.
+317. eliminate - ortadan kaldırmak - remove - The update eliminates unnecessary steps.
+318. embed - yerleştirmek - insert - Sensors were embedded in the device.
+319. emphasize - vurgulamak - stress - The author emphasizes the importance of data accuracy.
+320. employ - kullanmak - utilize - The method employs advanced algorithms.
+321. enable - mümkün kılmak - allow - Technology enables remote collaboration.
+322. enact - yürürlüğe koymak - implement - The government enacted a new policy.
+323. encounter - karşılaşmak - face - Participants encountered several difficulties.
+324. encourage - teşvik etmek - motivate - Teachers encouraged students to ask questions.
+325. enhance - geliştirmek - improve - The upgrade enhances performance.
+326. enrich - zenginleştirmek - improve - Reading enriches vocabulary.
+327. ensure - sağlamak - guarantee - Measures ensure patient safety.
+328. entail - gerektirmek - involve - The role entails significant responsibility.
+329. establish - kurmak - found - A committee was established to oversee progress.
+330. estimate - tahmin etmek - approximate - Costs were estimated at $5 million.
+331. evaluate - değerlendirmek - assess - Experts evaluated the proposal.
+332. exceed - aşmak - surpass - Sales exceeded expectations.
+333. exchange - değiş tokuş yapmak - trade - Students exchanged ideas during discussion.
+334. exclude - hariç tutmak - omit - Outliers were excluded from analysis.
+335. exhibit - sergilemek - display - The patient exhibited unusual symptoms.
+336. expand - genişletmek - broaden - The program expanded significantly.
+337. expect - beklemek - anticipate - We expect results by June.
+338. experience - deneyimlemek - undergo - Participants experienced notable improvements.
+339. experiment - deney yapmak - test - Researchers experimented with new materials.
+340. explain - açıklamak - clarify - The instructor explained the procedure.
+341. exploit - faydalanmak - use - The team exploited available resources efficiently.
+342. explore - keşfetmek, araştırmak - investigate - The paper explores alternative methods.
+343. expose - açığa çıkarmak - reveal - The audit exposed irregularities.
+344. express - ifade etmek - state - Respondents expressed concern about safety.
+345. extend - uzatmak - lengthen - The trial was extended by two weeks.
+346. extract - çıkarmak - remove - DNA was extracted from blood samples.
+347. facilitate - kolaylaştırmak - ease - The tool facilitates data processing.
+348. fail - başarısız olmak - fall short - The experiment failed to produce results.
+349. feature - özellik taşımak - include - The program features several learning tools.
+350. feed - beslemek, veri sağlamak - supply - Sensors feed data to the server.
+351. fetch - getirmek - retrieve - The script fetches information automatically.
+352. finalize - sonlandırmak - complete - They finalized the draft yesterday.
+353. finance - finanse etmek - fund - The project was financed by a grant.
+354. formulate - formüle etmek - devise - Scientists formulated a new hypothesis.
+355. foster - teşvik etmek - encourage - Collaboration fosters innovation.
+356. fulfill - yerine getirmek - satisfy - The product fulfills all requirements.
+357. generate - üretmek - create - The machine generates large amounts of data.
+358. govern - yönetmek - control - Regulations govern market behavior.
+359. grasp - kavramak - understand - Students grasped the core concepts easily.
+360. halt - durdurmak - stop - The process was halted due to safety concerns.
+361. handle - ele almak - manage - Researchers handled large datasets.
+362. harm - zarar vermek - damage - Smoking harms the respiratory system.
+363. harvest - toplamak - collect - Crops were harvested early.
+364. heighten - artırmak - increase - Risks heightened during the winter.
+365. hinder - engellemek - obstruct - Noise hindered concentration.
+366. hypothesize - hipotez kurmak - assume - Researchers hypothesized a link.
+367. identify - tanımlamak - recognize - The test identifies faulty components.
+368. ignite - ateşlemek - spark - The issue ignited public debate.
+369. illustrate - örneklendirmek - demonstrate - The chart illustrates the rate of change.
+370. immerse - daldırmak, yoğunlaşmak - engage - Students immersed themselves in research.
+371. implement - uygulamak - enforce - The rules were implemented immediately.
+372. imply - ima etmek - suggest - The data implies a correlation.
+373. impose - dayatmak - force - New restrictions were imposed.
+374. improve - geliştirmek - enhance - Training improved performance.
+375. incorporate - dahil etmek - include - Feedback was incorporated into revisions.
+376. increase - artırmak - boost - The update increased efficiency.
+377. incur - maruz kalmak - bring upon - Companies incur costs during expansion.
+378. indicate - göstermek - show - The findings indicate a clear trend.
+379. induce - neden olmak - cause - Stress induces physical symptoms.
+380. infect - bulaştırmak - spread - The virus infects millions annually.
+381. infer - çıkarım yapmak - deduce - We infer meaning from context.
+382. influence - etkilemek - impact - Parents influence children's habits.
+383. inhibit - engellemek - suppress - The drug inhibits tumor growth.
+384. initiate - başlatmak - begin - They initiated further research.
+385. inquire - soru sormak - ask - Reviewers inquired about the methodology.
+386. insert - eklemek - put in - A sensor was inserted into the device.
+387. inspect - incelemek - examine - Officials inspected the site.
+388. inspire - ilham vermek - motivate - Her work inspired young researchers.
+389. install - kurmak - set up - The software was installed successfully.
+390. integrate - entegre etmek - merge - New features were integrated smoothly.
+391. intensify - yoğunlaştırmak - increase - Efforts intensified before the deadline.
+392. interpret - yorumlamak - explain - The model interprets raw data.
+393. intervene - müdahale etmek - step in - The teacher intervened in the conflict.
+394. introduce - tanıtmak - present - The paper introduced a novel approach.
+395. invent - icat etmek - create - They invented a new measurement tool.
+396. investigate - araştırmak - examine - The police investigated the case.
+397. invoke - çağırmak (metaforik) - call upon - The author invokes older theories.
+398. involve - içermek - include - The procedure involves multiple stages.
+399. isolate - izole etmek - separate - Researchers isolated the compound.
+400. issue - yayınlamak, çıkarmak - release - The journal issued a special edition.
+401. adapt – uyum sağlamak – adjust – Students adapt to new methods.  
+402. adjust – ayarlamak – modify – He adjusted the settings.  
+403. administer – yönetmek – manage – The nurse administered the medication.  
+404. advance – ilerlemek – progress – The research advanced knowledge.  
+405. affect – etkilemek – influence – Weather affects crop growth.  
+406. allocate – tahsis etmek – assign – Funds were allocated to research.  
+407. analyze – analiz etmek – examine – Scientists analyzed the data.  
+408. apply – uygulamak – implement – The law applies to everyone.  
+409. appoint – atamak – designate – She was appointed director.  
+410. appreciate – takdir etmek – value – Students appreciated the guidance.  
+411. approach – yaklaşmak – advance – The study approaches the topic differently.  
+412. approve – onaylamak – authorize – The committee approved the plan.  
+413. arise – ortaya çıkmak – emerge – Problems arose during testing.  
+414. assess – değerlendirmek – evaluate – Teachers assess students' progress.  
+415. assign – atamak – allocate – Tasks were assigned to teams.  
+416. assist – yardım etmek – help – Volunteers assisted in the project.  
+417. assume – varsaymak – presume – We assumed the data was correct.  
+418. attain – ulaşmak – achieve – She attained her goals.  
+419. attract – çekmek – draw – The event attracts many visitors.  
+420. authorize – yetkilendirmek – permit – The manager authorized the purchase.  
+421. balance – dengelemek – stabilize – Efforts were made to balance workload.  
+422. behave – davranmak – act – Children behaved politely.  
+423. broaden – genişletmek – expand – The program broadens knowledge.  
+424. calculate – hesaplamak – compute – They calculated the total cost.  
+425. capture – yakalamak – seize – The camera captured the moment.  
+426. categorize – kategorize etmek – classify – Data was categorized by type.  
+427. certify – onaylamak – validate – The lab certified the results.  
+428. clarify – açıklığa kavuşturmak – explain – The teacher clarified the instructions.  
+429. collaborate – işbirliği yapmak – cooperate – Teams collaborated on the project.  
+430. collect – toplamak – gather – Samples were collected from students.  
+431. combine – birleştirmek – merge – Methods were combined for efficiency.  
+432. communicate – iletişim kurmak – convey – The team communicated effectively.  
+433. compare – karşılaştırmak – contrast – The study compares two methods.  
+434. compile – derlemek – assemble – The report was compiled from surveys.  
+435. complete – tamamlamak – finish – Students completed the assignment.  
+436. comply – uymak – obey – Companies must comply with regulations.  
+437. compose – oluşturmak – create – The team composed a new report.  
+438. comprehend – anlamak – understand – Students comprehended the lecture.  
+439. concentrate – yoğunlaşmak – focus – She concentrated on the experiment.  
+440. conclude – sonuçlandırmak – finish – They concluded the experiment.  
+441. conduct – yürütmek – carry out – Researchers conducted a study.  
+442. confirm – doğrulamak – verify – The results confirmed the hypothesis.  
+443. connect – bağlamak – link – The study connects theory and practice.  
+444. consider – değerlendirmek – contemplate – Experts considered all options.  
+445. consist – oluşmak – comprise – The team consists of five members.  
+446. construct – inşa etmek – build – Engineers constructed a bridge.  
+447. consult – danışmak – advise – Researchers consulted experts.  
+448. contain – içermek – include – The box contains samples.  
+449. continue – devam etmek – proceed – The experiment continued for hours.  
+450. contribute – katkıda bulunmak – add – Volunteers contributed their time.  
+451. control – kontrol etmek – manage – Managers control resources.  
+452. convert – dönüştürmek – change – Heat converts ice into water.  
+453. convey – aktarmak – communicate – Charts convey information clearly.  
+454. convince – ikna etmek – persuade – Data convinced the committee.  
+455. coordinate – koordine etmek – organize – Activities were coordinated.  
+456. correlate – ilişkilendirmek – relate – Studies correlate stress with sleep.  
+457. create – yaratmak – generate – They created a new method.  
+458. criticize – eleştirmek – evaluate – Scholars criticized the approach.  
+459. cultivate – geliştirmek – develop – Programs cultivate critical thinking.  
+460. decrease – azaltmak – reduce – Pollution decreased last year.  
+461. define – tanımlamak – explain – Terms were defined clearly.  
+462. deliver – teslim etmek – provide – The lecture delivered new insights.  
+463. demonstrate – göstermek – illustrate – The experiment demonstrated the principle.  
+464. depend – bağlı olmak – rely – Results depend on accuracy.  
+465. derive – türetmek – obtain – The formula derives from principles.  
+466. describe – tanımlamak – depict – The report describes trends.  
+467. design – tasarlamak – plan – Engineers designed the system.  
+468. detect – tespit etmek – discover – Sensors detect changes.  
+469. determine – belirlemek – decide – Tests determine skill levels.  
+470. develop – geliştirmek – advance – Researchers developed a method.  
+471. differentiate – ayırt etmek – distinguish – Students differentiate facts from opinions.  
+472. diminish – azaltmak – reduce – Stress diminishes productivity.  
+473. discover – keşfetmek – find – Scientists discovered a new species.  
+474. discuss – tartışmak – debate – Experts discussed the findings.  
+475. distribute – dağıtmak – hand out – Materials were distributed.  
+476. divide – bölmek – split – Class was divided into groups.  
+477. document – belgelemek – record – Events were documented.  
+478. dominate – hakim olmak – control – Few companies dominate the market.  
+479. draft – taslak hazırlamak – outline – They drafted a preliminary plan.  
+480. draw – çizmek / çekmek – sketch – The chart draws attention.  
+481. drive – yönlendirmek – lead – Motivation drives performance.  
+482. duplicate – çoğaltmak – copy – Files were duplicated.  
+483. edit – düzenlemek – revise – The editor edited the manuscript.  
+484. eliminate – ortadan kaldırmak – remove – Errors were eliminated.  
+485. embody – somutlaştırmak – represent – The policy embodies equality.  
+486. emerge – ortaya çıkmak – appear – Trends emerge every year.  
+487. emphasize – vurgulamak – highlight – The author emphasizes key points.  
+488. enable – olanak sağlamak – allow – Technology enables remote work.  
+489. enact – yürürlüğe koymak – implement – The law was enacted.  
+490. encourage – teşvik etmek – motivate – Teachers encourage participation.  
+491. engage – katılmak – involve – Students engaged actively.  
+492. enhance – geliştirmek – improve – The update enhances performance.  
+493. ensure – sağlamak – guarantee – Measures ensure safety.  
+494. entail – gerektirmek – involve – The job entails responsibility.  
+495. establish – kurmak – found – A committee was established.  
+496. evaluate – değerlendirmek – assess – Experts evaluated the proposal.  
+497. examine – incelemek – inspect – Scientists examined the samples.  
+498. exceed – aşmak – surpass – Profits exceeded expectations.  
+499. expand – genişletmek – enlarge – The program expanded significantly.  
+500. experience – deneyimlemek – undergo – Participants experienced improvements.  
+501. recall – hatırlamak – remember – She could recall the details clearly.  
+502. receive – almak – get – Participants received the survey by email.  
+503. recognize – tanımak – identify – The system recognizes voice commands.  
+504. recommend – önermek – suggest – Experts recommend daily exercise.  
+505. reconcile – uzlaştırmak – settle – The accountant reconciled the accounts.  
+506. record – kaydetmek – document – The device records temperature every hour.  
+507. recover – iyileşmek – regain – Patients recovered quickly after treatment.  
+508. reduce – azaltmak – decrease – The policy reduced energy consumption.  
+509. refer – atıfta bulunmak – mention – The author referred to previous studies.  
+510. reflect – yansıtmak – mirror – The data reflects seasonal trends.  
+511. reform – reform yapmak – revise – The government reformed the education system.  
+512. refuse – reddetmek – decline – She refused the offer politely.  
+513. regard – değerlendirmek – consider – The study regards multiple variables.  
+514. reinforce – pekiştirmek – strengthen – Feedback reinforces learning.  
+515. reject – reddetmek – decline – The committee rejected the proposal.  
+516. relate – ilişkilendirmek – associate – The survey relates stress to sleep quality.  
+517. release – serbest bırakmak – emit – The company released a new product.  
+518. rely – güvenmek – depend – Students rely on textbooks for reference.  
+519. remain – kalmak – stay – The results remained consistent.  
+520. remove – çıkarmak – eliminate – The filter removes impurities.  
+521. render – yapmak, sağlamak – provide – The system renders accurate results.  
+522. repeat – tekrar etmek – redo – The experiment was repeated three times.  
+523. replace – değiştirmek – substitute – Old parts were replaced with new ones.  
+524. report – raporlamak – inform – The team reported the findings to management.  
+525. represent – temsil etmek – symbolize – The graph represents population growth.  
+526. reproduce – çoğaltmak – replicate – The bacteria reproduce rapidly.  
+527. require – gerektirmek – necessitate – The project requires skilled personnel.  
+528. research – araştırmak – investigate – Scientists research climate change impacts.  
+529. respond – yanıtlamak – reply – Participants responded to the survey promptly.  
+530. restore – eski haline getirmek – recover – Efforts restored the damaged files.  
+531. retain – tutmak – keep – Soil retains moisture during summer.  
+532. reveal – ortaya çıkarmak – uncover – The investigation revealed hidden data.  
+533. review – gözden geçirmek – examine – The committee reviewed the report.  
+534. revise – gözden geçirmek – modify – The author revised the manuscript.  
+535. reward – ödüllendirmek – compensate – Students were rewarded for their effort.  
+536. rise – yükselmek – increase – Sea levels are rising globally.  
+537. run – çalıştırmak – operate – The machine runs smoothly.  
+538. satisfy – tatmin etmek – fulfill – The service satisfied all requirements.  
+539. schedule – planlamak – arrange – Interviews were scheduled for Monday.  
+540. search – aramak – look for – The team searched the database.  
+541. select – seçmek – choose – Participants were selected randomly.  
+542. separate – ayırmak – divide – Components were separated by type.  
+543. serve – hizmet etmek – assist – The program serves the community.  
+544. set – belirlemek – establish – Goals were set for the project.  
+545. shift – değiştirmek – move – The focus shifted to new priorities.  
+546. show – göstermek – display – The chart shows trends over time.  
+547. simplify – basitleştirmek – streamline – Instructions were simplified for clarity.  
+548. simulate – simüle etmek – model – The software simulates climate patterns.  
+549. solve – çözmek – resolve – Students solved the problem quickly.  
+550. source – kaynak sağlamak – provide – The lab sourced samples from multiple sites.  
+551. specify – belirtmek – define – The guidelines specify the required format.  
+552. stabilize – istikrarlı hale getirmek – secure – Measures stabilized the structure.  
+553. standardize – standartlaştırmak – normalize – Processes were standardized across labs.  
+554. start – başlamak – begin – The trial started last month.  
+555. state – ifade etmek – declare – The author stated the hypothesis clearly.  
+556. stay – kalmak – remain – The values stayed within normal range.  
+557. stimulate – uyarmak – encourage – The activity stimulates creative thinking.  
+558. stop – durdurmak – halt – The experiment was stopped temporarily.  
+559. strengthen – güçlendirmek – reinforce – Policies strengthen economic growth.  
+560. structure – yapılandırmak – organize – The essay was structured logically.  
+561. study – incelemek – analyze – Researchers studied gene expression.  
+562. submit – sunmak – hand in – Papers were submitted before the deadline.  
+563. succeed – başarmak – achieve – She succeeded in her research project.  
+564. suggest – önermek – propose – Experts suggest new regulations.  
+565. summarize – özetlemek – condense – The report summarizes key findings.  
+566. support – desteklemek – uphold – Evidence supports the theory.  
+567. suppress – bastırmak – inhibit – The drug suppresses inflammation.  
+568. sustain – sürdürmek – maintain – The system sustains high performance.  
+569. switch – değiştirmek – change – The company switched to new software.  
+570. symbolize – simgelemek – represent – The dove symbolizes peace.  
+571. synchronize – eş zamanlamak – coordinate – Devices were synchronized automatically.  
+572. tackle – ele almak – address – Policies tackle environmental issues.  
+573. take – almak – acquire – He took detailed notes.  
+574. target – hedeflemek – aim – The campaign targeted young adults.  
+575. teach – öğretmek – instruct – Teachers teach students critical skills.  
+576. test – test etmek – evaluate – The new system was tested thoroughly.  
+577. trace – izini sürmek – track – Scientists traced the origin of the virus.  
+578. train – eğitmek – instruct – Employees were trained in safety procedures.  
+579. transfer – aktarmak – move – Data was transferred to a secure server.  
+580. transform – dönüştürmek – convert – Heat transforms ice into water.  
+581. translate – çevirmek – interpret – The document was translated into English.  
+582. transmit – iletmek – send – Signals were transmitted via satellite.  
+583. transport – taşımak – carry – Goods are transported by truck.  
+584. treat – tedavi etmek – cure – Patients were treated with medication.  
+585. trigger – tetiklemek – provoke – The incident triggered public outrage.  
+586. try – denemek – attempt – She tried a new method.  
+587. understand – anlamak – comprehend – Students understood the concept clearly.  
+588. uncover – ortaya çıkarmak – reveal – Researchers uncovered new evidence.  
+589. undo – geri almak – reverse – Mistakes were undone quickly.  
+590. update – güncellemek – revise – The system was updated recently.  
+591. upgrade – yükseltmek – improve – Software was upgraded for better performance.  
+592. utilize – kullanmak – employ – Tools were utilized effectively.  
+593. validate – doğrulamak – confirm – The results were validated by experts.  
+594. vary – değişmek – differ – Results vary between experiments.  
+595. verify – doğrulamak – check – The data was verified carefully.  
+596. view – görmek – observe – The scientists viewed the samples under a microscope.  
+597. visualize – görselleştirmek – illustrate – The software visualizes complex data.  
+598. volunteer – gönüllü olmak – offer – Students volunteered to help the community.  
+599. warn – uyarmak – alert – Authorities warned citizens about the storm.  
+600. weigh – tartmak / değerlendirmek – measure – Researchers weighed the effects of the drug.  
+601. withdraw – geri çekmek – remove – He withdrew from the competition.
+602. withstand – dayanmak – endure – The building withstands earthquakes.  
+603. wonder – merak etmek – ponder – Students wondered about the experiment.  
+604. work – çalışmak – operate – The machine works efficiently.  
+605. write – yazmak – compose – She wrote a detailed report.  
+606. yield – vermek / sağlamak – produce – The experiment yielded surprising results.  
+607. absorb – emmek – soak – The sponge absorbs water quickly.  
+608. accelerate – hızlandırmak – speed up – Technology accelerates learning.  
+609. accommodate – uyum sağlamak – adjust – The room accommodates 50 people.  
+610. accompany – eşlik etmek – go with – He accompanied her to the meeting.  
+611. accomplish – başarmak – achieve – She accomplished all her goals.  
+612. account – açıklamak – explain – He accounted for the missing data.  
+613. accumulate – biriktirmek – collect – Dust accumulates over time.  
+614. adapt – uyum sağlamak – adjust – Students adapt to new teaching methods.  
+615. adhere – bağlı kalmak – stick – All members adhered to the rules.  
+616. adjust – ayarlamak – modify – He adjusted the settings.  
+617. advocate – savunmak – support – She advocates for climate action.  
+618. allocate – tahsis etmek – assign – Funds were allocated to research.  
+619. alter – değiştirmek – modify – They altered the schedule.  
+620. amend – düzeltmek – revise – The proposal was amended.  
+621. amplify – artırmak – boost – The speaker amplified his message.  
+622. analyze – analiz etmek – examine – Scientists analyzed the data.  
+623. announce – duyurmak – declare – The company announced new products.  
+624. apply – uygulamak – implement – The law applies nationwide.  
+625. appreciate – takdir etmek – value – Students appreciated the feedback.  
+626. approach – yaklaşmak – advance – The study approaches the problem differently.  
+627. approve – onaylamak – authorize – The board approved the plan.  
+628. arise – ortaya çıkmak – emerge – Problems arose during testing.  
+629. assemble – bir araya getirmek – gather – They assembled the furniture.  
+630. assert – iddia etmek – claim – The author asserts the findings are accurate.  
+631. assign – atamak – allocate – Tasks were assigned to students.  
+632. associate – ilişkilendirmek – connect – He associates success with effort.  
+633. assume – varsaymak – presume – We assumed the data was correct.  
+634. attain – ulaşmak – achieve – She attained her goals.  
+635. attract – çekmek – draw – The festival attracts many visitors.  
+636. audit – denetlemek – inspect – The company audits financial records.  
+637. augment – artırmak – increase – They augmented their resources.  
+638. authorize – yetkilendirmek – permit – The manager authorized the purchase.  
+639. balance – dengelemek – stabilize – Efforts were made to balance workload.  
+640. broaden – genişletmek – expand – The course broadens students’ knowledge.  
+641. calculate – hesaplamak – compute – They calculated the total cost.  
+642. capture – yakalamak – seize – The camera captures high-quality images.  
+643. categorize – kategorize etmek – classify – Responses were categorized by topic.  
+644. certify – onaylamak – validate – The lab certified the equipment.  
+645. clarify – açıklığa kavuşturmak – explain – The teacher clarified the instructions.  
+646. coincide – denk gelmek – correspond – Events coincided with holidays.  
+647. collaborate – işbirliği yapmak – cooperate – Universities collaborated on research.  
+648. collapse – çökmek – fall – The building collapsed after the quake.  
+649. commence – başlamak – begin – The meeting commenced at 10 AM.  
+650. communicate – iletişim kurmak – convey – They communicated via email.  
+651. commute – gidip gelmek – travel – She commutes to work daily.  
+652. compare – karşılaştırmak – contrast – The study compares two methods.  
+653. compile – derlemek – assemble – Data was compiled from surveys.  
+654. complement – tamamlamak – supplement – Charts complement the report.  
+655. comply – uymak – obey – All staff must comply with rules.  
+656. compose – oluşturmak – create – The orchestra composed a new piece.  
+657. comprehend – anlamak – understand – Students struggled to comprehend the text.  
+658. compress – sıkıştırmak – condense – The files were compressed.  
+659. compute – hesaplamak – calculate – The software computes results quickly.  
+660. concede – kabul etmek – admit – He conceded the point.  
+661. concentrate – yoğunlaşmak – focus – She concentrated on the task.  
+662. conclude – sonuçlandırmak – finish – They concluded the experiment.  
+663. condense – yoğunlaştırmak – shorten – The summary condenses the report.  
+664. conduct – yürütmek – carry out – Researchers conducted the study.  
+665. confer – danışmak – consult – Doctors conferred about the patient.  
+666. confirm – doğrulamak – verify – The test confirmed the results.  
+667. confront – yüzleşmek – face – They confronted the issue directly.  
+668. connect – bağlamak – link – The paper connects theory with practice.  
+669. consent – izin vermek – agree – Participants consented to the study.  
+670. conserve – korumak – preserve – Efforts were made to conserve water.  
+671. consider – değerlendirmek – contemplate – The committee considered all options.  
+672. consolidate – pekiştirmek – strengthen – They consolidated their gains.  
+673. construct – inşa etmek – build – Engineers constructed a bridge.  
+674. consult – danışmak – advise – They consulted experts.  
+675. contain – içermek – include – The box contains tools.  
+676. contemplate – düşünmek – consider – He contemplated a career change.  
+677. continue – devam etmek – proceed – The trial continued for three months.  
+678. contract – sözleşme yapmak / daralmak – shrink – The company contracted a new service.  
+679. contradict – çelişmek – oppose – The results contradict the hypothesis.  
+680. contribute – katkıda bulunmak – add – Volunteers contributed their time.  
+681. convert – dönüştürmek – change – Heat converts ice into water.  
+682. convey – aktarmak – communicate – Charts convey information clearly.  
+683. convince – ikna etmek – persuade – Data convinced reviewers of its validity.  
+684. coordinate – koordine etmek – organize – Activities were coordinated efficiently.  
+685. correlate – ilişkilendirmek – relate – The study correlates income with health.  
+686. correspond – karşılık gelmek – match – Results correspond to predictions.  
+687. counsel – danışmanlık yapmak – advise – Psychologists counsel patients regularly.  
+688. create – yaratmak – generate – The update created new opportunities.  
+689. criticize – eleştirmek – evaluate – Scholars criticized the approach.  
+690. cultivate – geliştirmek – develop – The program cultivates critical thinking.  
+691. decrease – azaltmak – reduce – Pollution decreased last year.  
+692. deduce – çıkarım yapmak – infer – We deduced the cause from evidence.  
+693. deem – saymak, değerlendirmek – consider – The proposal was deemed insufficient.  
+694. define – tanımlamak – explain – Terms were defined clearly.  
+695. delay – geciktirmek – postpone – The flight was delayed.  
+696. deliver – teslim etmek / sunmak – provide – The lecture delivered new insights.  
+697. demand – talep etmek – require – The task demands attention.  
+698. demonstrate – göstermek – illustrate – The experiment demonstrated the principle.  
+699. depict – tasvir etmek – illustrate – The figure depicts seasonal changes.  
+700. deploy – konuşlandırmak – implement – The system was deployed in multiple regions.  
+701. derive – türetmek – obtain – The formula derives from basic principles.  
+702. describe – tanımlamak – depict – The report describes climate patterns.  
+703. design – tasarlamak – plan – Engineers designed a new bridge.  
+704. detect – tespit etmek – discover – Sensors detect temperature changes.  
+705. determine – belirlemek – decide – The test determines skill levels.  
+706. develop – geliştirmek – advance – Researchers developed a new method.  
+707. differentiate – ayırt etmek – distinguish – Students differentiate fact from opinion.  
+708. diminish – azaltmak – reduce – Stress diminishes productivity.  
+709. direct – yönlendirmek – guide – The teacher directed the students.  
+710. disable – devre dışı bırakmak – deactivate – The feature was disabled temporarily.  
+711. discover – keşfetmek – find – Scientists discovered a new species.  
+712. discuss – tartışmak – debate – Experts discussed the findings.  
+713. disperse – dağıtmak – scatter – The crowd dispersed after the event.  
+714. display – sergilemek – exhibit – Charts display key information.  
+715. distinguish – ayırt etmek – separate – She distinguished the patterns easily.  
+716. distribute – dağıtmak – hand out – Materials were distributed to participants.  
+717. divide – bölmek – split – The class was divided into groups.  
+718. document – belgelemek – record – The incident was documented thoroughly.  
+719. dominate – hakim olmak – control – A few companies dominate the market.  
+720. draft – taslak hazırlamak – outline – They drafted a preliminary report.  
+721. dramatize – dramatize etmek – exaggerate – Media dramatized the events.  
+722. draw – çizmek / çekmek – sketch – The diagram draws attention to key points.  
+723. drive – sürmek / yönlendirmek – lead – Motivation drives performance.  
+724. duplicate – çoğaltmak – copy – Files were duplicated for backup.  
+725. edit – düzenlemek – revise – The editor edited the manuscript.  
+726. eliminate – ortadan kaldırmak – remove – Errors were eliminated from the data.  
+727. embody – somutlaştırmak – represent – The policy embodies equality principles.  
+728. emerge – ortaya çıkmak – appear – New trends emerge every year.  
+729. emphasize – vurgulamak – highlight – The author emphasizes data accuracy.  
+730. enable – olanak sağlamak – allow – Technology enables remote work.  
+731. enact – yürürlüğe koymak – implement – The law was enacted in 2020.  
+732. encourage – teşvik etmek – motivate – Teachers encourage participation.  
+733. end – bitirmek – finish – They ended the session early.  
+734. engage – katılmak – involve – Students engaged actively in discussions.  
+735. enhance – geliştirmek – improve – The upgrade enhances performance.  
+736. enjoy – zevk almak – appreciate – Students enjoy interactive learning.  
+737. ensure – sağlamak – guarantee – Measures ensure safety.  
+738. entail – gerektirmek – involve – The job entails long hours.  
+739. enter – girmek – join – Participants entered the room quietly.  
+740. establish – kurmak – found – A committee was established to oversee progress.  
+741. evaluate – değerlendirmek – assess – Experts evaluated the proposal.  
+742. examine – incelemek – inspect – Scientists examined the samples.  
+743. exceed – aşmak – surpass – Sales exceeded expectations.  
+744. exchange – değiş tokuş yapmak – trade – Students exchanged ideas.  
+745. execute – yürütmek – implement – The team executed the plan flawlessly.  
+746. exhibit – sergilemek – display – The patient exhibited symptoms.  
+747. expand – genişletmek – enlarge – The program expanded significantly.  
+748. expect – beklemek – anticipate – We expect results by June.  
+749. experience – deneyimlemek – undergo – Participants experienced improvements.  
+750. experiment – denemek – test – Scientists experimented with new methods.  
+751. explain – açıklamak – clarify – The teacher explained the rules.  
+752. explore – keşfetmek – investigate – The paper explores alternative methods.  
+753. express – ifade etmek – convey – Respondents expressed concern about safety.  
+754. extend – uzatmak – lengthen – The deadline was extended.  
+755. extract – çıkarmak – remove – DNA was extracted from samples.  
+756. facilitate – kolaylaştırmak – ease – Tools facilitate data processing.  
+757. fail – başarısız olmak – fall short – The experiment failed to produce results.  
+758. feature – özellik taşımak – include – The program features several tools.  
+759. feed – beslemek – supply – Sensors feed data to the server.  
+760. fetch – getirmek – retrieve – The system fetches records automatically.  
+761. finalize – sonlandırmak – complete – They finalized the report yesterday.  
+762. finance – finanse etmek – fund – The project was financed by grants.  
+763. formulate – formüle etmek – devise – Scientists formulated a hypothesis.  
+764. foster – teşvik etmek – encourage – Collaboration fosters innovation.  
+765. fulfill – yerine getirmek – satisfy – The project fulfills all requirements.  
+766. function – çalışmak / işlev görmek – operate – The device functions efficiently.  
+767. generate – üretmek – create – The machine generates data.  
+768. govern – yönetmek – control – Regulations govern market behavior.  
+769. grasp – kavramak – understand – Students grasped core concepts.  
+770. guide – rehberlik etmek – lead – The mentor guided the students.  
+771. halt – durdurmak – stop – The process was halted temporarily.  
+772. handle – ele almak – manage – Researchers handled the samples carefully.  
+773. harm – zarar vermek – damage – Smoking harms health.  
+774. harvest – toplamak – collect – Crops were harvested early.  
+775. heighten – artırmak – intensify – Risks heightened during the storm.  
+776. hinder – engellemek – obstruct – Noise hindered concentration.  
+777. hypothesize – hipotez kurmak – assume – Researchers hypothesized a link.  
+778. identify – tanımlamak – recognize – The test identifies faulty items.  
+779. ignite – ateşlemek – spark – The speech ignited debate.  
+780. illustrate – örneklendirmek – demonstrate – The chart illustrates trends.  
+781. immerse – daldırmak – engage – Students immersed themselves in research.  
+782. implement – uygulamak – enforce – New rules were implemented immediately.  
+783. imply – ima etmek – suggest – The results imply a correlation.  
+784. impose – dayatmak – enforce – New restrictions were imposed.  
+785. improve – geliştirmek – enhance – Training improved skills.  
+786. incorporate – dahil etmek – integrate – Feedback was incorporated.  
+787. increase – artırmak – boost – Productivity increased last quarter.  
+788. incur – maruz kalmak – bring upon – Companies incur costs during expansion.  
+789. indicate – göstermek – show – Data indicates trends.  
+790. induce – neden olmak – cause – Stress induces physical symptoms.  
+791. infect – bulaştırmak – contaminate – The virus infects millions.  
+792. infer – çıkarım yapmak – deduce – We infer meaning from context.  
+793. influence – etkilemek – impact – Parents influence habits.  
+794. inhibit – engellemek – suppress – Chemicals inhibit growth.  
+795. initiate – başlatmak – begin – They initiated research.  
+796. inquire – soru sormak – ask – Reviewers inquired about methods.  
+797. insert – eklemek – put in – A sensor was inserted.  
+798. inspect – incelemek – examine – Officials inspected the site.  
+799. inspire – ilham vermek – motivate – Her work inspired students.  
+800. install – kurmak – set up – Software was installed successfully.  
+801. institute – kurmak – establish – New procedures were instituted.  
+802. instruct – talimat vermek – guide – Teachers instructed students carefully.  
+803. integrate – entegre etmek – combine – Technology is integrated into lessons.  
+804. intend – niyet etmek – plan – He intends to study abroad.  
+805. interact – etkileşim kurmak – communicate – Students interact with peers daily.  
+806. interfere – müdahale etmek – disrupt – Noise interfered with concentration.  
+807. interpret – yorumlamak – explain – The data was interpreted differently.  
+808. interrupt – bölmek – disturb – The lecture was interrupted.  
+809. intervene – müdahale etmek – intercede – The teacher intervened in the argument.  
+810. introduce – tanıtmak – present – The researcher introduced a new model.  
+811. invent – icat etmek – create – They invented a new device.  
+812. invest – yatırım yapmak – allocate – The company invested in technology.  
+813. investigate – araştırmak – examine – Scientists investigated the phenomenon.  
+814. involve – dahil etmek – include – The project involves multiple teams.  
+815. isolate – izole etmek – separate – The sample was isolated.  
+816. issue – yayımlamak – release – The organization issued a statement.  
+817. justify – haklı çıkarmak – validate – He justified his decision.  
+818. label – etiketlemek – tag – Samples were labeled.  
+819. launch – başlatmak – initiate – They launched a new program.  
+820. lead – öncülük etmek – guide – She leads the research team.  
+821. learn – öğrenmek – study – Students learn through practice.  
+822. lessen – azaltmak – reduce – Measures were taken to lessen risk.  
+823. leverage – kullanmak – utilize – Companies leverage data for growth.  
+824. locate – yerini belirlemek – find – Scientists located the missing file.  
+825. maintain – sürdürmek – preserve – The system is maintained regularly.  
+826. manipulate – manipüle etmek – control – Data was manipulated.  
+827. maximize – en üst düzeye çıkarmak – increase – They maximized efficiency.  
+828. measure – ölçmek – assess – Instruments measure temperature.  
+829. mediate – arabuluculuk yapmak – negotiate – Teachers mediated disputes.  
+830. merge – birleştirmek – combine – Companies merged operations.  
+831. minimize – en aza indirmek – reduce – Steps were taken to minimize errors.  
+832. modify – değiştirmek – alter – The experiment was modified.  
+833. monitor – izlemek – observe – The system monitors activity.  
+834. motivate – motive etmek – encourage – Coaches motivate players.  
+835. navigate – yönlendirmek – steer – The software navigates users.  
+836. neglect – ihmal etmek – ignore – Safety measures were neglected.  
+837. negotiate – müzakere etmek – bargain – They negotiated terms.  
+838. nominate – aday göstermek – propose – She was nominated for award.  
+839. normalize – normalleştirmek – standardize – Data was normalized.  
+840. obtain – elde etmek – acquire – Researchers obtained samples.  
+841. observe – gözlemlemek – notice – Scientists observed behavior.  
+842. obstruct – engellemek – block – Trees obstructed view.  
+843. occur – meydana gelmek – happen – Errors occurred frequently.  
+844. offset – dengelemek – counterbalance – Profits offset losses.  
+845. omit – çıkarmak – exclude – Key points were omitted.  
+846. operate – çalıştırmak – run – The system operates efficiently.  
+847. oppose – karşı çıkmak – resist – The committee opposed the change.  
+848. optimize – optimize etmek – enhance – They optimized the process.  
+849. organize – düzenlemek – arrange – They organized a seminar.  
+850. originate – ortaya çıkmak – emerge – The theory originated in the 19th century.  
+851. outline – ana hatlarını çizmek – summarize – The report outlined the process.  
+852. overcome – üstesinden gelmek – defeat – She overcame obstacles.  
+853. overlook – gözden kaçırmak – miss – They overlooked errors.  
+854. participate – katılmak – join – Students participated in research.  
+855. perceive – algılamak – sense – People perceive risk differently.  
+856. perform – yerine getirmek – execute – The test was performed successfully.  
+857. permit – izin vermek – allow – The system permits multiple entries.  
+858. persist – sürdürmek – continue – Symptoms persisted.  
+859. persuade – ikna etmek – convince – She persuaded him to attend.  
+860. pioneer – öncülük etmek – initiate – The lab pioneered new techniques.  
+861. plan – planlamak – organize – They planned the project.  
+862. predict – tahmin etmek – foresee – The model predicted trends.  
+863. prefer – tercih etmek – favor – Students prefer online courses.  
+864. prepare – hazırlamak – arrange – The team prepared materials.  
+865. prescribe – reçete yazmak – order – Doctors prescribed medication.  
+866. present – sunmak – display – The findings were presented.  
+867. preserve – korumak – maintain – Efforts preserve nature.  
+868. prevent – önlemek – stop – Vaccines prevent disease.  
+869. prioritize – öncelik vermek – rank – Tasks were prioritized.  
+870. probe – araştırmak – investigate – Experts probed the issue.  
+871. process – işlemek – handle – Data was processed.  
+872. proclaim – ilan etmek – declare – The leader proclaimed victory.  
+873. produce – üretmek – generate – The factory produced components.  
+874. progress – ilerlemek – advance – The project progressed.  
+875. prohibit – yasaklamak – ban – Smoking is prohibited indoors.  
+876. project – yansıtmak / tahmin etmek – estimate – Sales were projected.  
+877. promote – teşvik etmek – encourage – Campaign promoted awareness.  
+878. prompt – tetiklemek – cause – The news prompted discussion.  
+879. propose – önermek – suggest – He proposed a new approach.  
+880. protect – korumak – defend – Laws protect wildlife.  
+881. prove – kanıtlamak – demonstrate – The claim was proven true.  
+882. provide – sağlamak – supply – The program provides resources.  
+883. provoke – kışkırtmak – incite – The comment provoked outrage.  
+884. publish – yayımlamak – release – The article was published.  
+885. pursue – takip etmek – chase – She pursued a career.  
+886. qualify – yeterlilik kazanmak – certify – He qualified for finals.  
+887. quantify – niceliklendirmek – measure – The impact was quantified.  
+888. question – sorgulamak – challenge – They questioned the data.  
+889. quote – alıntı yapmak – cite – The paper quoted experts.  
+890. raise – artırmak – lift – Prices were raised.  
+891. range – sıralanmak – extend – Temperatures ranged widely.  
+892. react – tepki vermek – respond – They reacted quickly.  
+893. read – okumak – peruse – She read the article.  
+894. realize – fark etmek – recognize – He realized the mistake.  
+895. reap – elde etmek – gain – Farmers reaped benefits.  
+896. receive – almak – accept – They received awards.  
+897. recognize – tanımak – identify – The software recognizes faces.  
+898. recommend – tavsiye etmek – suggest – Experts recommend rest.  
+899. record – kaydetmek – document – Events were recorded.  
+900. recover – iyileşmek – regain – Patients recovered quickly.  
+901. reduce – azaltmak – decrease – Policies reduced energy consumption.  
+902. refer – atıfta bulunmak – mention – The article referred to prior studies.  
+903. reflect – yansıtmak – mirror – The data reflects seasonal changes.  
+904. reform – reform yapmak – revise – The law was reformed.  
+905. refuse – reddetmek – decline – She refused the offer.  
+906. regard – değerlendirmek – consider – The study regards multiple factors.  
+907. reinforce – pekiştirmek – strengthen – Feedback reinforces learning.  
+908. reject – reddetmek – decline – The proposal was rejected.  
+909. relate – ilişkilendirmek – associate – Stress relates to sleep patterns.  
+910. release – serbest bırakmak – emit – The company released a report.  
+911. rely – güvenmek – depend – Students rely on textbooks.  
+912. remain – kalmak – stay – The results remained stable.  
+913. remove – çıkarmak – eliminate – Errors were removed.  
+914. render – sağlamak / yapmak – provide – The system renders accurate results.  
+915. repeat – tekrar etmek – redo – The test was repeated.  
+916. replace – değiştirmek – substitute – Old parts were replaced.  
+917. report – raporlamak – inform – Findings were reported.  
+918. represent – temsil etmek – symbolize – The chart represents growth.  
+919. reproduce – çoğaltmak – replicate – Cells reproduce rapidly.  
+920. require – gerektirmek – necessitate – The task requires precision.  
+921. research – araştırmak – investigate – Scientists researched the phenomenon.  
+922. respond – yanıtlamak – reply – Participants responded promptly.  
+923. restore – eski haline getirmek – recover – Efforts restored files.  
+924. retain – tutmak – keep – Soil retains moisture.  
+925. reveal – ortaya çıkarmak – uncover – The study revealed insights.  
+926. review – gözden geçirmek – examine – The report was reviewed.  
+927. revise – gözden geçirmek – modify – The manuscript was revised.  
+928. reward – ödüllendirmek – compensate – Students were rewarded.  
+929. rise – yükselmek – increase – Prices rose last month.  
+930. run – çalıştırmak – operate – The system runs efficiently.  
+931. satisfy – tatmin etmek – fulfill – The service satisfied requirements.  
+932. schedule – planlamak – arrange – Interviews were scheduled.  
+933. search – aramak – look for – The team searched documents.  
+934. select – seçmek – choose – Participants were selected randomly.  
+935. separate – ayırmak – divide – Components were separated.  
+936. serve – hizmet etmek – assist – The program serves students.  
+937. set – belirlemek – establish – Goals were set.  
+938. shift – değiştirmek – move – Focus shifted to new priorities.  
+939. show – göstermek – display – Charts show trends.  
+940. simplify – basitleştirmek – streamline – Instructions were simplified.  
+941. simulate – simüle etmek – model – Software simulates patterns.  
+942. solve – çözmek – resolve – Students solved the problem.  
+943. source – kaynak sağlamak – provide – The lab sourced samples.  
+944. specify – belirtmek – define – Guidelines specify format.  
+945. stabilize – istikrarlı hale getirmek – secure – Measures stabilized structure.  
+946. standardize – standartlaştırmak – normalize – Processes were standardized.  
+947. start – başlamak – begin – The trial started.  
+948. state – ifade etmek – declare – He stated the hypothesis.  
+949. stay – kalmak – remain – Values stayed stable.  
+950. stimulate – uyarmak – encourage – Activity stimulates creativity.  
+951. stop – durdurmak – halt – The experiment was stopped.  
+952. strengthen – güçlendirmek – reinforce – Policies strengthen growth.  
+953. structure – yapılandırmak – organize – Essay was structured logically.  
+954. study – incelemek – analyze – Researchers studied results.  
+955. submit – sunmak – hand in – Papers were submitted.  
+956. succeed – başarmak – achieve – She succeeded in research.  
+957. suggest – önermek – propose – Experts suggested improvements.  
+958. summarize – özetlemek – condense – The report summarized findings.  
+959. support – desteklemek – uphold – Evidence supports theory.  
+960. suppress – bastırmak – inhibit – Chemicals suppress growth.  
+961. sustain – sürdürmek – maintain – System sustains performance.  
+962. switch – değiştirmek – change – Company switched software.  
+963. symbolize – simgelemek – represent – Dove symbolizes peace.  
+964. synchronize – eş zamanlamak – coordinate – Devices were synchronized.  
+965. tackle – ele almak – address – Policies tackle issues.  
+966. take – almak – acquire – He took notes.  
+967. target – hedeflemek – aim – Campaign targeted youth.  
+968. teach – öğretmek – instruct – Teachers teach skills.  
+969. test – test etmek – evaluate – System was tested.  
+970. trace – izlemek – track – Scientists traced virus.  
+971. train – eğitmek – instruct – Employees were trained.  
+972. transfer – aktarmak – move – Data was transferred.  
+973. transform – dönüştürmek – convert – Heat transforms ice.  
+974. translate – çevirmek – interpret – Document was translated.  
+975. transmit – iletmek – send – Signals were transmitted.  
+976. transport – taşımak – carry – Goods were transported.  
+977. treat – tedavi etmek – cure – Patients were treated.  
+978. trigger – tetiklemek – provoke – Incident triggered debate.  
+979. try – denemek – attempt – She tried a new method.  
+980. understand – anlamak – comprehend – Students understood concepts.  
+981. uncover – ortaya çıkarmak – reveal – Evidence was uncovered.  
+982. undo – geri almak – reverse – Mistakes were undone.  
+983. update – güncellemek – revise – System was updated.  
+984. upgrade – yükseltmek – improve – Software was upgraded.  
+985. utilize – kullanmak – employ – Tools were utilized.  
+986. validate – doğrulamak – confirm – Results were validated.  
+987. vary – değişmek – differ – Results vary by region.  
+988. verify – doğrulamak – check – Data was verified.  
+989. view – görmek – observe – Scientists viewed samples.  
+990. visualize – görselleştirmek – illustrate – Software visualizes data.  
+991. volunteer – gönüllü olmak – offer – Students volunteered.  
+992. warn – uyarmak – alert – Authorities warned citizens.  
+993. weigh – tartmak / değerlendirmek – measure – Effects were weighed.  
+994. withdraw – geri çekmek – remove – He withdrew application.  
+995. withstand – dayanmak – endure – Structure withstands pressure.  
+996. wonder – merak etmek – ponder – He wondered about results.  
+997. work – çalışmak – operate – The system works well.  
+998. write – yazmak – compose – She wrote the report.  
+999. yield – vermek / sağlamak – produce – The study yielded results.  
+1000. absorb – emmek – soak – The sponge absorbs water quickly.  
+
+

@@ -186,4 +186,31 @@ router.get('/check-database', async (req, res) => {
     }
 });
 
+// Run database seeding
+router.get('/seed-database', async (req, res) => {
+    try {
+        console.log('🔄 Starting database seeding...');
+
+        // Read seeds.sql file
+        const seedsPath = path.join(__dirname, '../database/seeds.sql');
+        const seeds = fs.readFileSync(seedsPath, 'utf8');
+
+        // Execute seeds
+        await query(seeds);
+
+        console.log('✅ Database seeded successfully!');
+
+        res.json({
+            success: true,
+            message: 'Database seeded successfully!'
+        });
+    } catch (error) {
+        console.error('❌ Database seeding error:', error);
+        res.status(500).json({
+            success: false,
+            error: error.message
+        });
+    }
+});
+
 export default router;
