@@ -61,8 +61,9 @@ export default function Flashcards() {
 
             try {
                 const res = await axios.get(`/api/user/progress/flashcards-${type}`);
-                if (res.data && res.data.currentIndex !== undefined && res.data.currentIndex !== null) {
-                    const savedIndex = Math.min(Math.max(0, res.data.currentIndex), words.length - 1);
+                const progressData = res.data?.progress ? JSON.parse(res.data.progress) : res.data;
+                if (progressData && progressData.currentIndex !== undefined && progressData.currentIndex !== null) {
+                    const savedIndex = Math.min(Math.max(0, progressData.currentIndex), words.length - 1);
                     setCurrentIndex(savedIndex);
                     console.log(`✓ İlerleme yüklendi: ${savedIndex + 1}. karttan devam ediliyor`);
                 }
