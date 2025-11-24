@@ -1,6 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import crypto from 'crypto';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -15,8 +16,15 @@ const FILES = [
     { name: 'isimler.txt', type: 'noun' }
 ];
 
+function generateId(text) {
+    return crypto.createHash('md5').update(text).digest('hex').substring(0, 24);
+}
+
 async function processFiles() {
     let sqlStatements = [];
+
+    // Add Truncate statement to clear existing data and prevent duplicates
+    sqlStatements.push('TRUNCATE TABLE words, books CASCADE;');
 
     // Read existing db.json to preserve other data
     console.log('Reading db.json...');
@@ -24,6 +32,7 @@ async function processFiles() {
 
     const newWords = [];
 
+    // Process Words
     for (const file of FILES) {
         const filePath = path.join(PROJECT_ROOT, file.name);
         console.log(`Processing ${file.name}...`);
@@ -53,7 +62,8 @@ async function processFiles() {
                     const synonyms = parts[2] || ''; // Might be empty
                     const example = parts[3] || ''; // Might be empty
 
-                    const id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+                    // Generate deterministic ID based on term
+                    const id = generateId(term);
 
                     const wordObj = {
                         id,
@@ -81,13 +91,34 @@ async function processFiles() {
         }
     }
 
-    // Update db.json
+    // Process Books from db.json
+    if (dbData.books && dbData.books.length > 0) {
+        console.log(`Processing ${dbData.books.length} books from db.json...`);
+        sqlStatements.push('\n-- Seeds for books');
+
+        for (const book of dbData.books) {
+            const safeTitle = book.title.replace(/'/g, "''");
+            const safeAuthor = book.author ? book.author.replace(/'/g, "''") : '';
+            const safeContent = book.content ? book.content.replace(/'/g, "''") : '';
+            const safeDifficulty = book.difficulty || 'B2';
+            const isPro = book.isPro ? 'TRUE' : 'FALSE';
+
+            // Use existing ID or generate one
+            const id = book.id || generateId(book.title);
+
+            sqlStatements.push(`INSERT INTO books (id, title, author, content, difficulty, is_pro) VALUES ('${id}', '${safeTitle}', '${safeAuthor}', '${safeContent}', '${safeDifficulty}', ${isPro}) ON CONFLICT (id) DO NOTHING;`);
+        }
+    } else {
+        console.log('No books found in db.json');
+    }
+
+    // Update db.json with new words (optional, but keeps it in sync)
     dbData.words = newWords;
     await fs.writeFile(DB_JSON_PATH, JSON.stringify(dbData, null, 2));
     console.log(`Updated db.json with ${newWords.length} words.`);
 
     // Write seeds.sql
-    const sqlContent = `-- Seeds for words\n${sqlStatements.join('\n')}`;
+    const sqlContent = `-- Seeds for words and books\n${sqlStatements.join('\n')}`;
     await fs.writeFile(SEEDS_SQL_PATH, sqlContent);
     console.log(`Created seeds.sql with ${sqlStatements.length} insert statements.`);
 }
